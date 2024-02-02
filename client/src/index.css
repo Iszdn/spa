@@ -1,0 +1,9 @@
+:root{
+  --main--color:#FCF7EE;
+  --second--color:#ECDEC1;
+  --third--color:#B6713E;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.28;
+}
