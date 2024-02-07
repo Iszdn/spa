@@ -1,0 +1,22 @@
+.title{
+    text-align: center;
+    padding: 50px 0;
+    span{
+        text-transform: uppercase;
+        letter-spacing: 3px;
+
+       
+    } h3{
+            font-size: 46px ;
+            font-weight: 500;
+        }
+}
+#diamond{
+    background-color: var(--main--color);
+    .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+        background-color: var(--third--color);
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,117 @@
+#video{
+    padding: 70px 0;
+    background-image: url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/Lilac-Demo-Video-Banner-Img-1-1.png");
+     
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .videoplayer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title{
+            text-align: start;
+            h3{
+                font-size: 42px;
+                padding: 10px 0 20px 0;
+            }
+            p{
+                max-width: 700px;
+                padding-bottom: 15px;
+            }
+            .add-but{
+                text-align: center  ;
+            }
+        }
+        .play{ 
+            display: flex;
+            align-items: baseline;
+            gap: 40px;
+              cursor: pointer;
+            p{
+                text-transform: uppercase;
+                letter-spacing: 3px;        
+             
+                display: flex;
+                align-items: center;
+                    transition: .5s;
+                    gap: 10px;
+                .empt{
+                    display: inline-block;
+                    transition: .5s;
+                    width: 40px;
+                    height: 1px;
+                    background-color: black;
+                }
+               
+            } 
+            .ico{
+                background-color: #F1E8EB;
+                padding: 17px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                position: relative;
+                z-index: 2;
+&::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 0 rgb(215, 201, 204, 0.2), 0 0 0 10px rgb(215, 201, 204, 0.2), 0 0 0 20px rgb(215, 201, 204, 0.2), 0 0 0 30px rgb(215, 201, 204, 0.2);
+    background-color: #f1e8eb;
+    border-radius: 50%;
+    z-index: -1;
+    transition:  all 0.3s linear 0s;
+    animation: vid-icon-wave 1s linear infinite;
+
+}
+@keyframes vid-icon-wave {
+    100% {
+        box-shadow: 0 0 0 10px rgb(215, 201, 204, 0.2), 0 0 0 20px rgb(215, 201, 204, 0.2), 0 0 0 30px rgb(215, 201, 204, 0.2);
+    }
+}
+            }
+            &:hover p{
+                    color: var(--third--color);
+                    transition: .5s;
+                }
+                &:hover .empt{
+                    background-color: var(--third--color);
+                    transition: .5s;
+                    width: 65px;
+
+                }
+        }
+    }
+
+}
+@media screen and (max-width:992px) {
+    #video{
+        .videoplayer{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            .title{
+                text-align: center;
+                h3{
+                    font-size: 42px;
+                    padding: 10px 0 20px 0;
+                }
+                p{
+                    max-width: 700px;
+                    padding-bottom: 15px;
+                }
+            }
+            .play{ 
+                order: -1; 
+                p{
+                    display: none;
+                }    
+}}}
+}

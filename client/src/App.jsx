@@ -1,6 +1,8 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Layout from "./Layout/Layout";
 import HomePage from "./Pages/HomePage";

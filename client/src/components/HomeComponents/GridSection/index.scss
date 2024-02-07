@@ -1,0 +1,132 @@
+#spa-service {
+    background-color: var(--main--color);
+    padding: 60px 0;
+  .spa-ser {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+  
+    
+  }
+
+  .div1 {
+    grid-area: 1 / 1 / 3 / 2; // Adjusted to span from row 1 to row 3
+    .image {
+        .conten {
+          left: 50px;
+        }
+      }
+}
+
+  .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+    .image {
+        .conten {
+          left: 50px;
+        }
+      }
+  }
+
+  .div3 {
+    grid-area: 1 / 3 / 2 / 4;
+    .image {
+        .conten {
+          right: 50px;
+          text-align: end;
+        }
+      }
+   
+  }
+
+  .div4 {
+    grid-area: 2 / 2 / 3 / 3;
+    .image {
+        .conten {
+          right: 50px;
+          text-align: end;
+        }
+      }
+  }
+
+  .div5 {
+    grid-area: 2 / 3 / 3 / 4;
+    .image {
+        .conten {
+          left: 50px;
+        }
+      }
+  }
+
+  .spa {
+  
+    cursor: pointer;
+
+    .image {
+      
+      overflow: hidden;
+      position: relative;
+
+      img {
+        transition: 0.4s;
+      }
+
+      .conten {
+        position: absolute;
+        bottom: 50%;
+        transform: translateY(50%);
+        h6{
+          letter-spacing: 1px;
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: 400;
+        }
+        h5{
+          font-size: 30px;
+          font-weight: 500;
+        }
+        a {
+          font-size: 12px;
+          font-weight: 400;
+          text-transform: uppercase;
+          position: relative;
+color: black;
+          &::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: black;
+            bottom: -5px; 
+            left: 0;
+            transition: width 0.4s ease, left 0.4s ease; 
+          }
+
+          &:hover::after {
+            width: 100%; 
+            left: 0; 
+          }
+        }
+      }
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+      transition: 0.4s;
+    }
+  }
+}
+  @media screen and (max-width: 992px)
+  {
+    #spa-service{
+        .spa-ser {
+
+            display: flex;
+            flex-direction: column;
+            
+    }
+}
+  } 
+  
+  

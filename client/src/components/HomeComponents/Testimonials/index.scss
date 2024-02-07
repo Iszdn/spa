@@ -1,0 +1,168 @@
+#testimonia{
+    background-color: var(--main--color);
+   .title{
+    padding: 50px 0 20px 0;
+   }
+    .testimonils{
+        cursor: grab;
+        display: flex;
+align-items: center;
+justify-content: center;
+gap: 30px;
+flex-direction: column;
+    // text-align: center;
+    p{
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+        cursor: grab;
+        line-height: 1.5;
+    }
+    .info{
+        background-image: url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/testi.png");
+background-position: center;
+        background-size: cover;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        position: relative;
+        gap: 10px;
+        .foto{
+width: 100px;
+border-radius: 50%;
+img{
+border-radius: 50%;
+}
+        }
+        .pep{
+h4{
+    font-size: 20px;
+    font-weight: 500;
+    a{
+        transition: .4s;
+        color: inherit;
+        &:hover{
+            transition: .4s;
+            color: var(--third--color);
+        }
+    }
+}
+        }
+        &::before{
+            content: '';
+            position: absolute;
+           width: 200px;
+            left: 100%;
+            height: 2px;
+            display: block;
+            background-color: #b7b7b7;
+            margin-left: 20px ;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+           width: 200px;
+            right: 100%;
+            height: 2px;
+            display: block;
+            background-color: #b7b7b7;
+            margin-right: 20px 
+        }
+    }
+   } 
+   .swiper-button-prev:after{
+    font-size: 30px;
+    color: var(--third--color);
+   cursor: grab; 
+   }
+   .swiper-button-next:after{
+    font-size: 30px;
+    color: var(--third--color);
+    cursor: grab;
+   }
+}
+
+@media screen and (max-width:992px) {
+    #testimonia{
+        background-color: var(--main--color);
+       .title{
+        padding: 50px 0 20px 0;
+       }
+        .testimonils{
+        
+        .info{
+            
+            &::before{
+               width: 100px;
+                margin-left: 20px ;
+            }
+            &::after{
+               width: 100px;
+                margin-right: 20px 
+            }
+        }
+       } 
+    }
+}
+@media screen and (max-width:530px) {
+    #testimonia{
+        background-color: var(--main--color);
+       .title{
+        padding: 50px 0 20px 0;
+        h3{
+            font-size: 34px;
+        }
+      
+       }
+        .testimonils{
+            p{
+                font-size: 14px;
+            }
+        .info{
+            padding: 5px;
+            .foto{
+                width: 80px;
+            }
+            &::before{
+               width: 0px;
+                margin-left: 20px ;
+            }
+            &::after{
+               width: 0px;
+                margin-right: 20px 
+            }
+        }
+       } 
+       
+    }
+}
+@media screen and (max-width:330px) {
+    #testimonia{
+        background-color: var(--main--color);
+       .title{
+        padding: 50px 0 20px 0;
+        h3{
+            font-size: 34px;
+        }
+      
+       }
+        .testimonils{
+            p{
+                font-size: 14px;
+            }
+        .info{
+          
+            .foto{
+                width: 70px;
+            }
+            .pep{
+                h4{
+                    font-size: 18px;
+                }
+            }
+          
+        }
+       } 
+       
+    }
+}

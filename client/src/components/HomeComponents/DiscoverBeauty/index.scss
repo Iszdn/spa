@@ -1,0 +1,132 @@
+.add-but{
+    text-align: start;
+    margin-top: 10px;
+            a{
+                color: black;
+                text-transform: uppercase;
+                font-size: 13px;
+                letter-spacing: 2px;
+                padding: 10px 20px;
+                background-color: var(--second--color);
+            }
+        }
+#discover{
+    padding: 70px 0;
+    background-color: var(--main--color);
+ .title{
+    text-align: start;
+    padding: 20px 0 20px 0;
+    h3{
+        font-size: 30px;
+        margin: 6px 0 18px 0;
+    }
+ }  
+ .services{
+    .formula{
+        padding:0 0 30px  0;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        .image{
+            cursor: pointer;
+            display: inline-block;
+            height: 80px;
+width: 80px;
+padding: 10px;
+text-align: center;
+position: relative;
+z-index: 1;
+border-radius: 50%;
+background-color: var(--third--color);
+&::before{
+    content: "";
+    position: absolute;
+    top: calc( 5px / -1);
+    right: calc(5px / -1);
+    bottom: calc(5px / -1);
+    left: calc(5px / -1);
+    border: 1px dashed var(--third--color);
+    border-radius: inherit;
+    transition: all ease 0.4s;
+    animation: spin 30s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+        }
+.info{
+    h4{
+        font-size: 20px;
+        font-weight: 600;
+        a{
+            color: inherit;
+            font-family: inherit;
+        }
+    }
+}
+    }
+    .add-but{
+text-align: start;
+margin-top: 10px;
+        a{
+            color: black;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            padding: 10px 20px;
+            background-color: var(--second--color);
+        }
+    }
+ } 
+ .massage{
+    padding: 20px 0 20px 0;
+ 
+ }
+}
+@media screen and (max-width:500px) {
+    #discover{
+     .services{
+        .formula{
+            .image{
+                height: 70px;
+    width: 80px;
+            }
+    
+        }
+     } 
+     
+    }  
+}
+@media screen and (max-width:400px) {
+    #discover{
+     .services{
+        .formula{
+            .image{
+                height: 60px;
+    width: 80px;
+            }
+    
+        }
+     } 
+     
+    }  
+}
+@media screen and (max-width:320px) {
+    #discover{
+     .services{
+        .formula{
+            .image{
+                height: 50px;
+    width: 80px;
+            }
+    
+        }
+     } 
+     
+    }  
+}
