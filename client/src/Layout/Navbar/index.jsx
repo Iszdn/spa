@@ -81,7 +81,7 @@ const Navbar = () => {
   <div className="icons">
     <ul>
       <li>
-        <NavLink>
+        <NavLink to="/register">
           {
             profileIcon && profileIcon.map(x=>
               <i key={x._id} className={x.image}></i>

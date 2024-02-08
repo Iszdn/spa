@@ -1,0 +1,91 @@
+.red{
+    color: red;
+}
+#footer{
+    background-color: var(--main--color);
+    padding: 30px 0 0px 0;
+    h4,h3{
+        margin-bottom: 20px;
+    }
+    ul{
+        margin: 0 !important;
+        padding: 0;
+      }
+      a{
+        color: inherit;
+      }
+    .top-footer{
+        padding-bottom: 20px;
+        .logo{
+            width: 115px;
+            margin-bottom: 20px;
+        }
+        p{
+            line-height: 1.5;
+        }
+        ul{
+            li{
+               margin-bottom: 10px;
+               transition: .3s;
+               &:hover{
+                color: var(--third--color);
+                transition: .3s;
+                transform: translateX(10px);
+               }
+            }
+        }
+        .ema{
+            text-align: end;
+           .sosials{
+           justify-content: end;
+            display: flex;
+            gap: 20px;
+            font-size: 24px;
+            margin-top: 10px;
+
+            span{
+                cursor: pointer;
+                transition: all .3s;
+                &:hover{
+                    color: var(--third--color);
+                    transition: all .3s;
+                    transform: rotateY(180deg);
+                }
+            }
+        } 
+.forma{
+    position: relative;
+    input{
+        padding: 10px 80px 10px 20px;
+        outline: none;
+            border: 1px solid #b7b7b7;
+            background-color: transparent;
+    }
+    .but{
+
+        position: absolute;
+    top: 4px;
+    bottom: 4px;
+    right: 4px;
+    span{
+          padding: 10px 20px;
+        min-width: 60px;
+        background-color: var(--second--color);
+        font-size: 1.2rem;
+       cursor: pointer;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+    }
+      
+    }
+}
+        }
+       
+    }
+.foot-copy{
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #b7b7b7;
+}
+}

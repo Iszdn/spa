@@ -1,0 +1,86 @@
+.main-title-section-wrapper{
+    padding: 100px 0;
+    // position: relative;
+    background-image: url("../../assets/imgs/background.png");
+    background-attachment: inherit;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    .main-title-section-container{
+        padding: 45px 0 60px;
+      .main-title-section{
+        h1{
+font-size: 60px;
+font-weight: 700;
+        }
+      }  
+     .breadcrumb{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        a{
+            color: inherit;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .breadcrumb-default-delimiter{
+&::before{
+    content: "";
+    background-color: var(--third--color);
+    display: inline-block;
+    height: 8px;
+    opacity: 1;
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+    width: 8px;
+  
+    transform: rotate(45deg);
+}
+}
+        }
+        .current{
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+     } 
+    }
+#meet{
+    background-color: var(--main--color);
+    padding: 50px 0;
+    .title{
+        padding: 50px 0;
+    }
+    .widget{
+        margin-bottom: 10px;
+        padding: 40px 40px 40px 40px;
+        background:linear-gradient(#ecdec1c4,#ecdec1c4), url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/price-02.jpg");
+        
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        ul{
+           
+
+            li{
+                display: flex;
+                gap: 10px;
+                margin-bottom: 6px;
+                margin-bottom: 15px;
+                font-weight: 600;
+                align-items: center;
+            } 
+            .loc{
+font-size: 24px;
+                }
+           
+        }
+    }
+    .formss{
+        padding: 50px 0;
+    }
+}

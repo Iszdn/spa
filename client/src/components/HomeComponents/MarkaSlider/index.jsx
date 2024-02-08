@@ -21,7 +21,7 @@ const Marka = () => {
         centeredSlides={true}
         loop={true}
         autoplay={{
-          delay: 0,
+          delay: 2500,
           speed: 10, 
         }}
  

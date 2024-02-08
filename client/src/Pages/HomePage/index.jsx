@@ -15,7 +15,7 @@ const HomePage = () => {
     </Helmet>
     <>
     <Header/>
-    {/* <Marka/> */}
+    <Marka/>
     <GridSection/>
     <Diamond/>
     <Discover/>
