@@ -1,0 +1,44 @@
+#instagram {
+    padding-bottom: 50px ;
+    background-color: var(--main--color);
+  .swip-da {
+    margin-bottom: 40px;
+    .card-nst {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      .inst {
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+
+        transition: 0.4s;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        i {
+          font-size: 34px;
+        }
+      }
+      .overlay {
+        background: linear-gradient(#ecdec177, #ecdec177);
+        position: absolute;
+        top: 0;
+        right: 100%;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        transition: all .5s ease;
+
+      }
+      &:hover .inst {
+        opacity: 1;
+        transition: 0.4s;
+      }
+      &:hover .overlay {
+        right: 0%;
+        transition: all .5s ease;
+      }
+    }
+  }
+}

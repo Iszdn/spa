@@ -1,0 +1,28 @@
+.account{
+background-color: var(--main--color);
+    padding: 150px 0;
+    a{
+        color: inherit;
+    }
+   .left-si{
+    background-color: #EFEAE2;
+    margin: 0 0 20px;
+    padding: 20px 20px 30px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+   }
+}
+
+.nav-pills .nav-link {
+    padding: 20px 0;
+    border-radius:0px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    &:hover{
+        color: black;
+    }
+}
+
+.nav-pills .nav-link.active{
+    color: var(--third--color);
+    background-color: transparent;
+}

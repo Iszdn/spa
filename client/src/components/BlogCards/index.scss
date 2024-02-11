@@ -1,0 +1,73 @@
+.blog-card{
+    margin-bottom: 20px;
+   .image{
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    img{
+        object-fit: cover;
+        transition: .5s;
+    }
+    .data{
+        position: absolute;
+        top: 20px;  
+        right: 20px;
+        padding: 15px 10px 0px 10px;
+        display: inline-block;
+        line-height: normal;
+        width: auto;
+        background: var(--main--color);
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: clamp(0.0625rem, 0.0337rem + 0.1282vw, 0.1875rem);
+        
+    }
+   
+   } 
+    .info{
+        margin-top: 20px;
+        h3{
+            transition: .5s;
+            &:hover{
+            transition: .5s;
+            color: var(--third--color);
+            cursor: pointer;
+            }
+        }
+        p{
+            line-height: 1.5;
+            height: 100px; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+
+
+        }
+        a{
+            color: inherit;
+            font-size: 12px;
+            position: relative;
+            color: black;
+           
+                      &::after {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 1px;
+                        background-color: black;
+                        bottom: -5px; 
+                        left: 0;
+                        transition: width 0.4s ease, left 0.4s ease; 
+                      }
+            
+                      &:hover::after {
+                        width: 100%; 
+                        left: 0; 
+                      }
+        }
+    }
+    &:hover img{
+transform: scale(1.1);
+    }
+
+}

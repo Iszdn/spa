@@ -9,6 +9,10 @@ import HomePage from "./Pages/HomePage";
 import Register from "./Pages/Register";
 import LoginPage from "./Pages/LoginPage";
 import ContactUs from "./Pages/ContactUs";
+import AboutPage from "./Pages/AboutPage";
+import Account from "./Pages/AccountPage";
+import BlogPage from "./Pages/BlogPage";
+import BlogDetails from "./Pages/BlogDetails";
 
 function App() {
   const helmetContext = {};
@@ -20,6 +24,10 @@ function App() {
         <Route path="/" element={<Layout/>}>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/contactus" element={<ContactUs/>}/>
+        <Route path="/about" element={<AboutPage/>}/>
+        <Route path="/account" element={<Account/>}/>
+        <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/blog/:id" element={<BlogDetails/>}/>
 
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<Register/>}/>

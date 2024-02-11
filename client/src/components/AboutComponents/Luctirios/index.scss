@@ -1,0 +1,64 @@
+#best{
+    padding: 50px 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background:linear-gradient(#ecdec19c,#ecdec19c), url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/mask-patten-style.png");
+    .title{
+        padding: 30px 0;
+    }
+    .prod-kol{
+        display: flex;
+       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .sold{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        span{
+            font-size: clamp(1.875rem, 0.2344rem + 5.25vw, 3.1875rem);
+font-weight: 700;
+        }
+      }
+    }
+
+    .ma{
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+}
+@media screen and (max-width:750px) {
+    #best{
+        padding: 50px 0;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background:linear-gradient(#ecdec19c,#ecdec19c), url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/mask-patten-style.png");
+        .title{
+            padding: 30px 0;
+        }
+        .prod-kol{
+            display: flex;
+           align-items: center;
+          justify-content: space-between; flex-direction: column;
+          flex-wrap: wrap;
+          .sold{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+           
+            span{
+                font-size: clamp(1.875rem, 0.2344rem + 5.25vw, 3.1875rem);
+    font-weight: 700;
+            }
+          }
+        }
+    
+        
+    } 
+}

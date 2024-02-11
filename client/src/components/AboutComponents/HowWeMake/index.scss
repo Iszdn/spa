@@ -1,0 +1,55 @@
+#howwemade{
+    background-color: var(--main--color);
+    padding: 70px 0;
+    position: relative;
+    .title{
+        text-align: start;
+        .ma{
+            line-height: 1.5;
+            margin: 18px 0 42px 0;
+        }
+         .butt{
+                margin-top: 30px;
+            a{
+                padding: 10px 20px;
+                color: inherit;
+                text-align: center;
+                text-transform: uppercase;
+                font-size: 14px;
+                letter-spacing: 1px;
+             
+                background-color: var(--second--color);
+            }
+            
+            
+        }
+     .info{
+        display: flex;
+        gap: 80px;
+        flex-wrap: wrap;
+        h4{
+margin-bottom: 20px;
+        }
+        
+           
+      .contact{
+       a{
+        color: inherit;
+        display: block;
+        margin-bottom: 10px;
+       }
+      }  
+     }   
+    }
+}
+@media screen and (max-width:450px) {
+    #howwemade{
+        .title{
+            
+         .info{
+            gap: 20px;
+            
+         }   
+        }
+    }   
+}

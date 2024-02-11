@@ -7,6 +7,8 @@ import Discover from '../../components/HomeComponents/DiscoverBeauty'
 import PlayVideo from '../../components/HomeComponents/PlayVideo'
 import GridSection from '../../components/HomeComponents/GridSection'
 import Testimonials from '../../components/HomeComponents/Testimonials'
+import NewsAndBlog from '../../components/HomeComponents/NewsAndBlogs'
+import Instagram from '../../components/HomeComponents/Instagram'
 const HomePage = () => {
   return (
     <>
@@ -21,6 +23,8 @@ const HomePage = () => {
     <Discover/>
     <PlayVideo/>
     <Testimonials/>
+    <NewsAndBlog/>
+    <Instagram/>
     </>
     </>
     
