@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const TeamSchema = new Schema({
-  image: String,   
-  title: String,   
-  position: String,   
+  image: {type:String, require:true},   
+  title: {type:String, require:true},   
+  position: {type:String, require:true},   
 });
 
 const Teams = mongoose.model('lilacTeam', TeamSchema);

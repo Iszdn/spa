@@ -1,4 +1,116 @@
 .blog-details{
     padding: 100px 0;
     background-color: var(--main--color);
+.fil{
+    .filtersr{
+        margin-bottom: 20px;
+        padding: 20px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #b7b7b7;
+    .galleries{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        .gallery{
+width: 30%;
+        }
+    }
+    .tags{
+        display: flex;
+        flex-wrap: wrap;
+        a{
+            background: rgb(226, 223, 204, 0.4);
+            color: black;
+            border: 1px solid #ecdec1;
+    font-size: 12px !important;
+    line-height: 1.2;
+    margin: 5px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.0625rem, 0.0337rem + 0.1282vw, 0.1875rem);
+        }
+    }
+        h4{
+            padding: 10px;
+            display: inline-block;
+            font-size: 1.28rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+            background-color: rgba(236,222,193, 0.5);
+            font-weight: 500;
+        
+        
+        
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            li{
+                line-height: 1.8;
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                h5{
+                    font-size: 16px;
+                }
+                img{
+                    width: 60px;
+                }
+            }
+        }
+    }
+}
+.rigt{
+  .dataa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    border-bottom: 1px solid #b7b7b7;
+   .gra{
+    width: 40px;
+    height: 1px;
+    background-color: #b7b7b7;
+margin-bottom: 10px;
+   }
+  }  
+  .sosi{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 50px 0;
+    .writt{
+        span{
+            font-size: 12px;
+        }
+        p{
+            font-weight: 600;
+        }
+    }
+    .sosials{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 20px;
+    }
+  }
+  .fofo{
+    margin-top: 80px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    img{
+        width: 31%;
+    }
+  }
+}
+}
+@media screen and (max-width:992px) {
+    
 }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ProfileIconSchema = new Schema({
-  image: String,   
+  image: {type:String, require:true}  
 });
 
 const ProfileIcon = mongoose.model('lilacProfileIcon', ProfileIconSchema);

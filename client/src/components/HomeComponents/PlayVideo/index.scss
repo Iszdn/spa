@@ -20,7 +20,7 @@
                 padding-bottom: 15px;
             }
             .add-but{
-                text-align: center  ;
+                text-align: start  ;
             }
         }
         .play{ 
@@ -88,7 +88,14 @@
                 }
         }
     }
-
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    width: 400px;
+    height: 200px;
+}
 }
 @media screen and (max-width:992px) {
     #video{

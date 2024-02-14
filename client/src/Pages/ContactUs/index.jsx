@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import Locasions from '../../components/ContactComponents/LOcation'
 import WhereAreYou from '../../components/WhereAreYou'
-import ContactForm from '../../components/ContactUsComponents/ContactForm'
+import ContactForm from '../../components/ContactUsComponents/ContactForm/index2'
+// import ContactForm from '../../components/ContactUsComponents/ContactForm'
 
 const ContactUs = () => {
   return (

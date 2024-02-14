@@ -1,33 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import dis from "../../../assets/imgs/discver.png"
 import "./index.scss"
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 const Discover = () => {
+  const [spaCategory, setSpaCategory] = useState([])
+  async function getSpaCategory() {
+    const res=await axios("http://localhost:5000/spaCategoryServices")
+    setSpaCategory(res.data)
+  
+  }
+  useEffect(() => {
+    getSpaCategory()
+  }, [])
   return (
     <section id='discover'>
       <div className="container">
         <div className="row">
           <div  data-aos="fade-right" data-aos-duration="1000" className="col-lg-6 col-md-12 col-12">
               <div className="title">
-        <span>DISCOVER BEAUTY</span>
-        <h3>Daily Essentials Makeup Range</h3>
-        <p>Nullam euismod purus quis blandit eleifend. Nullam egestas, diam ut ornare ultrices, nibh metus feugiat ante, id sclerisque ague est.</p>
+        
+        <h3>Our Services</h3>
       </div>
       <div className="services">
-        <div className="formula">
+        {
+          spaCategory && spaCategory.map(x=>
+            <div key={x._id} className="formula">
         <div className="image">
-        <img src="https://wordpress.vecurosoft.com/wellnez/wp-content/uploads/2023/03/sr-i-1-4.png" alt="" />
+        <img src={x.image} alt="" />
         </div> 
         <div className="info">
-          <h4><Link>Thermal Bath</Link></h4>
-          <p>There are many variations of passages gaks the majority.</p>
+          <h4><Link>{x.title}</Link></h4>
+          <p>{x.description}</p>
         </div>
         </div>
+            )
+        }
+        
         
       
       <div className="read-more">
       <div className="add-but">
-    <Link>read more</Link>
+    <Link to="/services">read more</Link>
   </div>
       </div>
       </div>

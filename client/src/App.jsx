@@ -13,6 +13,8 @@ import AboutPage from "./Pages/AboutPage";
 import Account from "./Pages/AccountPage";
 import BlogPage from "./Pages/BlogPage";
 import BlogDetails from "./Pages/BlogDetails";
+import ScrollToTop from "./components/ScrollToTop";
+import OurServicePage from "./Pages/OurServicePage";
 
 function App() {
   const helmetContext = {};
@@ -20,12 +22,14 @@ function App() {
     <HelmetProvider context={helmetContext}>
 
        <BrowserRouter>
+       <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Layout/>}>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/contactus" element={<ContactUs/>}/>
         <Route path="/about" element={<AboutPage/>}/>
         <Route path="/account" element={<Account/>}/>
+        <Route path="/services" element={<OurServicePage/>}/>
         <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
 

@@ -10,6 +10,11 @@ import ShopRouter from './src/routers/shopIcon.js'
 import userRouter from './src/routers/user.js'
 import teamRouter from './src/routers/team.js'
 import blogRouter from './src/routers/blog.js'
+import blogCategoryRouter from './src/routers/blogCategory.js'
+import blogTagRouter from './src/routers/blogtag.js'
+import faqRouter from './src/routers/faq.js'
+import spaServicesRouter from './src/routers/spa-services.js'
+import spaCategoryServicesRouter from './src/routers/spaCategoryServices.js'
 
 import { notFound,errorHandler } from './src/middleware/errorMiddleware.js'
 
@@ -28,6 +33,11 @@ app.use('/shopicon', ShopRouter)
 app.use('/users',userRouter)
 app.use('/team',teamRouter)
 app.use('/blog',blogRouter)
+app.use('/blogCategory',blogCategoryRouter)
+app.use('/blogTag',blogTagRouter)
+app.use('/faq',faqRouter)
+app.use('/spa-services',spaServicesRouter)
+app.use('/spaCategoryServices',spaCategoryServicesRouter)
 
 const url=process.env.CONNECTION_URL.replace("<password>",process.env.PASSWORD)
 const PORT=process.env.PORT

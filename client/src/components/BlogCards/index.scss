@@ -29,6 +29,10 @@
         margin-top: 20px;
         h3{
             transition: .5s;
+            a{
+                font-size: inherit;
+                color: inherit;
+            }
             &:hover{
             transition: .5s;
             color: var(--third--color);

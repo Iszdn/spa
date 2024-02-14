@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const shopIconSchema = new Schema({
-  image: String,   
+  image: {type:String, require:true} 
 });
 
 const ShopIcon = mongoose.model('lilacShopIcon', shopIconSchema);

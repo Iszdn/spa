@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { FaBars } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-
+import { CgClose } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import "./index.scss"
 const Navbar = () => {
@@ -9,8 +10,13 @@ const Navbar = () => {
   const [profileIcon, setProfileIcon] = useState([])
   const [shopIcon, setShopIcon] = useState([])
   const [heartIcon, setHeartIcon] = useState([])
-  
+  const [open, setOpen] = useState(false)
   const [scrolling, setScrolling] = useState(false);
+
+function handleOPen() {
+  setOpen(!open)
+}
+
   async function getLogo() {
     const res=await axios("http://localhost:5000/logo")
     setLogo(res.data)
@@ -106,6 +112,41 @@ const Navbar = () => {
       
     </ul>
   </div>
+  <div onClick={()=>handleOPen()} className="bar">
+  <FaBars />
+  </div>
+</div>
+
+<div className={`backNavbar ${open ? 'active' : ''}`}>
+<div className={`navbar-media ${open ? "nav-med" : ""}`}>
+  <div onClick={()=>handleOPen()} className="krest"><CgClose /></div>
+<div className="navigations-media">
+    <ul>
+      <li>
+        <NavLink to="/">Home </NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li>
+        <NavLink to="/blog">Blog</NavLink>
+      </li>
+      <li>
+        <NavLink to="/shop">Shop</NavLink>
+      </li>
+      <li>
+        <NavLink to="/gallery">Gallery</NavLink>
+      </li>
+      <li>
+        <NavLink to="/pages">Pages <IoIosArrowDown /></NavLink>
+      </li>
+     <li>
+      <NavLink></NavLink>
+     </li>
+    </ul>
+
+  </div> 
+ </div>
 </div>
     </nav>
   )
