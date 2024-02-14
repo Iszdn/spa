@@ -14,7 +14,6 @@ const WhereAreYou = ({title,curent}) => {
       <div className="breadcrumb">
         <Link to="/">Home</Link>
         <span className='breadcrumb-default-delimiter'>
-    
         </span>
         <span className='current'>{curent}</span>
       </div>

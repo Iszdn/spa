@@ -1,0 +1,17 @@
+.spa-detail{
+    background-color: var(--main--color);
+    .spa-se{
+        padding: 80px 0;
+        .card-spa{
+            margin-bottom: 60px;
+            .des{
+                min-height: 180px;
+                padding-top: 30px;
+            }
+            p{
+                line-height: 1.5;
+            }
+        }
+    }
+
+}

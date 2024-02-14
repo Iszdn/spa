@@ -1,9 +1,16 @@
 #services{
 padding: 100px 0;
 background-color: var(--main--color);
-h6{
+ a{
+    color:inherit ;
+    &:hover{
+        color: var(--third--color);
+    }
+   }
+    h6{
     border-top: 1px solid var(--second--color);
     padding: 30px 0 20px;
+   
 }
 p{
     height: 100px;

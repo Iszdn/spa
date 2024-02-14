@@ -15,6 +15,8 @@ import BlogPage from "./Pages/BlogPage";
 import BlogDetails from "./Pages/BlogDetails";
 import ScrollToTop from "./components/ScrollToTop";
 import OurServicePage from "./Pages/OurServicePage";
+import CategoryPage from "./Pages/SpaServicesCategory.jsx";
+import NotFound from "./Pages/NotFound/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -30,6 +32,7 @@ function App() {
         <Route path="/about" element={<AboutPage/>}/>
         <Route path="/account" element={<Account/>}/>
         <Route path="/services" element={<OurServicePage/>}/>
+        <Route path="/services/:categoryId" element={<CategoryPage/>}/>
         <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
 
@@ -38,6 +41,8 @@ function App() {
       
 
         </Route>
+        <Route path="*" element={<NotFound/>}/>
+         
       </Routes>
     </BrowserRouter>
     </HelmetProvider>

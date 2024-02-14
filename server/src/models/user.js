@@ -4,9 +4,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     
-  username: {type:String}, 
-  password: {type:String},
-  email: {type:String},
+  username: {type:String,require:true,
+  minLength: [2, "username must be minimum 3 character"],
+  maxLength: [15, "username must be maximum 15 character"]}, 
+  password: {type:String,require:true},
+  email: {type:String,require:true},
   role:{type:String,default:"user"}
 },{timestamps:true});
 

@@ -1,0 +1,36 @@
+.notfound{
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("https://wdtlilac.wpengine.com/wp-content/uploads/2023/06/404-01.jpg");
+    .error-box{
+   
+        border-radius: 0;
+        margin-bottom: 80px;
+        position: relative;
+        padding: 50px;
+        display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+    margin-top: 40px;
+      &::before{
+        content: "";
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    transform: rotate(45deg);
+    border: 1px solid #b7b7b7;
+    mix-blend-mode: multiply;
+      } 
+    }
+}
