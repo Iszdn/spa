@@ -15,6 +15,7 @@ import blogTagRouter from './src/routers/blogtag.js'
 import faqRouter from './src/routers/faq.js'
 import spaServicesRouter from './src/routers/spa-services.js'
 import spaCategoryServicesRouter from './src/routers/spaCategoryServices.js'
+import instaRouter from './src/routers/insta.js'
 
 import { notFound,errorHandler } from './src/middleware/errorMiddleware.js'
 
@@ -26,7 +27,9 @@ app.use(cookieParser())
 
 // app.use(notFound)
 // app.use(errorHandler)
+
 app.use('/logo', router )
+app.use('/insta', instaRouter )
 app.use('/profileicon', ProfileRouter)
 app.use('/hearticon', HeartRouter)
 app.use('/shopicon', ShopRouter)

@@ -5,11 +5,7 @@ import { FaPlay } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 
 const PlayVideo = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
+ 
 
   return (
     <section id='video'>
@@ -23,22 +19,22 @@ const PlayVideo = () => {
               <Link data-aos="fade-up" data-aos-duration="2200">explore now</Link>
             </div>
           </div>
-          <div data-aos="fade-down" data-aos-duration="1000" onClick={toggleModal} className="play">
+          <div data-aos="fade-down" data-aos-duration="1000"  className="play">
             <p>PLAY VIDEO <span className='empt'></span></p>
             <span className='ico'><FaPlay /></span>
           </div>
         </div>
       </div>
-      {isOpen && (
+      
         <div className="modal">
           <div className="modal-content">
             <div className="close">
-              <span onClick={toggleModal}><GrClose /></span>
+              <span ><GrClose /></span>
             </div>
             
           </div>
         </div>
-      )}
+    
     </section>
   )
 }

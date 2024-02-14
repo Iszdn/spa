@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -6,7 +6,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
+import axios from "axios";
 const Instagram = () => {
+  const [data, setData] = useState([])
+
+  async function getData() {
+    const res=await axios("http://localhost:5000/insta")
+    setData(res.data)
+  
+  }
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <section id="instagram">
       <div data-aos="fade-down" data-aos-duration="1200" className="title">
@@ -17,17 +28,16 @@ const Instagram = () => {
         <Swiper
           slidesPerView={4}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
+        
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="card-nst">
+          {
+            data && data.map(x=>
+              <SwiperSlide key={x._id}>
+            <div  className="card-nst">
               <div className="image">
                 <img
-                  src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-2.webp"
+                  src={x.image}
                   alt=""
                 />
               </div>
@@ -37,48 +47,10 @@ const Instagram = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div className="card-nst">
-              <div className="image">
-                <img
-                  src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-3.webp"
-                  alt=""
-                />
-              </div>
-              <div className="overlay"></div>
-              <div className="inst">
-                <i className="fa-brands fa-instagram"></i>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="card-nst">
-              <div className="image">
-                <img
-                  src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-4.webp"
-                  alt=""
-                />
-              </div>
-              <div className="overlay"></div>
-              <div className="inst">
-                <i className="fa-brands fa-instagram"></i>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="card-nst">
-              <div className="image">
-                <img
-                  src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-5.webp"
-                  alt=""
-                />
-              </div>
-              <div className="overlay"></div>
-              <div className="inst">
-                <i className="fa-brands fa-instagram"></i>
-              </div>
-            </div>
-          </SwiperSlide>
+              )
+          }
+          
+         
         </Swiper>
       </div>
     </section>

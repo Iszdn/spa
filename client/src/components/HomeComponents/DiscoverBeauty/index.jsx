@@ -30,7 +30,7 @@ const Discover = () => {
         <img src={x.image} alt="" />
         </div> 
         <div className="info">
-          <h4><Link>{x.title}</Link></h4>
+          <h4><Link to={`/services/${x._id}`}>{x.title}</Link></h4>
           <p>{x.description}</p>
         </div>
         </div>
