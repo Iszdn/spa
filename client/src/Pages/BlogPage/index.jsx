@@ -4,9 +4,25 @@ import WhereAreYou from '../../components/WhereAreYou'
 import BlogsCard from '../../components/BlogCards'
 import axios from 'axios'
 import "./index.scss"
+import { Link } from 'react-router-dom'
 const BlogPage = () => {
   const [data, setData] = useState([])
+  const [category, setCategory] = useState([])
+  const [tag, setTag] = useState([])
 
+async function getCategory() {
+  const res=await axios(`http://localhost:5000/blogCategory`)
+  setCategory(res.data)
+}
+async function getTag() {
+  const res=await axios(`http://localhost:5000/blogTag`)
+  setTag(res.data)
+}
+  useEffect(() => {
+    
+    getCategory()
+    getTag()
+  }, [])
   async function getData() {
     const res=await axios("http://localhost:5000/blog")
     setData(res.data)
@@ -23,7 +39,69 @@ const BlogPage = () => {
     <>
     <WhereAreYou title="Blog" curent="Blog"/>
     <div className="bloga">
-       <div className='container'>
+      <div className="container">
+        <div className="row">
+        <div className="col-lg-3">
+          <div className="fil">
+            <div className="filtersr">
+              <h4>Categories</h4>
+              
+              <ul>
+                {
+                  category && category.map(x=>
+                    <li key={x._id}>{x.blogCategoryName}</li>
+                    )
+                }
+              </ul>
+            </div>
+            <div className="filtersr">
+              <h4>Recent Post</h4>
+              <ul>
+                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
+                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
+                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
+              </ul>
+            </div>
+            <div className="filtersr">
+              <h4>Tags</h4>
+             <div className="tags">
+              {
+tag && tag.map(x=>
+  <Link key={x._id}>{x.blogTagsName}</Link>
+  )
+              }
+             
+             </div>
+            </div>
+            <div className="filtersr">
+              <h4>Gallery</h4>
+              <div className="galleries">
+                <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             <div className="gallery">
+              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+             </div>
+             
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-9">
+            <div className='container'>
       <div className="row">
         {
           data && data.map(x=>
@@ -35,6 +113,11 @@ const BlogPage = () => {
         
       </div>
     </div>
+        </div>
+        </div>
+      </div>
+
+     
     </div>
    
     </>

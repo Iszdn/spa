@@ -39,13 +39,14 @@ const FaqPage = () => {
                 <input type="text" placeholder='Enter Keyword' />
                 <button type='submit'>Search</button>
               </form>
-            </div>
-            <div className=" faaq">
-                     <div className="faqs ">
-              <div className="title">
+            </div> 
+            <div className="title">
                 <span>OUR EXPERTS ANSWER</span>
                 <h3>Faq For Cosmetic Products</h3>
               </div>
+            <div className=" faaq">
+                     <div className="faqs ">
+             
               {data && data.map((faq, index) => (
                 <div key={index} className="accordion">
                   <div className="tittle" onClick={() => handleAccordionClick(index)}>
