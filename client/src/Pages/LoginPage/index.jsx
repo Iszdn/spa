@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoArrowForward } from "react-icons/io5";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet-async";
 import { loginValidationSchema } from "../../utils/validation";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { UserContext } from "../../context/userContext";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-
+  const {token,setToken} = useContext(UserContext)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -42,7 +45,15 @@ const LoginPage = () => {
                 password: Yup.string().required("Password is required"),
                 confirmpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
               })}
-              onSubmit={(values, { resetForm }) => {
+              onSubmit={async (values, { resetForm }) => {
+                try {
+                  const response = await axios.post("http://localhost:5000/users/auth", values);
+                  toast.success('Successfully logged in!')
+                  console.log("Logged in successfully", response.data);
+                } catch (error) {
+                  toast.error('wrong email or password')
+                  console.error("Login failed", error);
+                }
                 resetForm();
               }}
             >
@@ -86,6 +97,7 @@ const LoginPage = () => {
                 </div>
                 <button type="submit">Log In <IoArrowForward /></button>
                 <p><Link>Forgot Password?</Link></p>
+                <p>Not registered yet? <Link to="/register">Register here</Link>.</p>
               </Form>
             </Formik>
           </div> 

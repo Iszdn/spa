@@ -1,20 +1,28 @@
 #services{
 padding: 100px 0;
 background-color: var(--main--color);
- a{
-    color:inherit ;
+#discover{
+    .ser{
+          h6{
+    border-top: 1px solid var(--second--color);
+    padding: 20px 0 5px; 
+    a{
+        transition: .5s;
+        color:inherit ;
     &:hover{
         color: var(--third--color);
+        transition: .5s;
     }
-   }
-    h6{
-    border-top: 1px solid var(--second--color);
-    padding: 30px 0 20px;
    
 }
+    }  
 p{
     height: 100px;
-    // border-bottom: 1px solid var(--second--color);
     padding: 20px 0 20px;  
 }
+}
+
+   }
+
+
 }

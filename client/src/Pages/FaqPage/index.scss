@@ -1,0 +1,97 @@
+.faq{
+    min-height: 100vh;
+    background-color: var(--main--color);
+    padding: 40px 0;
+    .search-inp{ 
+        // text-align: center;
+        form{
+            position: relative;
+           border: 1px solid #b7b7b7; 
+           width: 60%;
+           outline-color: var(--third--color);
+           margin: 0 auto;
+            input{
+                font-size: .9rem;
+                padding: 16px 160px 16px 26px;
+                background-color: transparent;
+                color: black;
+                width: auto;
+                border: none;
+                outline: none;
+                // border-color: rgba(183,183,183,1);
+            }
+            button{
+position: absolute;
+top: 0;
+right: 0;
+border: none;
+margin: 5px;
+background-color: var(--second--color);
+color: black;
+text-indent: 0;
+padding: 10px 45px;
+font-size: 12px;
+line-height: 1;
+letter-spacing: clamp(0.0625rem, 0.0337rem + 0.1282vw, 0.1875rem);
+font-weight: 400;
+text-transform: uppercase;
+width: auto;
+height: 85%;
+            }
+        }
+    }
+    .faaq{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 50px 0;
+       .faqs{
+        width: 50%;
+       
+        .title{
+            text-align: start;
+            padding: 10px;
+
+        }
+    }  
+    .imageee{
+        width: 50%;
+    }
+    }
+   
+}
+.accordion {
+    .tittle {
+      cursor: pointer;
+      padding: 20px 0;
+      transition: .6s;
+
+      h6{
+font-size: 20px;
+font-weight: 500;
+      }
+  
+      &:hover {
+      color: var(--third--color);
+      transition: .6s;
+      }
+    }
+  
+    .content {
+        margin-bottom: -2px;
+        border-bottom: 1px solid #e1e1e1;
+       
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease; // Плавная анимация при изменении max-height
+  p{
+        padding: 0 25px 25px 25px;
+margin-bottom: 0px;
+  }
+      &.open {
+        max-height: 100px; // Задаем максимальную высоту для открытого контента
+      
+    }
+    }
+  }
+  

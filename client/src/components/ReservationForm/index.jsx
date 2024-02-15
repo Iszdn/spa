@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import "./index.scss"
 const ReservationForm = () => {
   return (
-    <div>
+    <div className='reserv-form'>
       <Formik
         initialValues={{ firstName: '', lastName: '', email: '', servicetype: '', date: '' }}
         validationSchema={Yup.object({
@@ -18,26 +18,23 @@ const ReservationForm = () => {
           servicetype: Yup.string().required('Required'),
           date: Yup.date().required('Required')
         })}
+
         onSubmit={(values, { resetForm }) => {
         
           resetForm();
         }}
       >
         <Form>
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" type="text" />
-          <ErrorMessage name="firstName" />
+          <Field  placeholder="Firstname" name="firstName" type="text" />
+         <div className="red"> <ErrorMessage name="firstName" /></div>
 
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" type="text" />
-          <ErrorMessage name="lastName" />
+          <Field placeholder="Lastname" name="lastName" type="text" />
+          <div className="red"><ErrorMessage name="lastName" /></div>
 
-          <label htmlFor="email">Email Address</label>
-          <Field name="email" type="email" />
-          <ErrorMessage name="email" />
+          <Field placeholder="Email" name="email" type="email" />
+          <div className="red"><ErrorMessage name="email" /></div>
 
-          <label htmlFor="servicetype">Service Type</label>
-          <Field name="servicetype" as="select">
+          <Field className="select" name="servicetype" as="select">
             <option value="">Select a Service Type</option>
             <option value="FACIAL TREATMENTS">Facial Treatments</option>
             <option value="JALEH SPA ADD-ON SERVICES">Jaleh Spa Add-On Services</option>
@@ -45,11 +42,21 @@ const ReservationForm = () => {
             <option value="BODY TREATMENTS">Body Treatments</option>
             <option value="TRADITIONAL">Traditional</option>
           </Field>
-          <ErrorMessage name="servicetype" />
+        <div className="red">  <ErrorMessage name="servicetype" /></div>
 
-          <label htmlFor="date">Date</label>
+
+          <Field className="select" name="servicetype" as="select">
+            <option value="">Select a Service Type</option>
+            <option value="FACIAL TREATMENTS">Facial Treatments</option>
+            <option value="JALEH SPA ADD-ON SERVICES">Jaleh Spa Add-On Services</option>
+            <option value="MASSAGES">Massages</option>
+            <option value="BODY TREATMENTS">Body Treatments</option>
+            <option value="TRADITIONAL">Traditional</option>
+          </Field>
+      <div className="red">    <ErrorMessage name="servicetype" /></div>
+
           <Field name="date" type="date" />
-          <ErrorMessage name="date" />
+         <div className="red"> <ErrorMessage name="date" /></div>
 
           <button type="submit">Submit</button>
         </Form>

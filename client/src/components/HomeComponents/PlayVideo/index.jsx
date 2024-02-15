@@ -5,10 +5,17 @@ import { FaPlay } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 
 const PlayVideo = () => {
- 
+ const [open, setopen] = useState(false)
 
+ function openVideoBox() {
+  setopen(!open)
+ }
   return (
     <section id='video'>
+      <div className={`openVideoBox ${open ? "openVideo":""}`}>
+        <div className="closeBtn" onClick={openVideoBox}>x</div>
+        <iframe  src="https://www.youtube.com/embed/LZFpbKtiHwY" ></iframe>
+      </div>
       <div className="container">
         <div className="videoplayer">
           <div className="title">
@@ -19,7 +26,7 @@ const PlayVideo = () => {
               <Link data-aos="fade-up" data-aos-duration="2200">explore now</Link>
             </div>
           </div>
-          <div data-aos="fade-down" data-aos-duration="1000"  className="play">
+          <div data-aos="fade-down" data-aos-duration="1000"  className="play"  onClick={openVideoBox}>
             <p>PLAY VIDEO <span className='empt'></span></p>
             <span className='ico'><FaPlay /></span>
           </div>

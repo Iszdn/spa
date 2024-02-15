@@ -12,9 +12,9 @@ export const authUser = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
     });
-  } else {
-    res.status(401);
-    throw new Error("invalid email or password");
+    
+  } else {  
+    res.status(401).json("invalid email or password");
   }
 });
 
@@ -25,8 +25,8 @@ export const registerUser = asyncHandler(async (req, res) => {
   const {  username, password, email } = req.body;
   const userExist = await Users.findOne({ email });
   if (userExist) {
-    res.status(400);
-    throw new Error("User already exist");
+    res.status(400).json({error:"user already exist"})
+    return
   }
   const user = await Users.create({
    
@@ -42,8 +42,7 @@ export const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(400);
-    throw new Error("invalid user data");
+    res.status(400).json("invalid user data");
   }
 });
 
@@ -90,8 +89,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
    })
   }
   else{
-    res.status(404)
-    throw new Error ('User not found')
+    res.status(404).json('User not found')
   }
   res.status(200).json({ message: " User Profile Updated" });
 });

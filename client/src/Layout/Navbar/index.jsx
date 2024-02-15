@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { FaBars } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CgClose } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import "./index.scss"
@@ -70,8 +70,25 @@ function handleOPen() {
       <li>
         <NavLink to="/gallery">Gallery</NavLink>
       </li>
-      <li>
-        <NavLink to="/pages">Pages <IoIosArrowDown /></NavLink>
+      <li className='menu'>
+        <Link>Pages <IoIosArrowDown /></Link>
+        <div className="submenu">
+          <ul>
+            <li>
+              <NavLink to="/account">Account</NavLink>
+            </li>
+            <li>
+              <NavLink to="*">404</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contactus">Contact Us</NavLink>
+            </li>
+            <li>
+              <NavLink to="/faq">FAQ</NavLink>
+            </li>
+            
+          </ul>
+        </div>
       </li>
      
     </ul>
@@ -80,7 +97,7 @@ function handleOPen() {
   <div className="logo">
 {
   logo && logo.map(x=>
-  <img key={x._id} src={x.image} alt="" />
+  <Link to="/" key={x._id}><img  src={x.image} alt="" /></Link>
   )
 }
   </div>

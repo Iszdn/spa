@@ -4,7 +4,7 @@ import WhereAreYou from '../../components/WhereAreYou';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ReservationForm from '../../components/ReservationForm';
-
+import "./index.scss"
 const OurServicePage = () => {
   const [spaCategory, setSpaCategory] = useState([]);
 
@@ -40,13 +40,16 @@ const OurServicePage = () => {
               ))}
             </div>
           </div>
-        </section>
-
-        <div className="reservationform row">
+          <div className="container reserv">
+<div className="reservationform row">
           <div className="col-lg-6">
             <ReservationForm/>
           </div>
         </div>
+</div>
+        </section>
+
+        
       </div>
     </>
   );

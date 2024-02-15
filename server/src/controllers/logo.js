@@ -12,6 +12,8 @@ import cloudinary from "../utils/cloudinary.js";
 //         res.status(500).json({ message: error.message });
 //     }
 // }
+
+
 export const createLogo=async(req,res)=>{
     try {
         upload.fields([{name:'image'}])(req, res, async function (err) {

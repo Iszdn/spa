@@ -52,6 +52,7 @@ async function getTag() {
           <div className="fil">
             <div className="filtersr">
               <h4>Categories</h4>
+              
               <ul>
                 {
                   category && category.map(x=>

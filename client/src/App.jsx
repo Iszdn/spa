@@ -17,6 +17,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import OurServicePage from "./Pages/OurServicePage";
 import CategoryPage from "./Pages/SpaServicesCategory.jsx";
 import NotFound from "./Pages/NotFound/index.jsx";
+import FaqPage from "./Pages/FaqPage/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<HomePage/>}/>
         <Route path="/contactus" element={<ContactUs/>}/>
         <Route path="/about" element={<AboutPage/>}/>
+        <Route path="/faq" element={<FaqPage/>}/>
         <Route path="/account" element={<Account/>}/>
         <Route path="/services" element={<OurServicePage/>}/>
         <Route path="/services/:categoryId" element={<CategoryPage/>}/>
