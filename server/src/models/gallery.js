@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const logoSchema = new Schema({
+const GallerySchema = new Schema({
   image: {type:String, require:true},   
 });
 
-const Logo = mongoose.model('lilacLogo', logoSchema);
+const Gallery = mongoose.model('lilacGallery', GallerySchema);
 
-export default Logo
+export default Gallery

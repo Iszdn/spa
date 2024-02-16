@@ -9,6 +9,7 @@ const BlogPage = () => {
   const [data, setData] = useState([])
   const [category, setCategory] = useState([])
   const [tag, setTag] = useState([])
+  const [gallery, setGallery] = useState([])
 
 async function getCategory() {
   const res=await axios(`http://localhost:5000/blogCategory`)
@@ -18,19 +19,24 @@ async function getTag() {
   const res=await axios(`http://localhost:5000/blogTag`)
   setTag(res.data)
 }
-  useEffect(() => {
-    
-    getCategory()
-    getTag()
-  }, [])
+ 
   async function getData() {
     const res=await axios("http://localhost:5000/blog")
     setData(res.data)
   
   }
-  useEffect(() => {
-    getData()
+  async function getGallery() {
+    const res=await axios("http://localhost:5000/gallery")
+    setGallery(res.data)
+  
+  }
+ useEffect(() => {
+     getData()
+    getCategory()
+    getTag()
+    getGallery()
   }, [])
+  
   return (
     <>
     <Helmet>
@@ -55,13 +61,16 @@ async function getTag() {
               </ul>
             </div>
             <div className="filtersr">
-              <h4>Recent Post</h4>
-              <ul>
-                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
-                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
-                <li><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/blog-1-150x150.webp" alt="" /> <h5>Premium feather-light, comfortable lipstick</h5></li>
-              </ul>
-            </div>
+  <h4>Recent Post</h4>
+  <ul>
+    {data.slice(0, 3).map(blog => (
+      <li key={blog._id}>
+        <img src={blog.image} />
+        <h5>{blog.title}</h5>
+      </li>
+    ))}
+  </ul>
+</div>
             <div className="filtersr">
               <h4>Tags</h4>
              <div className="tags">
@@ -76,24 +85,15 @@ tag && tag.map(x=>
             <div className="filtersr">
               <h4>Gallery</h4>
               <div className="galleries">
-                <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
+                {
+                  gallery && gallery.slice(0, 6).map(x=>
+                     <div className="gallery">
+              <img src={x.image} alt="" />
              </div>
-             <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
-             </div>
-             <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
-             </div>
-             <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
-             </div>
-             <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
-             </div>
-             <div className="gallery">
-              <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/insta-img-6-150x150.webp" alt="" />
-             </div>
+             )
+                }
+               
+           
              
               </div>
              

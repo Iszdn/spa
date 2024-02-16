@@ -1,4 +1,13 @@
 #marka{
     background-color: var(--main--color);
     padding: 60px 0 30px 0;
+    .markas{
+        display: flex;
+
+
+align-items: center;
+        .marka{
+margin-right: 100px;
+}
+    }
 }

@@ -1,117 +1,40 @@
-import React from 'react'
-import "./index.scss"
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useState } from "react";
+import "./index.scss";
+import Marquee from "react-fast-marquee";
+import axios from "axios";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 const Marka = () => {
+  const [data, setData] = useState([])
 
+  async function getData() {
+    const res=await axios("http://localhost:5000/marka")
+    setData(res.data)
+  
+  }
+  useEffect(() => {
+    getData()
+  }, [])
   return (
-   
-    <section id='marka'>
+    <section id="marka">
+      <div>
+        <Marquee>
+          <div className="markas">
+            {
+              data && data.map(x=>
+                    <div key={x._id} className="marka">
+  <img src={x.image} alt="" />
+</div> 
+                )
+            }
+       
 
-<Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          speed: 10, 
-        }}
- 
-        modules={[Autoplay, Pagination, Navigation]}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        }}
-        className="mySwiper"
-      >      
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-5.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-1.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-2.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide>   <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-3.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-5.webp" alt="" />
-</div>
-   </SwiperSlide>
-   <SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-5.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-1.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-2.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide>   <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-3.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-5.webp" alt="" />
-</div>
-   </SwiperSlide>
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-5.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-1.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-2.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide>   <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-3.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-5.webp" alt="" />
-</div>
-   </SwiperSlide>
-   <SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-5.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/Logo-1.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide> <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-2.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide>   <div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-3.webp" alt="" />
-</div></SwiperSlide>
-<SwiperSlide><div className="marka1">
-  <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/brand-logo-5.webp" alt="" />
-</div>
-   </SwiperSlide>
-      </Swiper>
+          </div>
 
-
-      
+        </Marquee>
+       
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Marka
+export default Marka;

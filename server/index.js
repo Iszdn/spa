@@ -16,6 +16,8 @@ import faqRouter from './src/routers/faq.js'
 import spaServicesRouter from './src/routers/spa-services.js'
 import spaCategoryServicesRouter from './src/routers/spaCategoryServices.js'
 import instaRouter from './src/routers/insta.js'
+import galleryRouter from './src/routers/gallery.js'
+import MarkaRouter from './src/routers/marka.js'
 
 import { notFound,errorHandler } from './src/middleware/errorMiddleware.js'
 
@@ -41,6 +43,8 @@ app.use('/blogTag',blogTagRouter)
 app.use('/faq',faqRouter)
 app.use('/spa-services',spaServicesRouter)
 app.use('/spaCategoryServices',spaCategoryServicesRouter)
+app.use('/gallery',galleryRouter)
+app.use('/marka',MarkaRouter)
 
 const url=process.env.CONNECTION_URL.replace("<password>",process.env.PASSWORD)
 const PORT=process.env.PORT

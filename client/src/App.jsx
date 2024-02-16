@@ -18,6 +18,12 @@ import OurServicePage from "./Pages/OurServicePage";
 import CategoryPage from "./Pages/SpaServicesCategory.jsx";
 import NotFound from "./Pages/NotFound/index.jsx";
 import FaqPage from "./Pages/FaqPage/index.jsx";
+import AdminPage from "./Pages/AdminPage/index.jsx";
+import LAyoutAdmin from "./components/AdminComponents/AdminLayout/LayoutAdmin/index.jsx";
+import UsersPage from "./Pages/AdminPages/UsersPage/index.jsx";
+import TeamAdmin from "./Pages/AdminPages/TeamPage/index.jsx";
+import ServiceAdmin from "./Pages/AdminPages/SErvicesPage/index.jsx";
+import BlogAdmin from "./Pages/AdminPages/BlogAdmin/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -44,7 +50,14 @@ function App() {
 
         </Route>
         <Route path="*" element={<NotFound/>}/>
-         
+        <Route path="/admin" element={<LAyoutAdmin/>}>
+        
+         <Route path="/admin" element={<AdminPage/>}/>
+         <Route path="/admin/users" element={<UsersPage/>}/>
+         <Route path="/admin/teams" element={<TeamAdmin/>}/>
+         <Route path="/admin/services" element={<ServiceAdmin/>}/>
+         <Route path="/admin/blogs" element={<BlogAdmin/>}/>
+         </Route>
       </Routes>
     </BrowserRouter>
     </HelmetProvider>
