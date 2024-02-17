@@ -12,11 +12,12 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 const NewsAndBlog = () => {
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
 
   async function getData() {
     const res=await axios("http://localhost:5000/blog")
     setData(res.data)
-  
+  setLoading(false)
   }
   useEffect(() => {
     getData()
@@ -51,9 +52,12 @@ const NewsAndBlog = () => {
         className="mySwiper"
       >
         {
-          data && data.map(x=>
+          loading ?  <span className="loader"></span> : (
+              data && data.map(x=>
             <SwiperSlide key={x._id}><BlogsCard {...x}/></SwiperSlide>
             )
+          )
+        
         }
         
 

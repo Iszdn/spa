@@ -11,10 +11,12 @@ import { Link } from 'react-router-dom';
 
 const OurTeam = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   async function getData() {
     const res = await axios("http://localhost:5000/team");
     setData(res.data);
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -57,7 +59,10 @@ const OurTeam = () => {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {data && data.map((x, index) => (
+          {
+             loading ? <span class="loader"></span> :
+            (
+          data && data.map((x, index) => (
             <SwiperSlide key={index}>
               <div className={index % 2 === 0 ? "team" : "team top-pd"}>
                 <div className="image">
@@ -75,7 +80,8 @@ const OurTeam = () => {
                 </div>
               </div>
             </SwiperSlide>
-          ))}
+          ))
+          )}
         </Swiper>
       </div>
     </section>

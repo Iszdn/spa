@@ -19,7 +19,7 @@ const HomePage = () => {
     <Header/>
     <Marka/>
     <GridSection/>
-    <Diamond/>
+    {/* <Diamond/> */}
     <Discover/>
     <PlayVideo/>
     <Testimonials/>

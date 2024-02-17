@@ -9,11 +9,12 @@ import { Pagination } from "swiper/modules";
 import axios from "axios";
 const Instagram = () => {
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
 
   async function getData() {
     const res=await axios("http://localhost:5000/insta")
     setData(res.data)
-  
+    setLoading(false)
   }
   useEffect(() => {
     getData()
@@ -32,6 +33,9 @@ const Instagram = () => {
           className="mySwiper"
         >
           {
+             loading ? <span className="loader"></span> :
+        
+             (
             data && data.map(x=>
               <SwiperSlide key={x._id}>
             <div  className="card-nst">
@@ -48,6 +52,7 @@ const Instagram = () => {
             </div>
           </SwiperSlide>
               )
+             )
           }
           
          

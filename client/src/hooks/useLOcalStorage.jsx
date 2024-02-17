@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-const useLOcalStorage = (key) => {
-const [local, setLocal] = useState(localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [])
+function useLOcalstorage(storagename, defaulValue=[]) {
 
-useEffect(() => {
-localStorage.setItem(key,JSON.stringify(local))
-}, [local])
+    const [data, setData] = React.useState(localStorage.getItem(storagename) ? JSON.parse(localStorage.getItem(storagename)) : defaulValue)
 
+    React.useEffect(() => {
+        localStorage.setItem(storagename, JSON.stringify(data))
+    }, [data])
 
-function handleLocal(data) {
-    setLocal(data)
-  }
-  
-return [local,handleLocal]
+   
+
+    return [data, setData]
 }
 
-export default useLOcalStorage
+export default useLOcalstorage

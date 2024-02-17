@@ -33,14 +33,7 @@ const PlayVideo = () => {
         </div>
       </div>
       
-        <div className="modal">
-          <div className="modal-content">
-            <div className="close">
-              <span ><GrClose /></span>
-            </div>
-            
-          </div>
-        </div>
+        
     
     </section>
   )

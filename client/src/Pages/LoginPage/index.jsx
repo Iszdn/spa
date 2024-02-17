@@ -8,11 +8,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/userContext";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const {token,setToken} = useContext(UserContext)
+  const {token,setToken,user, setUser} = useContext(UserContext)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -48,6 +49,7 @@ const LoginPage = () => {
               onSubmit={async (values, { resetForm }) => {
                 try {
                   const response = await axios.post("http://localhost:5000/users/auth", values);
+                setUser(jwtDecode(response.data.token))
                   toast.success('Successfully logged in!')
                   console.log("Logged in successfully", response.data);
                 } catch (error) {

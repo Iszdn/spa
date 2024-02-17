@@ -6,12 +6,17 @@ export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ email: email });
   if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
+    generateToken(req,res, user._id,user.email,user.username,user.role);
+
     res.status(201).json({
+
       id: user._id,
       username: user.username,
       email: user.email,
+      token:req.token
+
     });
+    console.log(req.token);
     
   } else {  
     res.status(401).json("invalid email or password");
@@ -22,7 +27,7 @@ export const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const {  username, password, email } = req.body;
+  const {  username, password, email, role } = req.body;
   const userExist = await Users.findOne({ email });
   if (userExist) {
     res.status(400).json({error:"user already exist"})
@@ -33,6 +38,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     username,
     password,
     email,
+    role
   });
   if (user) {
     generateToken(res, user._id);

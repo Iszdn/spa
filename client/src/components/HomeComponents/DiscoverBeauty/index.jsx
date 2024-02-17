@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const Discover = () => {
   const [spaCategory, setSpaCategory] = useState([])
+  const [loading, setLoading] = useState(true)
+
   async function getSpaCategory() {
     const res=await axios("http://localhost:5000/spaCategoryServices")
     setSpaCategory(res.data)
-  
+  setLoading(false)
   }
   useEffect(() => {
     getSpaCategory()
@@ -24,6 +26,9 @@ const Discover = () => {
       </div>
       <div className="services">
         {
+          loading ? <span className="loader"></span> :
+        
+        (
           spaCategory && spaCategory.map(x=>
             <div key={x._id} className="formula">
         <div className="image">
@@ -35,7 +40,7 @@ const Discover = () => {
         </div>
         </div>
             )
-        }
+       ) }
         
         
       

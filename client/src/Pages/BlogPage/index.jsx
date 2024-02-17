@@ -10,6 +10,7 @@ const BlogPage = () => {
   const [category, setCategory] = useState([])
   const [tag, setTag] = useState([])
   const [gallery, setGallery] = useState([])
+  const [loading, setLoading] = useState(true)
 
 async function getCategory() {
   const res=await axios(`http://localhost:5000/blogCategory`)
@@ -23,6 +24,7 @@ async function getTag() {
   async function getData() {
     const res=await axios("http://localhost:5000/blog")
     setData(res.data)
+    setLoading(false)
   
   }
   async function getGallery() {
@@ -87,7 +89,7 @@ tag && tag.map(x=>
               <div className="galleries">
                 {
                   gallery && gallery.slice(0, 6).map(x=>
-                     <div className="gallery">
+                     <div key={x._id} className="gallery">
               <img src={x.image} alt="" />
              </div>
              )
@@ -104,11 +106,15 @@ tag && tag.map(x=>
             <div className='container'>
       <div className="row">
         {
+        
+        loading ? <span className="loader"></span> :
+        
+        (
           data && data.map(x=>
           <div key={x._id} className="col-lg-6 col-md-6 col-12">
           <BlogsCard {...x}/>
         </div>
-            )
+            ))
         }
         
       </div>

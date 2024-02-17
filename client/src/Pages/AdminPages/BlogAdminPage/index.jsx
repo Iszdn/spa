@@ -9,33 +9,34 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 
-const TeamAdmin = () => {
+
+const BlogAdmin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [editedTeam, setEditedTeam] = useState(null);
+  const [editedBlog, setEditedBlog] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
   async function getData() {
-    const res = await axios("http://localhost:5000/team");
+    const res = await axios("http://localhost:5000/blog");
     setData(res.data);
     setLoading(false);
   }
 
-  async function deleteTeam(id) {
-    const res = await axios.delete(`http://localhost:5000/team/${id}`);
+  async function deleteBlog(id) {
+    const res = await axios.delete(`http://localhost:5000/blog/${id}`);
     toast.success("deleted");
     getData();
   }
 
-  async function editTeam(id, values) {
-    const res = await axios.put(`http://localhost:5000/team/${id}`, values);
+  async function editBlog(id, values) {
+    const res = await axios.put(`http://localhost:5000/blog/${id}`, values);
     getData();
     setShowModal(false);
   }
 
   const openEditModal = (spa) => {
-    setEditedTeam(spa);
+    setEditedBlog(spa);
     setShowModal(true);
   };
 
@@ -46,13 +47,13 @@ const TeamAdmin = () => {
   return (
     <>
       <Helmet>
-        <title>TeamAdmin</title>
+        <title>BlogAdmin</title>
       </Helmet>
       <>
         <div className="adminpage">
           <div className="userpage">
             <div className="addUser">
-              <button className='btn'><Link to="/admin/addteam">add service</Link></button>
+              <button className='btn'><Link to="/admin/addBlog">add service</Link></button>
             </div>
 
             <div className="usertable">
@@ -63,8 +64,11 @@ const TeamAdmin = () => {
                       <th>id</th>
                       <th>image</th>
                       <th>title</th>
-                      <th>position</th>
-
+                      <th>description</th>
+                      <th>name</th>
+                      <th>category</th>
+                      <th>tag</th>
+                      
                       <th>settings</th>
                     </tr>
                   </thead>
@@ -78,11 +82,14 @@ const TeamAdmin = () => {
                           <td>{spa._id}</td>
                           <td>{spa.image}</td>
                           <td>{spa.title}</td>
-                          <td>{spa.position}</td>
+                          <td>{spa.description}</td>
+                          <td>{spa.name}</td>
+                          <td>{spa.blogCategory[0]?.blogCategoryName}</td>
+                          <td>{spa.blogCategory[0]?.blogTagsName}</td>
 
                           <td>
                             <button
-                              onClick={() => deleteTeam(spa._id)}
+                              onClick={() => deleteBlog(spa._id)}
                               className="btn"
                             >
                               <AiOutlineDelete />
@@ -111,10 +118,10 @@ const TeamAdmin = () => {
                 &times;
               </span>
               <h2>Edit</h2>
-              <Formik
+              {/* <Formik
                 initialValues={{
-                  title: editedTeam.title || "",
-                  position: editedTeam.position || "",
+                  title: editedBlog.title || "",
+                  position: editedBlog.position || "",
                 }}
                 validationSchema={Yup.object({
                   title: Yup.string().required("Required"),
@@ -129,7 +136,7 @@ const TeamAdmin = () => {
                     formData.append("image", selectedFile);
                   }
 
-                  editTeam(editedTeam._id, formData);
+                  editBlog(editedBlog._id, formData);
                   toast.success("edited");
                 }}
               >
@@ -167,13 +174,13 @@ const TeamAdmin = () => {
                     </button>
                   </Form>
                 )}
-              </Formik>
+              </Formik> */}
             </div>
           </div>
-        )}
+        )}  
       </>
     </>
   );
 };
 
-export default TeamAdmin;
+export default BlogAdmin;

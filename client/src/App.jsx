@@ -23,7 +23,11 @@ import LAyoutAdmin from "./components/AdminComponents/AdminLayout/LayoutAdmin/in
 import UsersPage from "./Pages/AdminPages/UsersPage/index.jsx";
 import TeamAdmin from "./Pages/AdminPages/TeamPage/index.jsx";
 import ServiceAdmin from "./Pages/AdminPages/SErvicesPage/index.jsx";
-import BlogAdmin from "./Pages/AdminPages/BlogAdmin/index.jsx";
+import AddUser from "./components/AdminAddComp/AddUserForm/index.jsx";
+import AddService from "./components/AdminAddComp/AddServiceFor/index.jsx";
+import AddTeam from "./components/AdminAddComp/AddTeamForm/index.jsx";
+import BlogAdmin from "./Pages/AdminPages/BlogAdminPage/index.jsx";
+import SpaCategoryAdmin from "./Pages/AdminPages/SpaCategoryPage/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -50,6 +54,7 @@ function App() {
 
         </Route>
         <Route path="*" element={<NotFound/>}/>
+
         <Route path="/admin" element={<LAyoutAdmin/>}>
         
          <Route path="/admin" element={<AdminPage/>}/>
@@ -57,7 +62,12 @@ function App() {
          <Route path="/admin/teams" element={<TeamAdmin/>}/>
          <Route path="/admin/services" element={<ServiceAdmin/>}/>
          <Route path="/admin/blogs" element={<BlogAdmin/>}/>
+         <Route path="/admin/adduser" element={<AddUser/>}/>
+         <Route path="/admin/addserv" element={<AddService/>}/>
+         <Route path="/admin/addteam" element={<AddTeam/>}/>
+         <Route path="/admin/spaCategory" element={<SpaCategoryAdmin/>}/>
          </Route>
+         
       </Routes>
     </BrowserRouter>
     </HelmetProvider>

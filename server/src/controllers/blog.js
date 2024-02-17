@@ -54,7 +54,7 @@ export const createBlog = async (req, res) => {
 
 export const getBlog = async (req, res) => {
   try {
-    const blog = await Blogs.find({}).populate("blogCategory","tag")
+    const blog = await Blogs.find({}).populate("blogCategory").populate("tag")
     res.json(blog);
   } catch (error) {
     res.status(500).json({ messsage: error });
@@ -112,7 +112,7 @@ export const deleteBlog = async (req, res) => {
 export const getByIdBlog = async (req, res) => {
   try {
     const { id } = req.params;
-    const blog = await Blogs.findById(id).populate("blogCategory","tag")
+    const blog = await Blogs.findById(id).populate("blogCategory").populate("tag")
     res.json(blog);
   } catch (error) {
     res.status(500).json({ messsage: error });
