@@ -1,5 +1,16 @@
 .adminpage{
+    
     padding-left: 200px;
+    input[type="file"]{
+        padding: 0;
+
+    }
+    input[type="file"]::file-selector-button {
+        background-color: transparent;
+        
+        padding: 10px;
+        border: 1px solid rgb(118, 118, 118);
+    }
     td{
         img{
             width: 80px;
@@ -31,6 +42,11 @@
     padding: 20px;
     border-radius: 5px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     h2{
         font-size: 20px;
         text-align: center;
@@ -39,8 +55,28 @@
     input{
         padding: 10px;
         outline-color: var(--third--color);
+        border-radius: 10px;
+        margin-bottom: 8px;
+        border: 1px solid rgb(118, 118, 118);
+        width: 200px;
+    }
+    input[type="file"]{
+        padding: 0;
+    }
+    select{
+        padding: 10px;
+        width: 200px;
+        border-radius: 10px;
         margin-bottom: 8px;
     }
+    input[type="file"]::file-selector-button {
+        background-color: transparent;
+        padding: 10px;
+        border: 1px solid rgb(118, 118, 118);
+        width: 200px;
+        border-radius: 10px;
+    }
+    
     .di{
         display: flex;
         justify-content: center;

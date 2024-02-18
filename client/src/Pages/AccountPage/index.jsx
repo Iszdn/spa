@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./index.scss"
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -9,7 +9,10 @@ import "./index.scss"
 import WhereAreYou from '../../components/WhereAreYou';
 import Instagram from '../../components/HomeComponents/Instagram';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
 const Account = () => {
+  const {user} = useContext(UserContext)
+  
   return (
     <>
     <Helmet>
@@ -48,7 +51,8 @@ const Account = () => {
         <Col sm={9}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-              <p>Hello nura (not nura? <Link>Log out</Link> )</p>
+
+              <p>Hello  {user.username}(not {user.username} ? <Link>Log out</Link> )</p>
               <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
             </Tab.Pane>
             <Tab.Pane eventKey="second"></Tab.Pane>

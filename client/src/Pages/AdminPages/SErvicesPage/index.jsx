@@ -121,7 +121,7 @@ const ServiceAdmin = () => {
                     .required('Required'),
                   duration: Yup.number().required('Required'),
                   price: Yup.number().required('Required'),
-                  spaCategory: Yup.string().required('Required')
+                  spaCategory: Yup.string().notRequired('Required')
                 })}
                 onSubmit={(values) => {
                   editSpa(editedSpa._id, values);
@@ -159,7 +159,11 @@ const ServiceAdmin = () => {
                     <div className="red"><ErrorMessage name="spaCategory" /></div>
                   </div>
 
-                  <button className='btn' type="submit">Edit</button>
+                  <div className="di">
+ <button className="btn" type="submit">
+                      Save
+                    </button>
+</div>
                 </Form>
               </Formik>
             </div>

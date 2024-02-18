@@ -149,7 +149,9 @@ const TeamAdmin = () => {
                       </div>
                     </div>
                     
+
                     <div className="inpp">
+                      <label className="custom-file-upload">
                       <input
                         type="file"
                         onChange={(event) => {
@@ -157,14 +159,17 @@ const TeamAdmin = () => {
                           setFieldValue("image", event.currentTarget.files[0]);
                         }}
                       />
+                      </label>
                       <div className="red">
                         <ErrorMessage name="image" />
                       </div>
                     </div>
-
-                    <button className="btn" type="submit">
-                      Edit
+<div className="di">
+ <button className="btn" type="submit">
+                      Save
                     </button>
+</div>
+                   
                   </Form>
                 )}
               </Formik>

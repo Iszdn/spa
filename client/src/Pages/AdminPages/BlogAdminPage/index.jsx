@@ -152,8 +152,8 @@ const [blogTag, setBlogTag] = useState([])
                   title: Yup.string().required("Required"),
                   description: Yup.string().required("Required"),
                   name: Yup.string().required("Required"),
-                  blogCategory: Yup.string().required("Required"),
-                  tag: Yup.string().required("Required"),
+                  blogCategory: Yup.string(),
+                  tag: Yup.string(),
                   image: Yup.mixed().notRequired(), 
                 })}
                 onSubmit={(values) => {
@@ -227,9 +227,11 @@ const [blogTag, setBlogTag] = useState([])
                     <div className="red"><ErrorMessage name="tag" /></div>
                   </div>
 
-                    <button className="btn" type="submit">
-                      Edit
+                  <div className="di">
+ <button className="btn" type="submit">
+                      Save
                     </button>
+</div>
                   </Form>
                 )}
               </Formik>

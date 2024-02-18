@@ -150,7 +150,11 @@ const SpaCategoryAdmin = () => {
                   
 
 
-                  <button className='btn' type="submit">Edit</button>
+                    <div className="di">
+ <button className="btn" type="submit">
+                      Save
+                    </button>
+</div>
                 </Form>
                    )}
               </Formik>

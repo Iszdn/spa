@@ -104,7 +104,7 @@ function handleOPen() {
   <div className="icons">
     <ul>
       <li>
-        <NavLink to="/register">
+        <NavLink to="/account">
           {
             profileIcon && profileIcon.map(x=>
               <i key={x._id} className={x.image}></i>

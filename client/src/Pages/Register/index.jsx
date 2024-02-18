@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./index.scss";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoArrowForward } from "react-icons/io5";
@@ -10,10 +10,13 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import {setCookie} from "../../helper/cookie"
+import { UserContext } from "../../context/userContext";
 
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const {setToken}=useContext(UserContext)
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -28,7 +31,8 @@ const Register = () => {
       const response = await axios.post("http://localhost:5000/users", values);
       toast.success('Successfully register!')
       console.log("Registered in successfully", response.data);
-      setCookie("token",response.data.token)
+    setCookie("token",response.data.token)
+setToken(response.data.token)
 
     } catch (error) {
       

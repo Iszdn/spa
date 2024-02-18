@@ -14,7 +14,7 @@ import { setCookie } from "../../helper/cookie";
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const {token,setToken,user, setUser} = useContext(UserContext)
+  const {setToken} = useContext(UserContext)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -51,6 +51,7 @@ const LoginPage = () => {
                 try {
                   const response = await axios.post("http://localhost:5000/users/auth", values);
                   setCookie("token",response.data.token)
+                  setToken(response.data.token)
                   toast.success('Successfully logged in!')
                   console.log("Logged in successfully", response.data);
                 } catch (error) {

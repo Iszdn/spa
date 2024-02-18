@@ -33,6 +33,7 @@ import AddFaq from "./components/AdminAddComp/AddFaq/index.jsx";
 import GalleryAdmin from "./Pages/AdminPages/GalleryPagee/index.jsx";
 import AddBlog from "./components/AdminAddComp/AddBlog/index.jsx";
 import AddSpaCategory from "./components/AdminAddComp/AddSpaCategory/index.jsx";
+import PrivateRoute from "./Routes/PrivateRoote/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -46,19 +47,24 @@ function App() {
         <Route path="/" element={<HomePage/>}/>
         <Route path="/contactus" element={<ContactUs/>}/>
         <Route path="/about" element={<AboutPage/>}/>
-        <Route path="/faq" element={<FaqPage/>}/>
-        <Route path="/account" element={<Account/>}/>
+        <Route path="/faq" element={<FaqPage/>}/> 
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/register" element={<Register/>}/>
+      
         <Route path="/services" element={<OurServicePage/>}/>
         <Route path="/services/:categoryId" element={<CategoryPage/>}/>
         <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Route element={<PrivateRoute roles={["admin","user"]}/>}>
+        <Route path="/account" element={<Account/>}/>
+        </Route>
       
 
         </Route>
-        <Route path="/*" element={<NotFound/>}/>
 
+        <Route path="/*" element={<NotFound/>}/>
+{/* <Route element={<PrivateRoute roles={["admin"]}/>}> */}
+       
         <Route path="/admin" element={<LAyoutAdmin/>}>
         
          <Route path="/admin" element={<AdminPage/>}/>
@@ -76,7 +82,7 @@ function App() {
          <Route path="/admin/gallery" element={<GalleryAdmin/>}/>
          <Route path="/admin/addfaq" element={<AddFaq/>}/>
          </Route>
-         
+         {/* </Route> */}
       </Routes>
     </BrowserRouter>
     </HelmetProvider>
