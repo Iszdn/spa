@@ -52,7 +52,7 @@ const TeamAdmin = () => {
         <div className="adminpage">
           <div className="userpage">
             <div className="addUser">
-              <button className='btn'><Link to="/admin/addteam">add service</Link></button>
+              <button className='btn'><Link to="/admin/addteam">add team</Link></button>
             </div>
 
             <div className="usertable">
@@ -60,7 +60,7 @@ const TeamAdmin = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>id</th>
+                      {/* <th>id</th> */}
                       <th>image</th>
                       <th>title</th>
                       <th>position</th>
@@ -75,8 +75,8 @@ const TeamAdmin = () => {
                       data &&
                       data.map((spa) => (
                         <tr key={spa._id}>
-                          <td>{spa._id}</td>
-                          <td>{spa.image}</td>
+                          {/* <td>{spa._id}</td> */}
+                          <td><img src={spa.image} alt="" /></td>
                           <td>{spa.title}</td>
                           <td>{spa.position}</td>
 

@@ -8,11 +8,6 @@ const UserProvider = ({children}) => {
   const [token, setToken] = useLOcalStorage('token',"")
 const [user, setUser] = useLOcalStorage("user")
 
-
-
-
-
-
   const data={
     token,setToken,user, setUser
   }

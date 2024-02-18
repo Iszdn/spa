@@ -9,6 +9,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/userContext";
 import { jwtDecode } from "jwt-decode";
+import { setCookie } from "../../helper/cookie";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -49,13 +50,14 @@ const LoginPage = () => {
               onSubmit={async (values, { resetForm }) => {
                 try {
                   const response = await axios.post("http://localhost:5000/users/auth", values);
-                setUser(jwtDecode(response.data.token))
+                  setCookie("token",response.data.token)
                   toast.success('Successfully logged in!')
                   console.log("Logged in successfully", response.data);
                 } catch (error) {
                   toast.error('wrong email or password')
                   console.error("Login failed", error);
                 }
+
                 resetForm();
               }}
             >

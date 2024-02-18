@@ -9,57 +9,52 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
-const ServiceAdmin = () => {
+const FaqAdmin = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false);
-  const [editedSpa, setEditedSpa] = useState(null); 
-  const [categories, setCategories] = useState([]); 
+  const [editedFaq, setEditedFaq] = useState(null); 
+
 
   async function getData() {
-    const res = await axios("http://localhost:5000/spa-services");
+    const res = await axios("http://localhost:5000/faq");
     setData(res.data);
     setLoading(false)
   }
 
-  async function getCateg() {
-    const res = await axios("http://localhost:5000/spaCategoryServices");
-    setCategories(res.data);
-   
-  }
+  
 
-  async function deleteSpa(id) {
-    const res = await axios.delete(`http://localhost:5000/spa-services/${id}`);
+  async function deleteFaq(id) {
+    const res = await axios.delete(`http://localhost:5000/faq/${id}`);
     toast.success("deleted")
     getData();
   }
 
-  async function editSpa(id, values) {
-    const res = await axios.put(`http://localhost:5000/spa-services/${id}`, values);
+  async function editFaq(id, values) {
+    const res = await axios.put(`http://localhost:5000/faq/${id}`, values);
     getData()
     setShowModal(false);
   }
 
-  const openEditModal = (spa) => { 
-    setEditedSpa(spa); 
+  const openEditModal = (Faq) => { 
+    setEditedFaq(Faq); 
     setShowModal(true);
   };
 
   useEffect(() => {
     getData();
-    getCateg()
   }, []);
 
   return (
     <>
       <Helmet>
-        <title>ServiceAdmin</title>
+        <title>FaqAdmin</title>
       </Helmet>
       <>
         <div className="adminpage">
           <div className="userpage">
           <div className="addUser">
-              <button  className='btn'><Link to="/admin/addserv">add service</Link></button>
+              <button  className='btn'><Link to="/admin/addfaq">add Faq</Link></button>
             </div>
             <div className="usertable">
               <div className="overflow-x-auto">
@@ -68,30 +63,23 @@ const ServiceAdmin = () => {
                     <tr>
                       {/* <th>id</th> */}
                       <th>title</th>
-                      <th>cattegory</th>
-                      <th>descriptionription</th>
-                      
-                      <th>duration</th>
-                      <th>price</th>
+                      <th>description</th>
                       
                       <th>settings</th>
                     </tr>
                   </thead>
                   <tbody>
                     {loading ? <span>loading...</span> :
-                      (data && data.map(spa => (
-                        <tr key={spa._id}>
-                          {/* <td>{spa._id}</td> */}
-                          <td>{spa.title}</td>
-                          <td>{spa.spaCategory[0]?.title}</td>
-                          <td>{spa.description}</td>
-                          <td>{spa.duration}min</td>
-                          <td>{spa.price}$</td>
+                      (data && data.map(Faq => (
+                        <tr key={Faq._id}>
+                          {/* <td>{Faq._id}</td> */}
+                          <td>{Faq.title}</td>
+                          <td>{Faq.description}</td>
                           
 
                           <td>
-                            <button onClick={() => deleteSpa(spa._id)} className='btn'><AiOutlineDelete /></button>
-                            <button onClick={() => openEditModal(spa)} className='btn'><CiEdit /></button>
+                            <button onClick={() => deleteFaq(Faq._id)} className='btn'><AiOutlineDelete /></button>
+                            <button onClick={() => openEditModal(Faq)} className='btn'><CiEdit /></button>
                           </td>
                         </tr>
                       )))
@@ -111,7 +99,7 @@ const ServiceAdmin = () => {
               <span className="close" onClick={() => setShowModal(false)}>&times;</span>
               <h2>Edit</h2>
               <Formik
-                initialValues={{ title: editedSpa.title || '', description: editedSpa.description || '', duration: editedSpa.duration || '', price: editedSpa.price || '',spaCategory: editedSpa.spaCategory[0]._id || ''  }}
+                initialValues={{ title: editedFaq.title || '', description: editedFaq.description || ''  }}
                 validationSchema={Yup.object({
                   title: Yup.string()
                     
@@ -119,17 +107,17 @@ const ServiceAdmin = () => {
                   description: Yup.string()
                     
                     .required('Required'),
-                  duration: Yup.number().required('Required'),
-                  price: Yup.number().required('Required'),
-                  spaCategory: Yup.string().required('Required')
+                 
                 })}
                 onSubmit={(values) => {
-                  editSpa(editedSpa._id, values);
+                  editFaq(editedFaq._id, values);
                   toast.success("edited")
 
                 }}
               >
                 <Form>
+
+
                   <div className="inpp">
                     <Field name="title" type="text" placeholder="title" />
                     <div className="red"><ErrorMessage name="title" /></div>
@@ -141,23 +129,10 @@ const ServiceAdmin = () => {
                   </div>
 
 
-                  <div className="inpp"><Field name="duration" type="number" placeholder="duration" />
-                    <div className="red"> <ErrorMessage name="duration" /></div></div>
+                  
+                  
 
-                  <div className="inpp">
-                    <Field name="price" type="price" placeholder="price" />
-                    <div className="red"><ErrorMessage name="price" /></div>
-                  </div>
-
-                  <div className="inpp">
-                    <Field name="spaCategory" as="select">
-                      
-                      {categories.map(spaCategory => (
-                        <option key={spaCategory._id} value={spaCategory._id}>{spaCategory.title}</option>
-                      ))}
-                    </Field>
-                    <div className="red"><ErrorMessage name="spaCategory" /></div>
-                  </div>
+                 
 
                   <button className='btn' type="submit">Edit</button>
                 </Form>
@@ -171,4 +146,4 @@ const ServiceAdmin = () => {
   )
 }
 
-export default ServiceAdmin;
+export default FaqAdmin;

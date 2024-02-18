@@ -27,30 +27,32 @@ export const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const {  username, password, email, role } = req.body;
+  const { username, password, email, role } = req.body;
   const userExist = await Users.findOne({ email });
   if (userExist) {
-    res.status(400).json({error:"user already exist"})
-    return
+    res.status(400).json({ error: "User already exists" });
+    return;
   }
   const user = await Users.create({
-   
     username,
     password,
     email,
-    role
+    role,
   });
   if (user) {
-    generateToken(res, user._id);
+    generateToken(req, res, user._id, user.email, user.username, user.role);
     res.status(201).json({
       _id: user._id,
       username: user.username,
       email: user.email,
+      role: user.role,
+      token: req.token, 
     });
   } else {
-    res.status(400).json("invalid user data");
+    res.status(400).json("Invalid user data");
   }
 });
+
 
 // @desc    LOgout user
 // @route   POST /api/users/logout

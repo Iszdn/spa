@@ -54,14 +54,14 @@ const SpaCategoryAdmin = () => {
         <div className="adminpage">
           <div className="userpage">
           <div className="addUser">
-              <button  className='btn'><Link to="/admin/addSpaCategory">add service</Link></button>
+              <button  className='btn'><Link to="/admin/addSpaCategory">add spa category</Link></button>
             </div>
             <div className="usertable">
               <div className="overflow-x-auto">
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>id</th>
+                      {/* <th>id</th> */}
                       <th>image</th>
                       <th>title</th>
                       <th>description</th>
@@ -72,8 +72,8 @@ const SpaCategoryAdmin = () => {
                     {loading ? <span>loading...</span> :
                       (data && data.map(spa => (
                         <tr key={spa._id}>
-                          <td>{spa._id}</td>
-                          <td>{spa.image}</td>
+                          {/* <td>{spa._id}</td> */}
+                          <td><img src={spa.image} alt="" /></td>
                           <td>{spa.title}</td>
                           <td>{spa.description}</td>
                           
@@ -113,7 +113,7 @@ const SpaCategoryAdmin = () => {
                 onSubmit={(values) => {
                   const formData = new FormData();
                   formData.append("title", values.title);
-                  formData.append("position", values.position);
+                  formData.append("description", values.description);
                   if (selectedFile) {
                     formData.append("image", selectedFile);
                   }

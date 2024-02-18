@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage, useFormikContext } from "formik";
 import * as Yup from "yup";
@@ -7,15 +5,18 @@ import * as Yup from "yup";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const AddTeam = () => {
-  async function addTeam(values) {
+const AddSpaCategory = () => {
+
+
+  
+  async function AddSpaCategory(values) {
     try {
       const formData = new FormData();
       formData.append("title", values.title);
-      formData.append("position", values.position);
+      formData.append("description", values.description);
       formData.append("image", values.image);
 
-      const res = await axios.post("http://localhost:5000/team", formData, {
+      const res = await axios.post("http://localhost:5000/spaCategoryServices", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -36,18 +37,18 @@ const AddTeam = () => {
         <Formik
           initialValues={{
             title: "",
-            position: "",
+            description: "",
             image: null, // Initialize image as null
           }}
           
           validationSchema={Yup.object({
             title: Yup.string().required("Required"),
-            position: Yup.string().required("Required"),
+            description: Yup.string().required("Required"),
             image: Yup.mixed().required("Required"),
           })}
 
           onSubmit={(values, { resetForm }) => {
-            addTeam(values);
+            AddSpaCategory(values);
             resetForm();
           }}
         >
@@ -76,9 +77,9 @@ const SpaCategoryFormFields = () => {
       </div>
 
       <div className="inpp">
-        <Field name="position" type="text" placeholder="position" />
+        <Field name="description" type="text" placeholder="description" />
         <div className="red">
-          <ErrorMessage name="position" />
+          <ErrorMessage name="description" />
         </div>
       </div>
 
@@ -87,7 +88,6 @@ const SpaCategoryFormFields = () => {
           name="image"
           type="file"
           onChange={(event) => {
-            // Set image value when file is selected
             const file = event.currentTarget.files[0];
             setFieldValue("image", file);
           }}
@@ -100,4 +100,4 @@ const SpaCategoryFormFields = () => {
   );
 };
 
-export default AddTeam;
+export default AddSpaCategory;

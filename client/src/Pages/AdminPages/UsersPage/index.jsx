@@ -48,12 +48,15 @@ const UsersPage = () => {
       </Helmet>
       <div className="adminpage">
         <div className="userpage">
+        <div className="addUser">
+<button className='btn'><Link to="/admin/adduser">add user</Link></button>
+</div>
           <div className="usertable">
             <div className="overflow-x-auto">
               <table className="table">
                 <thead>
                   <tr>
-                    <th>id</th>
+                    {/* <th>id</th> */}
                     <th>username</th>
                     <th>email</th>
                     <th>role</th>
@@ -67,7 +70,7 @@ const UsersPage = () => {
                    (
                   data && data.map(user => (
                     <tr key={user._id}>
-                      <td>{user._id}</td>
+                      {/* <td>{user._id}</td> */}
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>{user.role}</td>
@@ -81,9 +84,7 @@ const UsersPage = () => {
               </table>
             </div>
           </div>
-<div className="addUser">
-<button className='btn'><Link to="/admin/adduser">add user</Link></button>
-</div>
+
         </div>
       </div>
       {

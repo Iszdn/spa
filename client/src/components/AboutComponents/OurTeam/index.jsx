@@ -60,7 +60,7 @@ const OurTeam = () => {
           className="mySwiper"
         >
           {
-             loading ? <span class="loader"></span> :
+             loading ? <span className="loader"></span> :
             (
           data && data.map((x, index) => (
             <SwiperSlide key={index}>

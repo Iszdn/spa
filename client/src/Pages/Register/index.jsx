@@ -9,6 +9,7 @@ import { loginValidationSchema } from "../../utils/validation";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import {setCookie} from "../../helper/cookie"
 
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -22,6 +23,18 @@ const Register = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
   };
 
+  async function handleRegister(values) {
+    try {
+      const response = await axios.post("http://localhost:5000/users", values);
+      toast.success('Successfully register!')
+      console.log("Registered in successfully", response.data);
+      setCookie("token",response.data.token)
+
+    } catch (error) {
+      
+      console.error("Register failed", error);
+    }
+  }
   return (
     <>
       <Helmet>
@@ -53,14 +66,7 @@ const Register = () => {
                   .required('Confirm Password is required'),
               })}
               onSubmit={async (values, { resetForm }) => {
-                try {
-                  const response = await axios.post("http://localhost:5000/users", values);
-                  toast.success('Successfully register!')
-                  console.log("Registered in successfully", response.data);
-                } catch (error) {
-                  
-                  console.error("Register failed", error);
-                }
+                handleRegister(values)
                 resetForm();
               }}
             >

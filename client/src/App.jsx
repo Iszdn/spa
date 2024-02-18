@@ -28,6 +28,11 @@ import AddService from "./components/AdminAddComp/AddServiceFor/index.jsx";
 import AddTeam from "./components/AdminAddComp/AddTeamForm/index.jsx";
 import BlogAdmin from "./Pages/AdminPages/BlogAdminPage/index.jsx";
 import SpaCategoryAdmin from "./Pages/AdminPages/SpaCategoryPage/index.jsx";
+import FaqAdmin from "./Pages/AdminPages/FaqPage/index.jsx";
+import AddFaq from "./components/AdminAddComp/AddFaq/index.jsx";
+import GalleryAdmin from "./Pages/AdminPages/GalleryPagee/index.jsx";
+import AddBlog from "./components/AdminAddComp/AddBlog/index.jsx";
+import AddSpaCategory from "./components/AdminAddComp/AddSpaCategory/index.jsx";
 
 function App() {
   const helmetContext = {};
@@ -47,13 +52,12 @@ function App() {
         <Route path="/services/:categoryId" element={<CategoryPage/>}/>
         <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
-
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<Register/>}/>
       
 
         </Route>
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="/*" element={<NotFound/>}/>
 
         <Route path="/admin" element={<LAyoutAdmin/>}>
         
@@ -64,8 +68,13 @@ function App() {
          <Route path="/admin/blogs" element={<BlogAdmin/>}/>
          <Route path="/admin/adduser" element={<AddUser/>}/>
          <Route path="/admin/addserv" element={<AddService/>}/>
+         <Route path="/admin/addblog" element={<AddBlog/>}/>
          <Route path="/admin/addteam" element={<AddTeam/>}/>
+         <Route path="/admin/addSpaCategory" element={<AddSpaCategory/>}/>
          <Route path="/admin/spaCategory" element={<SpaCategoryAdmin/>}/>
+         <Route path="/admin/faq" element={<FaqAdmin/>}/>
+         <Route path="/admin/gallery" element={<GalleryAdmin/>}/>
+         <Route path="/admin/addfaq" element={<AddFaq/>}/>
          </Route>
          
       </Routes>

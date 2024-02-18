@@ -57,7 +57,7 @@ export const updateSpaserviceCategory=async(req,res)=>{
 
                 if (updatedSpaserviceCategory) {
                     const { image } = req.body;
-
+                
                     if (req.files["image"]) {
                         const SpaserviceCategoryResult = req.files["image"][0];
                         const SpaserviceCategoryUpload = cloudinary.uploader.upload(SpaserviceCategoryResult.path, { folder: "SpaserviceCategory" });

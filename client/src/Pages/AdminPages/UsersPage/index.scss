@@ -1,5 +1,12 @@
 .adminpage{
     padding-left: 200px;
+    td{
+        img{
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+    }
 }
 .userpage{
     padding:60px 50px ;

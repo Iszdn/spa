@@ -16,7 +16,26 @@ const BlogAdmin = () => {
   const [showModal, setShowModal] = useState(false);
   const [editedBlog, setEditedBlog] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+const [blogCategories, setBlogCategories] = useState([])
+const [blogTag, setBlogTag] = useState([])
 
+
+  async function getData() {
+    const res = await axios("http://localhost:5000/blog");
+    setData(res.data);
+    setLoading(false);
+  }
+
+  async function getCategory() {
+    const res = await axios("http://localhost:5000/blogCategory");
+    setBlogCategories(res.data);
+    setLoading(false);
+  }
+  async function getTag() {
+    const res = await axios("http://localhost:5000/blogTag");
+    setBlogTag(res.data);
+    setLoading(false);
+  }
   async function getData() {
     const res = await axios("http://localhost:5000/blog");
     setData(res.data);
@@ -40,8 +59,11 @@ const BlogAdmin = () => {
     setShowModal(true);
   };
 
+
   useEffect(() => {
     getData();
+    getCategory();
+    getTag()
   }, []);
 
   return (
@@ -53,7 +75,7 @@ const BlogAdmin = () => {
         <div className="adminpage">
           <div className="userpage">
             <div className="addUser">
-              <button className='btn'><Link to="/admin/addBlog">add service</Link></button>
+              <button className='btn'><Link to="/admin/addBlog">add blog</Link></button>
             </div>
 
             <div className="usertable">
@@ -61,7 +83,7 @@ const BlogAdmin = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>id</th>
+                      {/* <th>id</th> */}
                       <th>image</th>
                       <th>title</th>
                       <th>description</th>
@@ -79,13 +101,13 @@ const BlogAdmin = () => {
                       data &&
                       data.map((spa) => (
                         <tr key={spa._id}>
-                          <td>{spa._id}</td>
-                          <td>{spa.image}</td>
+                          {/* <td>{spa._id}</td> */}
+                          <td><img src={spa.image} alt="" /></td>
                           <td>{spa.title}</td>
                           <td>{spa.description}</td>
                           <td>{spa.name}</td>
                           <td>{spa.blogCategory[0]?.blogCategoryName}</td>
-                          <td>{spa.blogCategory[0]?.blogTagsName}</td>
+                          <td>{spa.tag[0]?.blogTagsName}</td>
 
                           <td>
                             <button
@@ -118,20 +140,29 @@ const BlogAdmin = () => {
                 &times;
               </span>
               <h2>Edit</h2>
-              {/* <Formik
+              <Formik
                 initialValues={{
                   title: editedBlog.title || "",
-                  position: editedBlog.position || "",
+                  description: editedBlog.description || "",
+                  name: editedBlog.name || "",
+                  blogCategory: editedBlog.blogCategory[0] || "",
+                 tag: editedBlog.tag[0] || "",
                 }}
                 validationSchema={Yup.object({
                   title: Yup.string().required("Required"),
-                  position: Yup.string().required("Required"),
-                  image: Yup.mixed().notRequired(), // Image not required
+                  description: Yup.string().required("Required"),
+                  name: Yup.string().required("Required"),
+                  blogCategory: Yup.string().required("Required"),
+                  tag: Yup.string().required("Required"),
+                  image: Yup.mixed().notRequired(), 
                 })}
                 onSubmit={(values) => {
                   const formData = new FormData();
                   formData.append("title", values.title);
-                  formData.append("position", values.position);
+                  formData.append("description", values.description);
+                  formData.append("name", values.name);
+                  formData.append("blogCategory", values.blogCategory);
+                  formData.append("tag", values.tag);
                   if (selectedFile) {
                     formData.append("image", selectedFile);
                   }
@@ -150,12 +181,19 @@ const BlogAdmin = () => {
                     </div>
 
                     <div className="inpp">
-                      <Field name="position" type="text" placeholder="position" />
+                      <Field name="description" type="text" placeholder="description" />
                       <div className="red">
-                        <ErrorMessage name="position" />
+                        <ErrorMessage name="description" />
                       </div>
                     </div>
                     
+                    <div className="inpp">
+                      <Field name="name" type="text" placeholder="name" />
+                      <div className="red">
+                        <ErrorMessage name="name" />
+                      </div>
+                    </div>
+
                     <div className="inpp">
                       <input
                         type="file"
@@ -169,12 +207,32 @@ const BlogAdmin = () => {
                       </div>
                     </div>
 
+                    <div className="inpp">
+                    <Field name="blogCategory" as="select">
+                      
+                      {blogCategories.map(blogCategory => (
+                        <option key={blogCategory._id} value={blogCategory._id}>{blogCategory.blogCategoryName}</option>
+                      ))}
+                    </Field>
+                    <div className="red"><ErrorMessage name="blogCategory" /></div>
+                  </div>
+
+                  <div className="inpp">
+                    <Field name="tag" as="select">
+                      
+                      {blogTag.map(blogTag => (
+                        <option key={blogTag._id} value={blogTag._id}>{blogTag.blogTagsName}</option>
+                      ))}
+                    </Field>
+                    <div className="red"><ErrorMessage name="tag" /></div>
+                  </div>
+
                     <button className="btn" type="submit">
                       Edit
                     </button>
                   </Form>
                 )}
-              </Formik> */}
+              </Formik>
             </div>
           </div>
         )}  
