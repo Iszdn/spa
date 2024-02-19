@@ -105,19 +105,19 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @desc    get users
 // @route   PUT /api/allusers/
 
-export const getAllUsers=async (req,res)=>{
+export const getAllUsers = async (req, res) => {
   try {
-    const users=await Users.find({})
-    res.json(users)
+    const users = await Users.find({}).populate("booking");
+    res.json(users);
   } catch (error) {
-    res.status(500).json({message:error})
+    res.status(500).json({ message: error });
   }
-}
+};
 
 export const getUserById=async (req,res)=>{
   try {
    const {id}=req.params
-    const user=await Users.findById(id)
+    const user=await Users.findById(id).populate("booking")
     res.json(user)
   } catch (error) {
     res.status(500).json({message:error})

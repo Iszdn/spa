@@ -63,7 +63,7 @@ function App() {
         </Route>
 
         <Route path="/*" element={<NotFound/>}/>
-{/* <Route element={<PrivateRoute roles={["admin"]}/>}> */}
+<Route element={<PrivateRoute roles={["admin"]}/>}>
        
         <Route path="/admin" element={<LAyoutAdmin/>}>
         
@@ -82,7 +82,7 @@ function App() {
          <Route path="/admin/gallery" element={<GalleryAdmin/>}/>
          <Route path="/admin/addfaq" element={<AddFaq/>}/>
          </Route>
-         {/* </Route> */}
+         </Route>
       </Routes>
     </BrowserRouter>
     </HelmetProvider>

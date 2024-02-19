@@ -1,62 +1,121 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import "./index.scss"
-const ReservationForm = () => {
-  return (
-    <div className='reserv-form'>
-      <Formik
-        initialValues={{ firstName: '', lastName: '', email: '', servicetype: '', date: '' }}
-        validationSchema={Yup.object({
-          firstName: Yup.string()
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
-          lastName: Yup.string()
-            .max(20, 'Must be 20 characters or less')
-            .required('Required'),
-          email: Yup.string().email('Invalid email address').required('Required'),
-          servicetype: Yup.string().required('Required'),
-          date: Yup.date().required('Required')
-        })}
+import React, { useContext, useEffect, useState } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./index.scss";
+// import { Datepicker, Button } from '@mobiscroll/react';
+import mobiscroll from '@mobiscroll/react-lite';
+import axios from "axios";
+import { UserContext } from "../../context/userContext";
 
-        onSubmit={(values, { resetForm }) => {
+const ReservationForm = () => {
+  const [spaCategory, setSpaCategory] = useState([]);
+  const [spaServices, setSpaServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+const {user}=useContext(UserContext)
+// console.log(user.userId);
+  // Функция для загрузки категорий спа
+  async function getSpaCategory() {
+    try {
+      const res = await axios.get("http://localhost:5000/spaCategoryServices");
+      setSpaCategory(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching spa categories:', error);
+    }
+  }
+
+  async function creatReserv(values) {
+    try {
+      const res = await axios.post("http://localhost:5000/booking",values);
+      
+    } catch (error) {
+      console.error('Error fetching spa categories:', error);
+    }
+  }
+
+  // Функция для загрузки услуг для выбранной категории
+  async function getSpaServicesByCategory(categoryId) {
+    try {
+      const res = await axios.get(`http://localhost:5000/spaCategoryServices/${categoryId}`);
+      console.log("res",res.data.spaServices);
+      setSpaServices(res.data.spaServices);
+    } catch (error) {
+      console.error('Error fetching spa services:', error);
+    }
+  }
+
+ 
+
+  useEffect(() => {
+    getSpaCategory();
+  }, []);
+
+  return (
+    <div className="reserv-form">
+      <Formik
+        initialValues={{
+         userId: '',
+          servicetype: "",
+          service: "",
+          date: "",
+          time: ""
+        }}
+        validationSchema={Yup.object({
         
+            userId: Yup.string()
+            
+            .required("Required"),
+          
+          servicetype: Yup.string(),
+          service: Yup.string().required("Required"),
+          date: Yup.date().required("Required"),
+          time: Yup.string().required("Required"),
+        })}
+        onSubmit={(values, { resetForm }) => {
+          creatReserv(values)
           resetForm();
         }}
       >
         <Form>
-          <Field  placeholder="Firstname" name="firstName" type="text" />
-         <div className="red"> <ErrorMessage name="firstName" /></div>
+         
 
-          <Field placeholder="Lastname" name="lastName" type="text" />
-          <div className="red"><ErrorMessage name="lastName" /></div>
+          <Field placeholder="userId" name="userId" type="text" />
+          <div className="red">
+            <ErrorMessage name="userId" />
+          </div>
 
-          <Field placeholder="Email" name="email" type="email" />
-          <div className="red"><ErrorMessage name="email" /></div>
-
-          <Field className="select" name="servicetype" as="select">
-            <option value="">Select a Service Type</option>
-            <option value="FACIAL TREATMENTS">Facial Treatments</option>
-            <option value="JALEH SPA ADD-ON SERVICES">Jaleh Spa Add-On Services</option>
-            <option value="MASSAGES">Massages</option>
-            <option value="BODY TREATMENTS">Body Treatments</option>
-            <option value="TRADITIONAL">Traditional</option>
+          <Field className="select" name="servicetype" as="select" onChange={(e) => {
+            const categoryId = e.target.value;
+            getSpaServicesByCategory(categoryId);
+          }}>
+            {loading ? <span>Loading...</span> : (
+              spaCategory && spaCategory.map(category =>
+                <option key={category._id} value={category._id}>{category.title}</option>
+              )
+            )}
           </Field>
-        <div className="red">  <ErrorMessage name="servicetype" /></div>
+          <div className="red">
+            <ErrorMessage name="servicetype" />
+          </div>
 
-
-          <Field className="select" name="servicetype" as="select">
-            <option value="">Select a Service Type</option>
-            <option value="FACIAL TREATMENTS">Facial Treatments</option>
-            <option value="JALEH SPA ADD-ON SERVICES">Jaleh Spa Add-On Services</option>
-            <option value="MASSAGES">Massages</option>
-            <option value="BODY TREATMENTS">Body Treatments</option>
-            <option value="TRADITIONAL">Traditional</option>
+          <Field className="select" name="service" as="select">
+            {spaServices && spaServices.map(service =>
+              <option key={service._id} value={service._id}>{service.title}</option>
+            )}
           </Field>
-      <div className="red">    <ErrorMessage name="servicetype" /></div>
+          <div className="red">
+            <ErrorMessage name="service" />
+          </div>
 
           <Field name="date" type="date" />
-         <div className="red"> <ErrorMessage name="date" /></div>
+          <div className="red">
+            <ErrorMessage name="date" />
+          </div>
+
+          <Field name="time" type="time" />
+          <div className="red">
+            <ErrorMessage name="time" />
+          </div>
 
           <button type="submit">Submit</button>
         </Form>

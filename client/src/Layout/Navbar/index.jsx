@@ -12,7 +12,7 @@ const Navbar = () => {
   const [heartIcon, setHeartIcon] = useState([])
   const [open, setOpen] = useState(false)
   const [scrolling, setScrolling] = useState(false);
-
+const [loading, setLoading] = useState(true)
 function handleOPen() {
   setOpen(!open)
 }
@@ -20,6 +20,7 @@ function handleOPen() {
   async function getLogo() {
     const res=await axios("http://localhost:5000/logo")
     setLogo(res.data)
+    setLoading(false)
   }
   async function getProfileIcon() {
     const res=await axios("http://localhost:5000/profileicon")
@@ -96,10 +97,11 @@ function handleOPen() {
   </div>
   <div className="logo">
 {
+  loading ? <span className="loader"></span> : (
   logo && logo.map(x=>
   <Link to="/" key={x._id}><img  src={x.image} alt="" /></Link>
   )
-}
+)}
   </div>
   <div className="icons">
     <ul>

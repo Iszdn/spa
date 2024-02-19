@@ -18,6 +18,7 @@ import spaCategoryServicesRouter from './src/routers/spaCategoryServices.js'
 import instaRouter from './src/routers/insta.js'
 import galleryRouter from './src/routers/gallery.js'
 import MarkaRouter from './src/routers/marka.js'
+import BookingRouter from './src/routers/booking.js'
 
 import { notFound,errorHandler } from './src/middleware/errorMiddleware.js'
 
@@ -45,6 +46,7 @@ app.use('/spa-services',spaServicesRouter)
 app.use('/spaCategoryServices',spaCategoryServicesRouter)
 app.use('/gallery',galleryRouter)
 app.use('/marka',MarkaRouter)
+app.use('/booking',BookingRouter)
 
 const url=process.env.CONNECTION_URL.replace("<password>",process.env.PASSWORD)
 const PORT=process.env.PORT

@@ -9,7 +9,11 @@ const userSchema = new Schema({
   maxLength: [15, "username must be maximum 15 character"]}, 
   password: {type:String,require:true},
   email: {type:String,require:true},
-  role:{type:String,default:"user"}
+  role:{type:String,default:"user"},
+  booking:[{
+    type:Schema.Types.ObjectId,
+  ref:"lilacBooking"
+  }]
 },{timestamps:true});
 
 userSchema.pre('save', async function (next) {
