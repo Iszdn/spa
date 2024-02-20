@@ -48,8 +48,11 @@ const OurServicePage = () => {
           </div>
           <div className="container reserv">
 <div className="reservationform row">
-          <div className="col-lg-6">
+          <div data-aos="fade-up" data-aos-duration="1200" className="col-lg-6 col-md-12 col-12">
             <ReservationForm/>
+          </div>
+          <div data-aos="fade-down" data-aos-duration="1200" className="col-lg-6 col-md-12 col-12">
+            <img className='imgreserv' src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
           </div>
         </div>
 </div>

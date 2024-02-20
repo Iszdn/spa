@@ -8,6 +8,9 @@ padding: 80px 0;
     position: relative;
     width: 100%;
     border: 1px solid #b7b7b7;
+    li{
+        cursor: pointer;
+    }
     .galleries{
         display: flex;
         flex-wrap: wrap;

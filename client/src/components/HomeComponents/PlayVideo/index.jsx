@@ -14,7 +14,7 @@ const PlayVideo = () => {
     <section id='video'>
       <div className={`openVideoBox ${open ? "openVideo":""}`}>
         <div className="closeBtn" onClick={openVideoBox}>x</div>
-        <iframe  src="https://www.youtube.com/embed/LZFpbKtiHwY" ></iframe>
+        <iframe  src="https://youtu.be/tZy9Qf88UYI?t=4" ></iframe>
       </div>
       <div className="container">
         <div className="videoplayer">

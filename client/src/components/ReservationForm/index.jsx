@@ -110,11 +110,14 @@ const ReservationForm = () => {
 >
   {({ values, setFieldValue }) => (
     <Form>
+
       <Field
         placeholder="userId"
         name="userId"
         type="text"
+        hidden
       />
+
       <div className="red">
         <ErrorMessage name="userId" />
       </div>
@@ -145,6 +148,7 @@ const ReservationForm = () => {
         className="select"
         name="service"
         as="select"
+        placeholder="Service"
       >
         {spaServices && spaServices.map(service =>
           <option key={service._id} value={service._id}>{service.title}</option>
@@ -187,12 +191,13 @@ const ReservationForm = () => {
         type="text"
         readOnly
         value={values.endTime}
+        placeholder="End Time"
       />
       <div className="red">
         <ErrorMessage name="endTime" />
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit">Book online</button>
     </Form>
   )}
 </Formik>

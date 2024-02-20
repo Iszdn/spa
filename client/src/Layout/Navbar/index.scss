@@ -5,7 +5,49 @@
   position: fixed;
   width: 100%;
   z-index: 22;
-
+.languade{
+  // padding: 8px ;
+  //   border: none;
+  //   background-color: transparent;
+  //   cursor: pointer;
+  //   display: flex;
+  //   align-items: baseline;
+  //   gap: 8px;
+  //   background-color: white;
+  //   border: 1px solid #ccc;
+  //   border-radius: 4px;
+  background-color: transparent;
+  outline: none;
+  border: none ;
+}
+  .language-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1000;
+   button {
+    padding: 8px ;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    img{
+      width: 25px;
+    }
+  }
+  }
+  
+  .language-options button:hover {
+    background-color: #f0f0f0;
+  }
+  
   &.scrolling {
     background-color: rgba(252, 247, 238, 0.95);
   }

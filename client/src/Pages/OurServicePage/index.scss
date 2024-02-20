@@ -2,6 +2,13 @@
 padding: 100px 0;
 background-color: var(--main--color);
 #discover{
+    .reserv{
+        margin-top: 60px;
+    }
+    .imgreserv{
+        height: 550px;
+        object-fit: cover;
+    }
     .ser{
           h6{
     border-top: 1px solid var(--second--color);

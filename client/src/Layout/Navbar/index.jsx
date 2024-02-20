@@ -15,13 +15,15 @@ const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
 const [loading, setLoading] = useState(true)
 const { t, i18n } = useTranslation();
+const [languageVisible, setLanguageVisible] = useState(false); 
 
 function handleOPen() {
   setOpen(!open)
 }
 
-function ChangelANG(lang) {
-  i18n.changeLanguage(lang)
+function changeLanguage(lang) {
+  i18n.changeLanguage(lang);
+  setLanguageVisible(false); // close language buttons after selecting a language
 }
 
   async function getLogo() {
@@ -73,7 +75,7 @@ function ChangelANG(lang) {
         <NavLink to="/blog">{t("Blog")}</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/contactus">{t("Cont")}</NavLink>
       </li>
       <li>
         <NavLink to="/gallery">{t("Gallery")}</NavLink>
@@ -98,14 +100,7 @@ function ChangelANG(lang) {
             <li>
               <NavLink to="/faq">FAQ</NavLink>
             </li>
-            <li>
-              <button onClick={()=>ChangelANG("az")}>
-                AZ
-              </button>
-              <button onClick={()=>ChangelANG("en")}>
-                en
-              </button>
-            </li>
+            
             
           </ul>
         </div>
@@ -133,21 +128,31 @@ function ChangelANG(lang) {
           }
           </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink> {
             heartIcon && heartIcon.map(x=>
               <i key={x._id} className={x.image}></i>
               )
           }</NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink> {
            shopIcon && shopIcon.map(x=>
               <i key={x._id} className={x.image}></i>
               )
           }</NavLink>
-      </li>
-      
+      </li> */}
+       <li>
+              {/* Button to reveal language options */}
+              <button className='languade' onClick={() => setLanguageVisible(!languageVisible)}>EN</button>
+              {/* Conditionally render language buttons */}
+              {languageVisible && (
+                <div className="language-options">
+                  <button onClick={() => changeLanguage('az')}> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Flag_of_Azerbaijan.svg/2560px-Flag_of_Azerbaijan.svg.png" alt="" /> AZ</button>
+                  <button onClick={() => changeLanguage('en')}> <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Flag_of_the_United_Kingdom.png" alt="" /> EN</button>
+                </div>
+              )}
+            </li>
     </ul>
   </div>
   <div onClick={()=>handleOPen()} className="bar">
@@ -170,13 +175,13 @@ function ChangelANG(lang) {
         <NavLink to="/blog">Blog</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/contactus">Contact Us</NavLink>
       </li>
       <li>
         <NavLink to="/gallery">Gallery</NavLink>
       </li>
       <li>
-        <NavLink to="/pages">Pages <IoIosArrowDown /></NavLink>
+        <NavLink to="/pages">Pages</NavLink>
       </li>
      <li>
       <NavLink></NavLink>
