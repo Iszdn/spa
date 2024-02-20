@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { CgClose } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import "./index.scss"
+import { useTranslation } from 'react-i18next';
 const Navbar = () => {
   const [logo, setLogo] = useState([])
   const [profileIcon, setProfileIcon] = useState([])
@@ -13,8 +14,14 @@ const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [scrolling, setScrolling] = useState(false);
 const [loading, setLoading] = useState(true)
+const { t, i18n } = useTranslation();
+
 function handleOPen() {
   setOpen(!open)
+}
+
+function ChangelANG(lang) {
+  i18n.changeLanguage(lang)
 }
 
   async function getLogo() {
@@ -57,22 +64,22 @@ function handleOPen() {
   <div className="navigations">
     <ul>
       <li>
-        <NavLink to="/">Home </NavLink>
+        <NavLink to="/">{t("Home")}</NavLink>
       </li>
       <li>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/about">{t("About")}</NavLink>
       </li>
       <li>
-        <NavLink to="/blog">Blog</NavLink>
+        <NavLink to="/blog">{t("Blog")}</NavLink>
       </li>
       <li>
         <NavLink to="/shop">Shop</NavLink>
       </li>
       <li>
-        <NavLink to="/gallery">Gallery</NavLink>
+        <NavLink to="/gallery">{t("Gallery")}</NavLink>
       </li>
       <li className='menu'>
-        <Link>Pages <IoIosArrowDown /></Link>
+        <Link>{t("Pages")} <IoIosArrowDown /></Link>
         <div className="submenu">
           <ul>
             <li>
@@ -90,6 +97,14 @@ function handleOPen() {
             </li>
             <li>
               <NavLink to="/faq">FAQ</NavLink>
+            </li>
+            <li>
+              <button onClick={()=>ChangelANG("az")}>
+                AZ
+              </button>
+              <button onClick={()=>ChangelANG("en")}>
+                en
+              </button>
             </li>
             
           </ul>

@@ -13,7 +13,8 @@ const GalleryAdmin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null);
+  const [editedGalleryId, setEditedGalleryId] = useState(null); // State to hold the ID of the gallery item being edited
 
   async function getData() {
     const res = await axios("http://localhost:5000/gallery");
@@ -27,14 +28,39 @@ const GalleryAdmin = () => {
     getData();
   }
 
-  async function editGallery(id, values) {
-    const res = await axios.put(`http://localhost:5000/gallery/${id}`, values);
-    getData();
-    setShowModal(false);
-  }
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
+  };
+
+  const handleImageUpload = async () => {
+    console.log("Image:", image);
+    console.log("Edited Gallery ID:", editedGalleryId);
+    
+    try {
+      if (!image || !editedGalleryId) {
+        console.error("No image selected or no gallery id provided!");
+        return;
+      }
+      const formData = new FormData();
+      formData.append("image", image);
+
+      const response = await axios.put(
+        `http://localhost:5000/gallery/${editedGalleryId}`, // Use editedGalleryId here
+        formData
+      );
+      setImage(null);
+      setShowModal(false)
+      getData()
+    
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const openEditModal = (spa) => {
-    // setEditedGallery(spa);
+    setEditedGalleryId(spa._id); // Set the id of the edited gallery item
     setShowModal(true);
   };
 
@@ -51,7 +77,9 @@ const GalleryAdmin = () => {
         <div className="adminpage">
           <div className="userpage">
             <div className="addUser">
-              <button className='btn'><Link to="/admin/addGallery">add gallery</Link></button>
+              <button className="btn">
+                <Link to="/admin/addGallery">add gallery</Link>
+              </button>
             </div>
 
             <div className="usertable">
@@ -59,10 +87,7 @@ const GalleryAdmin = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      {/* <th>id</th> */}
                       <th>image</th>
-                     
-
                       <th>settings</th>
                     </tr>
                   </thead>
@@ -73,8 +98,9 @@ const GalleryAdmin = () => {
                       data &&
                       data.map((spa) => (
                         <tr key={spa._id}>
-                          {/* <td>{spa._id}</td> */}
-                          <td><img src={spa.image} alt="" /></td>
+                          <td>
+                            <img src={spa.image} alt="" />
+                          </td>
 
                           <td>
                             <button
@@ -101,64 +127,21 @@ const GalleryAdmin = () => {
         </div>
 
         {showModal && (
-  <div className="modal">
-    <div className="modal-content">
-      <span className="close" onClick={() => setShowModal(false)}>
-        &times;
-      </span>
-      <h2>Edit</h2>
-      {/* <Formik
-  initialValues={{
-    image: editedGallery?.image || null, 
-  }}
-  validationSchema={Yup.object({
-    image: Yup.mixed().notRequired(), 
-  })}
-  onSubmit={async (values) => {
-    try {
-      const formData = new FormData();
-      if (selectedFile) {
-        formData.append("image", selectedFile);
-      }
-      await editGallery(editedGallery._id, formData);
-      toast.success("Edited");
-    } catch (error) {
-      console.error("Error editing gallery:", error);
-      toast.error("Failed to edit gallery");
-    }
-  }}
->
-  {({ setFieldValue }) => (
-    <Form>
-      <div className="inpp">
-        {values.image && typeof values.image === "string" ? (
-          <img src={values.image} alt="gallery" />
-        ) : null}
-        <input
-          type="file"
-          onChange={(event) => {
-            setSelectedFile(event.currentTarget.files[0]);
-            setFieldValue("image", URL.createObjectURL(event.currentTarget.files[0]));
-          }}
-        />
-        <div className="red">
-          <ErrorMessage name="image" />
-        </div>
-      </div>
-      <div className="di">
- <button className="btn" type="submit">
-                      Save
-                    </button>
-</div>
-    </Form>
-  )}
-</Formik> */}
-
-<input type="file" />
-    </div>
-  </div>
-)}
-
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={() => setShowModal(false)}>
+                &times;
+              </span>
+              <h2>Edit</h2>
+              <input type="file" onChange={handleImageChange} />
+              <div className="di">
+                <button className="btn" onClick={handleImageUpload}>
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </>
     </>
   );

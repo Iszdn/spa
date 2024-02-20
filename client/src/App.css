@@ -31,7 +31,16 @@ ul{
   box-sizing: border-box;
   animation: animloader 1s linear infinite alternate;
 }
-
+.load{
+  display: flex;
+  background-color: var(--main--color);
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  img{
+    width: 300px;
+  }
+}
 @keyframes animloader {
   0% {
     box-shadow: -38px -12px ,  -14px 0,  14px 0, 38px 0;

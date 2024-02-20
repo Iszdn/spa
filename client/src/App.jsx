@@ -38,11 +38,14 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-// const [loading, setLoading] = useState(true)
+const [loading, setLoading] = useState(true)
 
-// useEffect(() => {
- 
-// }, [])
+useEffect(() => {
+ const timeOut=setTimeout(()=>{
+  setLoading(false)
+ },3000)
+return()=>clearTimeout(timeOut)
+}, [])
 
   const helmetContext = {};
 
@@ -52,8 +55,11 @@ function App() {
     <HelmetProvider context={helmetContext}>
 
        <BrowserRouter>
+
        <ScrollToTop/>
-      <Routes>
+       {
+        loading ? <div className="load"><img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/lilac-Gif-Animation.gif" alt="" /></div> :
+        <Routes>
         <Route path="/" element={<Layout/>}>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/contactus" element={<ContactUs/>}/>
@@ -96,6 +102,8 @@ function App() {
          </Route>
          </Route>
       </Routes>
+       }
+      
     </BrowserRouter>
     </HelmetProvider>
    
