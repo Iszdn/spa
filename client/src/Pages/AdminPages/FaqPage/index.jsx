@@ -14,7 +14,8 @@ const FaqAdmin = () => {
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false);
   const [editedFaq, setEditedFaq] = useState(null); 
-
+  const [search, setSearch] = useState('')
+  const [property, setProperty] = useState(null)
 
   async function getData() {
     const res = await axios("http://localhost:5000/faq");
@@ -53,8 +54,16 @@ const FaqAdmin = () => {
       <>
         <div className="adminpage">
           <div className="userpage">
-          <div className="addUser">
-              <button  className='btn'><Link to="/admin/addfaq">add Faq</Link></button>
+          <div className="filterDD">
+              <div className="addUser">
+              <button className='btn'><Link to="/admin/addteam">add faq</Link></button>
+            </div>
+            <div className="filter">
+    <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    <div onClick={()=>setProperty({name:"title",asc:true})} className="btn">a-z</div>
+    <div onClick={()=>setProperty({name:"title",asc:false})} className="btn">z-a</div>
+     <div onClick={()=>setProperty({name:"title",asc:null})} className="btn">default</div>
+</div>
             </div>
             <div className="usertable">
               <div className="overflow-x-auto">
@@ -70,7 +79,20 @@ const FaqAdmin = () => {
                   </thead>
                   <tbody>
                     {loading ? <span>loading...</span> :
-                      (data && data.map(Faq => (
+                      (data && data
+                        .filter(x=>x.title.toLowerCase().includes(search.toLowerCase()))
+    .sort((a,b)=>{
+        if (property && property.asc===true) {
+            return a[property.name]<b[property.name] ? -1 : (a[property.name]<b[property.name] ? 1 : 0)
+        }
+        else if (property && property.asc===false) {
+            return a[property.name]>b[property.name] ? -1 : (a[property.name]>b[property.name] ? 1 : 0)
+        }
+        else{
+            return 0;
+        }
+    })
+                        .map(Faq => (
                         <tr key={Faq._id}>
                           {/* <td>{Faq._id}</td> */}
                           <td>{Faq.title}</td>

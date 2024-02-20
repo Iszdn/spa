@@ -10,7 +10,7 @@ const UserProvider = ({children}) => {
 
   const [token, setToken] = useState(getCookie('token'))
   // console.log(token);
-  console.log(getCookie("token"));
+  // console.log(getCookie("token"));
 const [user, setUser] = useState(null)
 // console.log(user);
 useEffect(() => {

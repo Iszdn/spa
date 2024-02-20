@@ -13,8 +13,7 @@ const GalleryAdmin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [editedGallery, setEditedGallery] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState(null)
 
   async function getData() {
     const res = await axios("http://localhost:5000/gallery");
@@ -35,7 +34,7 @@ const GalleryAdmin = () => {
   }
 
   const openEditModal = (spa) => {
-    setEditedGallery(spa);
+    // setEditedGallery(spa);
     setShowModal(true);
   };
 
@@ -108,7 +107,7 @@ const GalleryAdmin = () => {
         &times;
       </span>
       <h2>Edit</h2>
-      <Formik
+      {/* <Formik
   initialValues={{
     image: editedGallery?.image || null, 
   }}
@@ -153,9 +152,9 @@ const GalleryAdmin = () => {
 </div>
     </Form>
   )}
-</Formik>
+</Formik> */}
 
-
+<input type="file" />
     </div>
   </div>
 )}

@@ -34,9 +34,20 @@ import GalleryAdmin from "./Pages/AdminPages/GalleryPagee/index.jsx";
 import AddBlog from "./components/AdminAddComp/AddBlog/index.jsx";
 import AddSpaCategory from "./components/AdminAddComp/AddSpaCategory/index.jsx";
 import PrivateRoute from "./Routes/PrivateRoote/index.jsx";
+import { useEffect, useState } from "react";
 
 function App() {
+
+// const [loading, setLoading] = useState(true)
+
+// useEffect(() => {
+ 
+// }, [])
+
   const helmetContext = {};
+
+
+
   return (
     <HelmetProvider context={helmetContext}>
 
@@ -51,12 +62,13 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<Register/>}/>
       
-        <Route path="/services" element={<OurServicePage/>}/>
-        <Route path="/services/:categoryId" element={<CategoryPage/>}/>
+        
         <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
         <Route element={<PrivateRoute roles={["admin","user"]}/>}>
         <Route path="/account" element={<Account/>}/>
+        <Route path="/services" element={<OurServicePage/>}/>
+        <Route path="/services/:categoryId" element={<CategoryPage/>}/>
         </Route>
       
 

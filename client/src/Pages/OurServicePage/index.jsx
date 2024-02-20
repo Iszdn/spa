@@ -7,11 +7,13 @@ import ReservationForm from '../../components/ReservationForm';
 import "./index.scss"
 const OurServicePage = () => {
   const [spaCategory, setSpaCategory] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   async function getSpaCategory() {
     try {
       const res = await axios.get("http://localhost:5000/spaCategoryServices");
       setSpaCategory(res.data);
+      setLoading(false)
     } catch (error) {
       console.error('Error fetching spa categories:', error);
     }
@@ -32,12 +34,16 @@ const OurServicePage = () => {
         <section id='discover'>
           <div className="container">
             <div className="row">
-              {spaCategory && spaCategory.map(category => (
+              {
+               loading ? <span className="loader"></span> :
+        
+               (
+              spaCategory && spaCategory.map(category => (
                 <div key={category._id} className="col-lg-4 col-md-12 col-12 ser">
                   <h6><Link to={`/services/${category._id}`}>{category.title}</Link></h6>
                   <p>{category.description}</p>
                 </div>
-              ))}
+              )))}
             </div>
           </div>
           <div className="container reserv">

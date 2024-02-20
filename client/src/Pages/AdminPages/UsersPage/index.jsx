@@ -12,6 +12,8 @@ const UsersPage = () => {
   const [editedRole, setEditedRole] = useState('');
   const [editUserId, setEditUserId] = useState('');
   const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
+  const [property, setProperty] = useState(null)
 
   async function getData() {
     const res = await axios("http://localhost:5000/users/all");
@@ -48,9 +50,17 @@ const UsersPage = () => {
       </Helmet>
       <div className="adminpage">
         <div className="userpage">
-        <div className="addUser">
+      <div className="filterDD">
+      <div className="addUser">
 <button className='btn'><Link to="/admin/adduser">add user</Link></button>
 </div>
+<div className="filter">
+    <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    <div onClick={()=>setProperty({name:"username",asc:true})} className="btn">a-z</div>
+    <div onClick={()=>setProperty({name:"username",asc:false})} className="btn">z-a</div>
+   <div onClick={()=>setProperty({name:"username",asc:null})} className="btn">default</div>
+</div>
+      </div>
           <div className="usertable">
             <div className="overflow-x-auto">
               <table className="table">
@@ -68,7 +78,20 @@ const UsersPage = () => {
                    loading ? <span>loading...</span> :
         
                    (
-                  data && data.map(user => (
+                  data && data
+                  .filter(x=>x.username.toLowerCase().includes(search.toLowerCase()))
+                  .sort((a,b)=>{
+                      if (property && property.asc===true) {
+                          return a[property.name]<b[property.name] ? -1 : (a[property.name]<b[property.name] ? 1 : 0)
+                      }
+                      else if (property && property.asc===false) {
+                          return a[property.name]>b[property.name] ? -1 : (a[property.name]>b[property.name] ? 1 : 0)
+                      }
+                      else{
+                          return 0;
+                      }
+                  })
+                  .map(user => (
                     <tr key={user._id}>
                       {/* <td>{user._id}</td> */}
                       <td>{user.username}</td>

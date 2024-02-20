@@ -78,6 +78,10 @@ function handleOPen() {
             <li>
               <NavLink to="/account">Account</NavLink>
             </li>
+            
+            <li>
+              <NavLink to="/admin">Admin</NavLink>
+            </li>
             <li>
               <NavLink to="*">404</NavLink>
             </li>

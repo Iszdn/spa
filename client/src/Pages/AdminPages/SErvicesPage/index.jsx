@@ -15,7 +15,8 @@ const ServiceAdmin = () => {
   const [showModal, setShowModal] = useState(false);
   const [editedSpa, setEditedSpa] = useState(null); 
   const [categories, setCategories] = useState([]); 
-
+  const [search, setSearch] = useState('')
+  const [property, setProperty] = useState(null)
   async function getData() {
     const res = await axios("http://localhost:5000/spa-services");
     setData(res.data);
@@ -58,8 +59,18 @@ const ServiceAdmin = () => {
       <>
         <div className="adminpage">
           <div className="userpage">
-          <div className="addUser">
-              <button  className='btn'><Link to="/admin/addserv">add service</Link></button>
+          <div className="filterDD">
+              <div className="addUser">
+              <button className='btn'><Link to="/admin/addteam">add spa service</Link></button>
+            </div>
+            <div className="filter">
+    <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    <div onClick={()=>setProperty({name:"title",asc:true})} className="btn">a-z</div>
+    <div onClick={()=>setProperty({name:"title",asc:false})} className="btn">z-a</div>
+    <div onClick={()=>setProperty({name:"price",asc:true})} className="btn">increase</div>
+    <div onClick={()=>setProperty({name:"price",asc:false})} className="btn">decrease</div>
+     <div onClick={()=>setProperty({name:"title",asc:null})} className="btn">default</div>
+</div>
             </div>
             <div className="usertable">
               <div className="overflow-x-auto">
@@ -79,7 +90,20 @@ const ServiceAdmin = () => {
                   </thead>
                   <tbody>
                     {loading ? <span>loading...</span> :
-                      (data && data.map(spa => (
+                      (data && data
+                        .filter(x=>x.title.toLowerCase().includes(search.toLowerCase()))
+                        .sort((a,b)=>{
+                            if (property && property.asc===true) {
+                                return a[property.name]<b[property.name] ? -1 : (a[property.name]<b[property.name] ? 1 : 0)
+                            }
+                            else if (property && property.asc===false) {
+                                return a[property.name]>b[property.name] ? -1 : (a[property.name]>b[property.name] ? 1 : 0)
+                            }
+                            else{
+                                return 0;
+                            }
+                        })
+                        .map(spa => (
                         <tr key={spa._id}>
                           {/* <td>{spa._id}</td> */}
                           <td>{spa.title}</td>

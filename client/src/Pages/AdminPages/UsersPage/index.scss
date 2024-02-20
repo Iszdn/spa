@@ -1,6 +1,30 @@
 .adminpage{
     
     padding-left: 200px;
+    .filterDD{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        .btn{
+            border: 1px solid black;
+    border-radius: 20px;
+    a{
+        color: inherit;
+    }
+        }
+    }
+    .filter{
+        display: flex;
+        gap: 20px;
+        input{
+            padding: 10px;
+            border-radius: 20px;
+            outline: none;
+            border: 1px solid;
+        }
+       
+    }
     input[type="file"]{
         padding: 0;
 

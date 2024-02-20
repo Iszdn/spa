@@ -7,8 +7,11 @@ const PrivateRoute = ({roles}) => {
     const navigate=useNavigate()
 
     useEffect(() => {
-      
-        user ? <Outlet/> : navigate("/register")
+
+      console.log( user  && roles.includes(user.role));
+      console.log( user  && user.role);
+      user  && roles.includes(user.role)  ? <Outlet/> : navigate("/register")
+
 
     }, [])
     
