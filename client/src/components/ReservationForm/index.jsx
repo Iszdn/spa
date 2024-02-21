@@ -29,13 +29,22 @@ const ReservationForm = () => {
 
   async function creatReserv(values) {
     try {
-      const res = await axios.post("http://localhost:5000/booking", values);
-      
-    toast.success("successfully reserved!")
+      const { service, date, startTime, endTime, userId } = values; // Destructure values from the form
+      const spaCategory = selectedCategory; // Set spaCategory from selectedCategory state
+  
+      const res = await axios.post("http://localhost:5000/booking", {
+        spaCategory,
+        spaService: service, // Assuming service corresponds to spaService
+        date,
+        startTime,
+        endTime,
+        userId
+      });
+  
+      toast.success("Successfully reserved!");
     } catch (error) {
       console.error('Error creating reservation:', error);
-      
-    toast.error("this time reserved!")
+      toast.error("This time is already reserved!");
     }
   }
 
@@ -108,7 +117,7 @@ const ReservationForm = () => {
     endTime: Yup.string().required("Required")
   })}
   onSubmit={(values, { resetForm }) => {
-    creatReserv(values)
+    creatReserv(values);
     resetForm();
   }}
 >

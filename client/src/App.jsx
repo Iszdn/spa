@@ -38,6 +38,7 @@ import { useEffect, useState } from "react";
 import MarkaAdmin from "./Pages/AdminPages/MarkaPage/index.jsx";
 import LogoAdmin from "./Pages/AdminPages/LogoPage/index.jsx";
 import ProfileIconAdmin from "./Pages/AdminPages/ProfileIcon/index.jsx";
+import BookingAdmin from "./Pages/AdminPages/BookingsPage/index.jsx";
 
 function App() {
 
@@ -105,6 +106,7 @@ return()=>clearTimeout(timeOut)
          <Route path="/admin/logo" element={<LogoAdmin/>}/>
          <Route path="/admin/addfaq" element={<AddFaq/>}/>
          <Route path="/admin/profileIcon" element={<ProfileIconAdmin/>}/>
+         <Route path="/admin/adminBooking" element={<BookingAdmin/>}/>
          </Route>
          </Route>
       </Routes>

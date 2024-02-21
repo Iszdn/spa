@@ -5,37 +5,43 @@ export const createBooking = async (req, res) => {
     try {
         const { spaCategory, spaService, date, startTime, endTime, userId } = req.body;
 
-        // Get the user to check if they exist
+        // Получаем пользователя, чтобы проверить, существует ли он
         const user = await userSchema.findById(userId);
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({ message: "Пользователь не найден" });
         }
 
-        // Check if the end time is greater than start time
+        // Проверяем, если дата и время бронирования в прошлом
         const startDateTime = new Date(date + "T" + startTime);
+        const currentDateTime = new Date();
+        if (startDateTime < currentDateTime) {
+            return res.status(400).json({ message: "Нельзя забронировать прошедшее время" });
+        }
+
+        // Проверяем, если конечное время больше чем начальное время
         const endDateTime = new Date(date + "T" + endTime);
         if (endDateTime <= startDateTime) {
-            return res.status(400).json({ message: "End time must be greater than start time" });
+            return res.status(400).json({ message: "Время окончания должно быть позже времени начала" });
         }
 
-        // Check if the booking time is within working hours (10:00 - 20:00)
+        // Проверяем, входит ли время бронирования в рабочее время (10:00 - 20:00)
         const bookingHour = startDateTime.getHours();
         if (bookingHour < 10 || bookingHour >= 20) {
-            return res.status(400).json({ message: "Booking can only be made between 10:00 and 20:00" });
+            return res.status(400).json({ message: "Бронирование возможно только с 10:00 до 20:00" });
         }
 
-        // Check if there is any existing booking for the same spa service at the same time
+        // Проверяем, существует ли уже бронирование для того же спа-сервиса в то же время
         const existingBooking = await Bookings.findOne({
             spaService: spaService,
             date: date,
             $or: [
-                { $and: [{ startTime: { $lte: startTime } }, { endTime: { $gt: startTime } }] }, // Check if new booking start time falls between existing booking's start and end time
-                { $and: [{ startTime: { $lt: endTime } }, { endTime: { $gte: endTime } }] }, // Check if new booking end time falls between existing booking's start and end time
-                { $and: [{ startTime: { $gte: startTime } }, { endTime: { $lte: endTime } }] } // Check if existing booking's time frame is within the new booking's time frame
+                { $and: [{ startTime: { $lte: startTime } }, { endTime: { $gt: startTime } }] }, // Проверяем, попадает ли новое время начала бронирования между началом и окончанием существующего бронирования
+                { $and: [{ startTime: { $lt: endTime } }, { endTime: { $gte: endTime } }] }, // Проверяем, попадает ли новое время окончания бронирования между началом и окончанием существующего бронирования
+                { $and: [{ startTime: { $gte: startTime } }, { endTime: { $lte: endTime } }] } // Проверяем, попадает ли временной интервал существующего бронирования во временной интервал нового бронирования
             ]
         });
         if (existingBooking) {
-            return res.status(400).json({ message: "This spa service is already booked for the selected time" });
+            return res.status(400).json({ message: "Этот спа-сервис уже забронирован на выбранное время" });
         }
 
         const newBooking = new Bookings({
@@ -53,11 +59,12 @@ export const createBooking = async (req, res) => {
             $push: { booking: newBooking._id },
         });
 
-        res.status(200).json("created");
+        res.status(200).json(newBooking);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 
 

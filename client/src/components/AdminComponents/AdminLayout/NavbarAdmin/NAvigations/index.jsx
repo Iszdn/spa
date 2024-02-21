@@ -37,6 +37,9 @@ const NavAdmin = () => {
     <li>
         <NavLink to="/admin/blogs">Blogs</NavLink>
     </li>
+    <li>
+        <NavLink to="/admin/adminBooking">Bookings</NavLink>
+    </li>
     
 </ul>
 </div>

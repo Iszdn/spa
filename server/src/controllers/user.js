@@ -6,19 +6,24 @@ export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ email: email });
   if (user && (await user.matchPassword(password))) {
-    generateToken(req,res, user._id,user.email,user.username,user.role,user.booking);
+    generateToken(
+      req,
+      res,
+      user._id,
+      user.email,
+      user.username,
+      user.role,
+      user.booking
+    );
 
     res.status(201).json({
-
       id: user._id,
       username: user.username,
       email: user.email,
-      token:req.token
-
+      token: req.token,
     });
     console.log(req.token);
-    
-  } else {  
+  } else {
     res.status(401).json("invalid email or password");
   }
 });
@@ -46,13 +51,12 @@ export const registerUser = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
       role: user.role,
-      token: req.token, 
+      token: req.token,
     });
   } else {
     res.status(400).json("Invalid user data");
   }
 });
-
 
 // @desc    LOgout user
 // @route   POST /api/users/logout
@@ -69,11 +73,11 @@ export const logoutUser = asyncHandler(async (req, res) => {
 // @route   Get /api/users/profile
 
 export const getUserProfile = asyncHandler(async (req, res) => {
-const user={
-  _id:req.user._id,
-  username:req.user.username,
-  email:req.user.email
-}
+  const user = {
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.email,
+  };
   res.status(200).json({ message: " User Profile" });
 });
 
@@ -81,23 +85,21 @@ const user={
 // @route   PUT /api/users/profile
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  const user= await Users.findById(req.user._id);
+  const user = await Users.findById(req.user._id);
   if (user) {
-    user.username=req.body.username || user.username
-    user.email=req.body.email || user.email
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
     if (req.body.password) {
-      user.password=req.body.password
-      
+      user.password = req.body.password;
     }
-   const updatedUser= await user.save()
-   res.status(200).json({
-    _id:updatedUser._id,
-    username:updatedUser.username,
-   email:updatedUser.email
-   })
-  }
-  else{
-    res.status(404).json('User not found')
+    const updatedUser = await user.save();
+    res.status(200).json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+    });
+  } else {
+    res.status(404).json("User not found");
   }
   res.status(200).json({ message: " User Profile Updated" });
 });
@@ -114,32 +116,53 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const getUserById=async (req,res)=>{
+export const getUserById = async (req, res) => {
   try {
-   const {id}=req.params
-    const user=await Users.findById(id).populate("booking")
-    res.json(user)
+    const { id } = req.params;
+    const user = await Users.findById(id)
+    .populate({
+      path: "booking",
+      populate: { path: "spaService" }, // Populate nested field within field1
+    });
+    res.json(user);
   } catch (error) {
-    res.status(500).json({message:error})
+    res.status(500).json({ message: error });
   }
-}
+};
 
-export const deleteUser=async (req,res)=>{
+export const deleteUser = async (req, res) => {
   try {
-   const {id}=req.params
-    const user=await Users.findByIdAndDelete(id)
-    res.status(200).json("deleted")
+    const { id } = req.params;
+    const user = await Users.findByIdAndDelete(id);
+    res.status(200).json("deleted");
   } catch (error) {
-    res.status(500).json({message:error})
+    res.status(500).json({ message: error });
   }
-}
+};
 
-export const updateUser=async (req,res)=>{
+export const updateUser = async (req, res) => {
   try {
-   const {id}=req.params
-    const user=await Users.findByIdAndUpdate(id,req.body)
-    res.status(200).json("deleted")
+    const { id } = req.params;
+    const user = await Users.findByIdAndUpdate(id, req.body);
+    res.status(200).json("deleted");
   } catch (error) {
-    res.status(500).json({message:error})
+    res.status(500).json({ message: error });
   }
-}
+};
+
+
+// export const resetPassword = async (req, res) => {
+//   const { email, password } = req.body
+//   try {
+//       const user = await Users.findOne({ email: email })
+//       const newHashedPassword = await hash(password, 10)
+//       if (!user) {
+//           return res.status(404).send("User not found")
+//       }
+//       user.password = newHashedPassword
+//       await user.save()
+//       res.status(200).send("User password updated")
+//   } catch (error) {
+//       res.status(500).send(error.message)
+//   }
+// }
