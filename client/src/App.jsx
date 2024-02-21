@@ -35,6 +35,9 @@ import AddBlog from "./components/AdminAddComp/AddBlog/index.jsx";
 import AddSpaCategory from "./components/AdminAddComp/AddSpaCategory/index.jsx";
 import PrivateRoute from "./Routes/PrivateRoote/index.jsx";
 import { useEffect, useState } from "react";
+import MarkaAdmin from "./Pages/AdminPages/MarkaPage/index.jsx";
+import LogoAdmin from "./Pages/AdminPages/LogoPage/index.jsx";
+import ProfileIconAdmin from "./Pages/AdminPages/ProfileIcon/index.jsx";
 
 function App() {
 
@@ -98,7 +101,10 @@ return()=>clearTimeout(timeOut)
          <Route path="/admin/spaCategory" element={<SpaCategoryAdmin/>}/>
          <Route path="/admin/faq" element={<FaqAdmin/>}/>
          <Route path="/admin/gallery" element={<GalleryAdmin/>}/>
+         <Route path="/admin/marka" element={<MarkaAdmin/>}/>
+         <Route path="/admin/logo" element={<LogoAdmin/>}/>
          <Route path="/admin/addfaq" element={<AddFaq/>}/>
+         <Route path="/admin/profileIcon" element={<ProfileIconAdmin/>}/>
          </Route>
          </Route>
       </Routes>

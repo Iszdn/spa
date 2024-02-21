@@ -115,8 +115,9 @@ const FaqAdmin = () => {
         </div>
 
         {showModal && (
-          
-          <div className="modal">
+          <>
+          <div className="modal" onClick={() => setShowModal(false)}>
+            </div>
             <div className="modal-content">
               <span className="close" onClick={() => setShowModal(false)}>&times;</span>
               <h2>Edit</h2>
@@ -158,8 +159,7 @@ const FaqAdmin = () => {
                 </Form>
               </Formik>
             </div>
-          </div>
-
+            </>
         )}
       </>
     </>

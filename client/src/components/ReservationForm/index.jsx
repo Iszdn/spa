@@ -30,8 +30,12 @@ const ReservationForm = () => {
   async function creatReserv(values) {
     try {
       const res = await axios.post("http://localhost:5000/booking", values);
+      
+    toast.success("successfully reserved!")
     } catch (error) {
       console.error('Error creating reservation:', error);
+      
+    toast.error("this time reserved!")
     }
   }
 
@@ -62,6 +66,7 @@ const ReservationForm = () => {
         try {
           const res = await axios.get(`http://localhost:5000/getEndTimeOptions/${selectedCategory}/${selectedDate}`);
           setEndTimeOptions(res.data.endTimeOptions);
+
         } catch (error) {
           console.error('Error fetching end time options:', error);
         }
@@ -105,7 +110,6 @@ const ReservationForm = () => {
   onSubmit={(values, { resetForm }) => {
     creatReserv(values)
     resetForm();
-    toast.success("successfully reserved!")
   }}
 >
   {({ values, setFieldValue }) => (

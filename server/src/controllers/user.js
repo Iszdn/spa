@@ -6,7 +6,7 @@ export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ email: email });
   if (user && (await user.matchPassword(password))) {
-    generateToken(req,res, user._id,user.email,user.username,user.role);
+    generateToken(req,res, user._id,user.email,user.username,user.role,user.booking);
 
     res.status(201).json({
 

@@ -16,19 +16,17 @@ const NavAdmin = () => {
         <NavLink to="/admin/spaCategory">Spa Category</NavLink>
     </li>
     <li>
-        <NavLink to="/admin/blogs">Profile Icon</NavLink>
+        <NavLink to="/admin/profileIcon">Profile Icon</NavLink>
     </li>
     <li>
-        <NavLink to="/admin/blogs">Logo</NavLink>
+        <NavLink to="/admin/logo">Logo</NavLink>
     </li>
     <li>
         <NavLink to="/admin/gallery">Gallery</NavLink>
     </li>
+   
     <li>
-        <NavLink to="/admin/blogs">Instagram</NavLink>
-    </li>
-    <li>
-        <NavLink to="/admin/blogs">Marka</NavLink>
+        <NavLink to="/admin/marka">Marka</NavLink>
     </li>
     <li>
         <NavLink to="/admin/faq">Faq</NavLink>

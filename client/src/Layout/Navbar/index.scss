@@ -5,20 +5,13 @@
   position: fixed;
   width: 100%;
   z-index: 22;
-.languade{
-  // padding: 8px ;
-  //   border: none;
-  //   background-color: transparent;
-  //   cursor: pointer;
-  //   display: flex;
-  //   align-items: baseline;
-  //   gap: 8px;
-  //   background-color: white;
-  //   border: 1px solid #ccc;
-  //   border-radius: 4px;
+.language{
+  border: none;
   background-color: transparent;
-  outline: none;
-  border: none ;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
 }
   .language-options {
     display: flex;
@@ -55,6 +48,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .icons{
+      ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+    }
     .navigations {
       ul {
         display: flex;
