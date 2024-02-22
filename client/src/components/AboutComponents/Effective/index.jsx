@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { Link } from "react-router-dom";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
+import axios from "axios";
 
 const Effective = () => {
+  const [spaContact, setSpaContact] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function getSpaContact() {
+    const res = await axios("http://localhost:5000/contact");
+    setSpaContact(res.data);
+    setLoading(false);
+  }
+  useEffect(() => {
+    getSpaContact();
+  }, []);
   return (
     <section id="effective">
       <div className="container">
@@ -27,30 +39,34 @@ const Effective = () => {
                 evolve.
               </p>
               <div className="info">
-                <div className="widget">
-                  <ul>
-                    <li>
-                      <span className="loc">
-                        <MdOutlineLocationOn />
-                      </span>
-                      <span>
-                      72 St. Merch Street, LA,California.
-                      </span>
-                    </li>
-                    <li>
-                      <span className="loca">
-                        <FaPhone />
-                      </span>
-                      <span>+1 000-123-456789</span>
-                    </li>
-                    <li>
-                      <span className="loc">
-                        <IoIosMail />
-                      </span>{" "}
-                      <span>info@example.com</span>
-                    </li>
-                  </ul>
-                </div>
+              {loading ? (
+  <p>loading...</p>
+) : (
+  spaContact.length > 0 && // Проверяем, что массив не пустой
+  <div className="widget">
+    <ul>
+      <li>
+        <span className="loc">
+          <MdOutlineLocationOn />
+        </span>
+        <span>{spaContact[0].location}</span>
+      </li>
+      <li>
+        <span className="loca">
+          <FaPhone />
+        </span>
+        <span> {spaContact[0].number}</span>
+      </li>
+      <li>
+        <span className="loc">
+          <IoIosMail />
+        </span>{" "}
+        <span> {spaContact[0].email}</span>
+      </li>
+    </ul>
+  </div>
+)}
+
               </div>
             </div>
           </div>

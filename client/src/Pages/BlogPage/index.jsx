@@ -34,6 +34,7 @@ const BlogPage = () => {
   async function getGallery() {
     const res = await axios('http://localhost:5000/gallery');
     setGallery(res.data);
+    
   }
 
   useEffect(() => {
@@ -80,17 +81,6 @@ const BlogPage = () => {
                     </ul>
                   </div>
                   <div className="filtersr">
-                    <h4>Recent Post</h4>
-                    <ul>
-                      {data.slice(0, 3).map(blog => (
-                        <li key={blog._id}>
-                          <img src={blog.image} alt={blog.title} />
-                          <h5>{blog.title}</h5>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="filtersr">
                     <h4>Tags</h4>
                     <div className="tags">
                       <Link key="All" onClick={() => setSelectedTag(null)}>All</Link>
@@ -101,6 +91,18 @@ const BlogPage = () => {
                       ))}
                     </div>
                   </div>
+                  <div className="filtersr">
+                    <h4>Recent Post</h4>
+                    <ul>
+                      {data.slice(0, 3).map(blog => (
+                        <li key={blog._id}>
+                          <img src={blog.image} alt={blog.title} />
+                          <h5>{blog.title}</h5>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
                   <div className="filtersr">
                     <h4>Gallery</h4>
                     <div className="galleries">

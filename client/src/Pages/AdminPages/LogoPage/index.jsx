@@ -49,6 +49,7 @@ const LogoAdmin = () => {
         `http://localhost:5000/logo/${editedLogoId}`, // Use editedLogoId here
         formData
       );
+      toast.success('Successfully edited!');
       setImage(null);
       setShowModal(false)
       getData()

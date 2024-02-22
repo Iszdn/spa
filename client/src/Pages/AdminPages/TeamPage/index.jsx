@@ -31,7 +31,9 @@ const TeamAdmin = () => {
 
   async function editTeam(id, values) {
     const res = await axios.put(`http://localhost:5000/team/${id}`, values);
+    toast.success('Successfully edited!');
     getData();
+
     setShowModal(false);
   }
 

@@ -37,6 +37,7 @@ const ServiceAdmin = () => {
 
   async function editSpa(id, values) {
     const res = await axios.put(`http://localhost:5000/spa-services/${id}`, values);
+    toast.success('Successfully edited!');
     getData()
     setShowModal(false);
   }
@@ -61,7 +62,7 @@ const ServiceAdmin = () => {
           <div className="userpage">
           <div className="filterDD">
               <div className="addUser">
-              <button className='btn'><Link to="/admin/addteam">add spa service</Link></button>
+              <button className='btn'><Link to="/admin/addserv">add spa service</Link></button>
             </div>
             <div className="filter">
     <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>

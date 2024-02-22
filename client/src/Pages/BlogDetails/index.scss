@@ -35,10 +35,26 @@ margin-bottom: 10px;
         flex-wrap: wrap;
         gap: 10px;
         font-size: 20px;
+        .icon{
+          transition: all .5s;
+          cursor: pointer;
+          &:hover{
+color: var(--third--color);
+transform: rotateY(180deg);
+transition: all .5s;
+          }
+        }
     }
   }
+  .desc{
+    h3{
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+  }
   .fofo{
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
     gap: 30px;
     justify-content: center;

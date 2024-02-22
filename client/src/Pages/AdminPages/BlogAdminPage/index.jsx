@@ -52,6 +52,7 @@ const [property, setProperty] = useState(null)
 
   async function editBlog(id, values) {
     const res = await axios.put(`http://localhost:5000/blog/${id}`, values);
+    toast.success('Successfully edited!');
     getData();
     setShowModal(false);
   }
@@ -78,7 +79,7 @@ const [property, setProperty] = useState(null)
           <div className="userpage">
           <div className="filterDD">
               <div className="addUser">
-              <button className='btn'><Link to="/admin/addteam">add blog</Link></button>
+              <button className='btn'><Link to="/admin/addblog">add blog</Link></button>
             </div>
             <div className="filter">
     <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>

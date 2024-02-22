@@ -9,37 +9,37 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
-const FaqAdmin = () => {
+const ContactAdmin = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false);
-  const [editedFaq, setEditedFaq] = useState(null); 
+  const [editedContact, setEditedContact] = useState(null); 
   const [search, setSearch] = useState('')
   const [property, setProperty] = useState(null)
 
   async function getData() {
-    const res = await axios("http://localhost:5000/faq");
+    const res = await axios("http://localhost:5000/contact");
     setData(res.data);
     setLoading(false)
   }
 
   
 
-  async function deleteFaq(id) {
-    const res = await axios.delete(`http://localhost:5000/faq/${id}`);
+  async function deleteContact(id) {
+    const res = await axios.delete(`http://localhost:5000/contact/${id}`);
     toast.success("deleted")
     getData();
   }
 
-  async function editFaq(id, values) {
-    const res = await axios.put(`http://localhost:5000/faq/${id}`, values);
+  async function editContact(id, values) {
+    const res = await axios.put(`http://localhost:5000/contact/${id}`, values);
     toast.success('Successfully edited!');
     getData()
     setShowModal(false);
   }
 
-  const openEditModal = (Faq) => { 
-    setEditedFaq(Faq); 
+  const openEditModal = (Contact) => { 
+    setEditedContact(Contact); 
     setShowModal(true);
   };
 
@@ -50,20 +50,20 @@ const FaqAdmin = () => {
   return (
     <>
       <Helmet>
-        <title>FaqAdmin</title>
+        <title>ContactAdmin</title>
       </Helmet>
       <>
         <div className="adminpage">
           <div className="userpage">
           <div className="filterDD">
               <div className="addUser">
-              <button className='btn'><Link to="/admin/addfaq">add faq</Link></button>
+              <button className='btn'><Link to="/admin/addContact">add Contact</Link></button>
             </div>
             <div className="filter">
     <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>
-    <div onClick={()=>setProperty({name:"title",asc:true})} className="btn">a-z</div>
-    <div onClick={()=>setProperty({name:"title",asc:false})} className="btn">z-a</div>
-     <div onClick={()=>setProperty({name:"title",asc:null})} className="btn">default</div>
+    <div onClick={()=>setProperty({name:"location",asc:true})} className="btn">a-z</div>
+    <div onClick={()=>setProperty({name:"location",asc:false})} className="btn">z-a</div>
+     <div onClick={()=>setProperty({name:"location",asc:null})} className="btn">default</div>
 </div>
             </div>
             <div className="usertable">
@@ -72,8 +72,9 @@ const FaqAdmin = () => {
                   <thead>
                     <tr>
                       {/* <th>id</th> */}
-                      <th>title</th>
-                      <th>description</th>
+                      <th>location</th>
+                      <th>number</th>
+                      <th>email</th>
                       
                       <th>settings</th>
                     </tr>
@@ -81,7 +82,7 @@ const FaqAdmin = () => {
                   <tbody>
                     {loading ? <span>loading...</span> :
                       (data && data
-                        .filter(x=>x.title.toLowerCase().includes(search.toLowerCase()))
+                        .filter(x=>x.location.toLowerCase().includes(search.toLowerCase()))
     .sort((a,b)=>{
         if (property && property.asc===true) {
             return a[property.name]<b[property.name] ? -1 : (a[property.name]<b[property.name] ? 1 : 0)
@@ -93,16 +94,17 @@ const FaqAdmin = () => {
             return 0;
         }
     })
-                        .map(Faq => (
-                        <tr key={Faq._id}>
-                          {/* <td>{Faq._id}</td> */}
-                          <td>{Faq.title}</td>
-                          <td>{Faq.description}</td>
+                        .map(Contact => (
+                        <tr key={Contact._id}>
+                          {/* <td>{Contact._id}</td> */}
+                          <td>{Contact.location}</td>
+                          <td>{Contact.number}</td>
+                          <td>{Contact.email}</td>
                           
 
                           <td>
-                            <button onClick={() => deleteFaq(Faq._id)} className='btn'><AiOutlineDelete /></button>
-                            <button onClick={() => openEditModal(Faq)} className='btn'><CiEdit /></button>
+                            <button onClick={() => deleteContact(Contact._id)} className='btn'><AiOutlineDelete /></button>
+                            <button onClick={() => openEditModal(Contact)} className='btn'><CiEdit /></button>
                           </td>
                         </tr>
                       )))
@@ -123,18 +125,21 @@ const FaqAdmin = () => {
               <span className="close" onClick={() => setShowModal(false)}>&times;</span>
               <h2>Edit</h2>
               <Formik
-                initialValues={{ title: editedFaq.title || '', description: editedFaq.description || ''  }}
+                initialValues={{ location: editedContact.location || '', number: editedContact.number || '',email: editedContact.email || ''  }}
                 validationSchema={Yup.object({
-                  title: Yup.string()
+                  location: Yup.string()
                     
                     .required('Required'),
-                  description: Yup.string()
+                  number: Yup.string()
+                    
+                    .required('Required'),
+                    email: Yup.string().email("invalid email")
                     
                     .required('Required'),
                  
                 })}
                 onSubmit={(values) => {
-                  editFaq(editedFaq._id, values);
+                  editContact(editedContact._id, values);
                   toast.success("edited")
 
                 }}
@@ -143,13 +148,18 @@ const FaqAdmin = () => {
 
 
                   <div className="inpp">
-                    <Field name="title" type="text" placeholder="title" />
-                    <div className="red"><ErrorMessage name="title" /></div>
+                    <Field name="location" type="text" placeholder="location" />
+                    <div className="red"><ErrorMessage name="location" /></div>
                   </div>
 
                   <div className="inpp">
-                    <Field name="description" type="text" placeholder="description" />
-                    <div className="red"><ErrorMessage name="description" /></div>
+                    <Field name="number" type="text" placeholder="number" />
+                    <div className="red"><ErrorMessage name="number" /></div>
+                  </div>
+
+                  <div className="inpp">
+                    <Field name="email" type="email" placeholder="email" />
+                    <div className="red"><ErrorMessage name="email" /></div>
                   </div>
 
                   <div className="di">
@@ -167,4 +177,4 @@ const FaqAdmin = () => {
   )
 }
 
-export default FaqAdmin;
+export default ContactAdmin;

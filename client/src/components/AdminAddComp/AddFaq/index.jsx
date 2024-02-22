@@ -1,7 +1,6 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import "./index.scss"
 import axios from 'axios';
 import toast from 'react-hot-toast';
 const AddFaq = () => {

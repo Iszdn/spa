@@ -19,8 +19,18 @@ import instaRouter from './src/routers/insta.js'
 import galleryRouter from './src/routers/gallery.js'
 import MarkaRouter from './src/routers/marka.js'
 import BookingRouter from './src/routers/booking.js'
+import ContactRouter from './src/routers/contact.js'
+import ResetRouter from './src/routers/resetPassword.js'
+import Stripe from 'stripe';
+import bodyParser from 'body-parser';
+// import Price from "./routers/PriceRouter.js";
+import { jwtDecode } from "jwt-decode";
 
-import { notFound,errorHandler } from './src/middleware/errorMiddleware.js'
+
+
+
+
+const stripe = new Stripe(process.env.SECRET_KEY);
 
 const app = express()
 app.use(cors())
@@ -47,6 +57,29 @@ app.use('/spaCategoryServices',spaCategoryServicesRouter)
 app.use('/gallery',galleryRouter)
 app.use('/marka',MarkaRouter)
 app.use('/booking',BookingRouter)
+app.use('/contact',ContactRouter)
+app.use('/resetPassword',ResetRouter)
+
+
+
+
+app.post("/payment", async (req, res) => {
+  let status, error;
+  const { token, amount } = req.body;
+  try {
+    await Stripe.charges.create({
+      source: token.id,
+      amount,
+      currency: 'usd',
+    });
+    status = 'success';
+  } catch (error) {
+    console.log(error);
+    status = 'Failure';
+  }
+  res.json({ error, status });
+});
+
 
 const url=process.env.CONNECTION_URL.replace("<password>",process.env.PASSWORD)
 const PORT=process.env.PORT

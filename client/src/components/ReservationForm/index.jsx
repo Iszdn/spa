@@ -5,6 +5,8 @@ import "./index.scss";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
 import toast from "react-hot-toast";
+import Stripe from "stripe";
+import StripePAy from "../stripe";
 
 const ReservationForm = () => {
   const [spaCategory, setSpaCategory] = useState([]);
@@ -210,7 +212,8 @@ const ReservationForm = () => {
         <ErrorMessage name="endTime" />
       </div>
 
-      <button type="submit">Book online</button>
+      <button className="sun" type="submit">Book online</button>
+     <StripePAy/>
     </Form>
   )}
 </Formik>

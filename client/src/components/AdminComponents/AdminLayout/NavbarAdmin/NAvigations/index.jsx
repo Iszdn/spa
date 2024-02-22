@@ -32,6 +32,9 @@ const NavAdmin = () => {
         <NavLink to="/admin/faq">Faq</NavLink>
     </li>
     <li>
+        <NavLink to="/admin/contact">Contact</NavLink>
+    </li>
+    <li>
         <NavLink to="/admin/teams">Team</NavLink>
     </li>
     <li>

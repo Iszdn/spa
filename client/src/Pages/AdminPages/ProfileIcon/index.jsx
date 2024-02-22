@@ -32,6 +32,7 @@ const ProfileIconAdmin = () => {
       `http://localhost:5000/profileicon/${id}`,
       values
     );
+    toast.success('Successfully edited!');
     getData();
     setShowModal(false);
   }

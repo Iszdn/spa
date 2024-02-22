@@ -7,12 +7,27 @@
         .inpp{
             
             margin-bottom: 20px;
-        input{
+        input,select{
             padding: 10px;
-            outline-color: blue;
+            outline-color: #007bff;
 border-radius: 10px;
-border: 1px solid blue;
+border: 1px solid #007bff;
         }
         }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          .btn:hover {
+            background-color: #0056b3;
+          }
     }
 }
+
+

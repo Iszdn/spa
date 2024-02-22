@@ -39,6 +39,11 @@ import MarkaAdmin from "./Pages/AdminPages/MarkaPage/index.jsx";
 import LogoAdmin from "./Pages/AdminPages/LogoPage/index.jsx";
 import ProfileIconAdmin from "./Pages/AdminPages/ProfileIcon/index.jsx";
 import BookingAdmin from "./Pages/AdminPages/BookingsPage/index.jsx";
+import AddGallery from "./components/AdminAddComp/AddGallery/index.jsx";
+import AddMarka from "./components/AdminAddComp/AddMarka/index.jsx";
+import AddContact from "./components/AdminAddComp/AddContact/index.jsx";
+import ContactAdmin from "./Pages/AdminPages/ContactAdmin/index.jsx";
+import Stripe from "./components/stripe.jsx";
 
 function App() {
 
@@ -98,6 +103,8 @@ return()=>clearTimeout(timeOut)
          <Route path="/admin/addserv" element={<AddService/>}/>
          <Route path="/admin/addblog" element={<AddBlog/>}/>
          <Route path="/admin/addteam" element={<AddTeam/>}/>
+         <Route path="/admin/addGallery" element={<AddGallery/>}/>
+         <Route path="/admin/addMarka" element={<AddMarka/>}/>
          <Route path="/admin/addSpaCategory" element={<AddSpaCategory/>}/>
          <Route path="/admin/spaCategory" element={<SpaCategoryAdmin/>}/>
          <Route path="/admin/faq" element={<FaqAdmin/>}/>
@@ -105,6 +112,8 @@ return()=>clearTimeout(timeOut)
          <Route path="/admin/marka" element={<MarkaAdmin/>}/>
          <Route path="/admin/logo" element={<LogoAdmin/>}/>
          <Route path="/admin/addfaq" element={<AddFaq/>}/>
+         <Route path="/admin/addContact" element={<AddContact/>}/>
+         <Route path="/admin/contact" element={<ContactAdmin  />}/>
          <Route path="/admin/profileIcon" element={<ProfileIconAdmin/>}/>
          <Route path="/admin/adminBooking" element={<BookingAdmin/>}/>
          </Route>
@@ -114,6 +123,7 @@ return()=>clearTimeout(timeOut)
       
     </BrowserRouter>
     </HelmetProvider>
+    
    
   )
 }

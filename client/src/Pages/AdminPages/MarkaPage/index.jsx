@@ -49,6 +49,7 @@ const MarkaAdmin = () => {
         `http://localhost:5000/marka/${editedMarkaId}`, // Use editedMarkaId here
         formData
       );
+      toast.success('Successfully edited!');
       setImage(null);
       setShowModal(false)
       getData()
@@ -76,10 +77,11 @@ const MarkaAdmin = () => {
       <>
         <div className="adminpage">
           <div className="userpage">
-            <div className="addUser">
-              <button className="btn">
-                <Link to="/admin/addMarka">add Marka</Link>
-              </button>
+          <div className="filterDD">
+              <div className="addUser">
+              <button className='btn'><Link to="/admin/addMarka">add marka</Link></button>
+            </div>
+           
             </div>
 
             <div className="usertable">

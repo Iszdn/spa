@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import "./index.scss"
 import { Link } from 'react-router-dom'
 const BlogsCard = (product) => {
@@ -14,7 +14,7 @@ const BlogsCard = (product) => {
         <div className="info">
             <h3> <Link to={`/blog/${product._id}`}>{product.title}</Link></h3>
             <p>{product.description}</p>
-            <Link to={`/blog/${product._id}`}>READ MORE</Link>
+            <Link className='lal' to={`/blog/${product._id}`}>READ MORE</Link>
         </div>
     </div>
   )

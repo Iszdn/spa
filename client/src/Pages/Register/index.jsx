@@ -35,7 +35,7 @@ const Register = () => {
 setToken(response.data.token)
 
     } catch (error) {
-      
+      toast.error("This user already exist!")
       console.error("Register failed", error);
     }
   }

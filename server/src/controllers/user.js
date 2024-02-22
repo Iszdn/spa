@@ -1,6 +1,8 @@
 import asyncHandler from "express-async-handler";
 import Users from "../models/user.js";
 import generateToken from "../utils/generateToken.js";
+import bcrypt from 'bcryptjs';
+
 
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -151,18 +153,19 @@ export const updateUser = async (req, res) => {
 };
 
 
-// export const resetPassword = async (req, res) => {
-//   const { email, password } = req.body
-//   try {
-//       const user = await Users.findOne({ email: email })
-//       const newHashedPassword = await hash(password, 10)
-//       if (!user) {
-//           return res.status(404).send("User not found")
-//       }
-//       user.password = newHashedPassword
-//       await user.save()
-//       res.status(200).send("User password updated")
-//   } catch (error) {
-//       res.status(500).send(error.message)
-//   }
-// }
+
+export const resetPassword = async (req, res) => {
+  const { email, password } = req.body
+  try {
+      const user = await Users.findOne({ email: email })
+      if (!user) {
+          return res.status(404).send("User not found")
+      }
+      const newHashedPassword = await bcrypt.hash(password, 10);
+      user.password = newHashedPassword;
+      await user.save();
+      res.status(200).send("User password updated");
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+}

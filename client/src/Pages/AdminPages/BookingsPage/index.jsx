@@ -33,6 +33,7 @@ const BookingAdmin = () => {
 
   async function editBooking(id, values) {
     const res = await axios.put(`http://localhost:5000/booking/${id}`, values);
+    toast.success('Successfully edited!');
     getData()
     setShowModal(false);
   }

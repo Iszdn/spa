@@ -49,6 +49,7 @@ const GalleryAdmin = () => {
         `http://localhost:5000/gallery/${editedGalleryId}`, // Use editedGalleryId here
         formData
       );
+      toast.success('Successfully edited!');
       setImage(null);
       setShowModal(false)
       getData()
@@ -76,10 +77,11 @@ const GalleryAdmin = () => {
       <>
         <div className="adminpage">
           <div className="userpage">
-            <div className="addUser">
-              <button className="btn">
-                <Link to="/admin/addGallery">add gallery</Link>
-              </button>
+          <div className="filterDD">
+              <div className="addUser">
+              <button className='btn'><Link to="/admin/addGallery">add gallery</Link></button>
+            </div>
+           
             </div>
 
             <div className="usertable">

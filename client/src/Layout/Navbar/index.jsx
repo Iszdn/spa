@@ -90,7 +90,10 @@ const Navbar = () => {
             <li>
               <NavLink to="/gallery">{t("Gallery")}</NavLink>
             </li>
-            <li className='menu'>
+            <li>
+                    <NavLink to="/faq">FAQ</NavLink>
+                  </li>
+            {/* <li className='menu'>
               <Link>{t("Pages")} <IoIosArrowDown /></Link>
               <div className="submenu">
                 <ul>
@@ -106,12 +109,10 @@ const Navbar = () => {
                   <li>
                     <NavLink to="/contactus">Contact Us</NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/faq">FAQ</NavLink>
-                  </li>
+                 
                 </ul>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="logo">

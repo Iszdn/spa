@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const UsersPage = () => {
   const [data, setData] = useState([]);
@@ -23,11 +24,14 @@ const UsersPage = () => {
 
   async function deleteUser(id) {
     const res = await axios.delete(`http://localhost:5000/users/${id}`);
+    toast.success('Successfully deleted!');
     getData();
+
   }
 
   async function updateUserRole() {
     await axios.put(`http://localhost:5000/users/${editUserId}`, { role: editedRole });
+    toast.success('Successfully edited!');
     getData();
     setShowModal(false); 
   }

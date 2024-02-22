@@ -78,7 +78,7 @@ setIsLoading(false)
               <Col sm={9}>
                 <Tab.Content>
                   <Tab.Pane eventKey="first">
-                    <p>Hello {user.username} (not {user.username} ? <Link>Log out</Link>)</p>
+                    <p>Hello {user.username} (not {user.username} ? <Link onClick={handleLogout}>Log out</Link>)</p>
                     <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">

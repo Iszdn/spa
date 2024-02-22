@@ -45,10 +45,10 @@
 
             span{
                 cursor: pointer;
-                transition: all .3s;
+                transition: all .5s;
                 &:hover{
                     color: var(--third--color);
-                    transition: all .3s;
+                    transition: all .5s;
                     transform: rotateY(180deg);
                 }
             }

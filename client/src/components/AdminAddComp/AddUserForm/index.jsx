@@ -6,10 +6,16 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 const AddUser = () => {
 
-    async function addUser(values) {
-        const res=await axios.post("http://localhost:5000/users",values)
-
+  async function addUser(values) {
+    try {
+      const res = await axios.post("http://localhost:5000/users", values);
+      // Обработка успешного добавления пользователя
+      toast.success('Successfully added!');
+    } catch (error) {
+      // Обработка ошибок при добавлении пользователя
+      toast.error('Failed to add user. Please try again.');
     }
+  }
   return (
     <div className="adminpage">
          <div className='formadd'>
@@ -30,7 +36,6 @@ const AddUser = () => {
        onSubmit={(values, { resetForm }) => {
         addUser(values)
         resetForm()
-        toast.success('Successfully added!');
        }}
      >
        <Form>
