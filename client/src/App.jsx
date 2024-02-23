@@ -46,6 +46,7 @@ import ContactAdmin from "./Pages/AdminPages/ContactAdmin/index.jsx";
 import Stripe from "./components/stripe.jsx";
 import Verify from "./Pages/Verify/index.jsx";
 import StripePAy from "./components/stripe.jsx";
+import GalleryPage from "./Pages/GalleryPage/index.jsx";
 
 function App() {
 
@@ -78,6 +79,7 @@ return()=>clearTimeout(timeOut)
         <Route path="/faq" element={<FaqPage/>}/> 
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/gallery" element={<GalleryPage/>}/>
       
         
         <Route path="/blog" element={<BlogPage/>}/>

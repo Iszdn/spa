@@ -131,3 +131,17 @@ text-transform: uppercase;
 }
 
 
+.dark-mode {
+    background-color: var(--mode-color-2);
+    color: var(--mode-color-1);
+  }
+  
+  .dark-mode .modal-content {
+    background-color: var(--mode-color-1);
+    color: var(--mode-color-2);
+  }
+  
+  .dark-mode .table {
+    color: var(--mode-color-2);
+  }
+  

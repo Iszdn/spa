@@ -54,7 +54,7 @@ const LoginPage = () => {
                   setCookie("token",response.data.token)
                   setToken(response.data.token)
                   toast.success('Successfully logged in!')
-                  navigate("/account")
+                  navigate("/")
                   console.log("Logged in successfully", response.data);
                 } catch (error) {
                   toast.error('wrong email or password')
@@ -102,8 +102,8 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </div>
-                <button type="submit">  Log In <IoArrowForward /></button>
-                <p><Link>Forgot Password?</Link></p>
+                <button type="submit">Log In <IoArrowForward /></button>
+                {/* <p><Link>Forgot Password?</Link></p> */}
                 <p>Not registered yet? <Link to="/register">Register here</Link>.</p>
               </Form>
             </Formik>

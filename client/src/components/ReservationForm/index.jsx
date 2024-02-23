@@ -167,7 +167,7 @@ const ReservationForm = () => {
         placeholder="Service"
       >
         {spaServices && spaServices.map(service =>
-          <option key={service._id} value={service._id}>{service.title} ${service.price} </option>
+          <option key={service._id} value={service._id}>{service.title} </option>
         )}
       </Field>
       <div className="red">

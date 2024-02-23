@@ -14,7 +14,7 @@ const PlayVideo = () => {
     <section id='video'>
       <div className={`openVideoBox ${open ? "openVideo":""}`}>
         <div className="closeBtn" onClick={openVideoBox}><GrClose className='ico'/>  </div>
-        <iframe  src="https://www.youtube.com/watch?v=RWr8XeBUxTU" ></iframe>
+        <iframe width="928" height="522" src="https://www.youtube.com/embed/5MNhtPyvOzs" title="saloon &amp; spa interior design" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div className="container">
         <div className="videoplayer">
