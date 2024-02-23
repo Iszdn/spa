@@ -60,6 +60,27 @@ height: 85%;
     }
    
 }
+@media screen and (max-width:992px) {
+    .faq{
+        
+        .faaq{
+            flex-direction: column;
+           .faqs{
+            width: 100%;
+           
+            .title{
+                text-align: start;
+                padding: 10px;
+    
+            }
+        }  
+        .imageee{
+            width: 100%;
+        }
+        }
+       
+    }
+}
 .accordion {
     .tittle {
       cursor: pointer;

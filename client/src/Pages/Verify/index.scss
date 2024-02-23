@@ -1,0 +1,27 @@
+.verify{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main--color);
+  
+}
+.srtippp{
+    background-color: var(--main--color);
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .sunsaaa{
+        
+        background:none !important;
+span{
+    background: var(--third--color) !important;
+}
+    }
+    .button>.inner>button{
+        background-color: var(--third--color) !important;
+    }
+}

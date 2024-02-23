@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./index.scss"
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,31 @@ import 'swiper/css/navigation';
 
 
 import { Navigation } from 'swiper/modules';
+import axios from 'axios';
 const Testimonials = () => {
+
+  const [spaReview, setSpaReview] = useState([]);
+  const [loading, setLoading] = useState(true)
+
+ 
+
+
+  async function getSpaReview() {
+    try {
+      const res = await axios.get("http://localhost:5000/review");
+      setSpaReview(res.data);
+      setLoading(false)
+    } catch (error) {
+      console.error('Error fetching spa categories:', error);
+    }
+  }
+
+  useEffect(() => {
+    getSpaReview();
+  }, []);
+
+
+
   return (
     <section id='testimonia'>
 <div data-aos="fade-down" data-aos-duration="1200" className="title">
@@ -17,20 +41,21 @@ const Testimonials = () => {
       </div>
       <div className="container">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide> 
+       
+       {
+        loading ? <span className='loader'></span> : (
+          spaReview && spaReview.map(x=>
+             <SwiperSlide key={x._id}> 
           <div className="testimonils">
         <p>
-        “Nulla bibendum volutpat nisl, in ullamcorper sem
-vehicula non. Vestibulum quis ipsum elementum, pulvinar enim eget, suscipit nisl. 	
-  Nullam aliquam est a vulputate placerat. Ut quis lectus sodales, laoreet nisi ut, ultricies ex
-Maecenas consequat nunc purus, non maximus nunc gravida nec.”
+        “ {x.review} ”
         </p>
         <div className="info">
           <div className="foto">
             <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/home-testimonial-2.webp" alt="" />
           </div>
           <div className="pep">
-            <h4><Link>Elisabeth John</Link></h4>
+            <h4><Link>{x.name}</Link></h4>
             <span>Top Model</span>
           </div>
           
@@ -38,68 +63,11 @@ Maecenas consequat nunc purus, non maximus nunc gravida nec.”
         </div>
       </div>
       </SwiperSlide>
-      <SwiperSlide> 
-          <div className="testimonils">
-        <p>
-        “Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ad repellat animi, est explicabo qui doloribus sequi fugiat delectus tenetur maiores officiis architecto aliquam consectetur iste dolorem atque, maxime a nisi id fugit eaque cum! Quo voluptates minima veniam maiores deserunt. Repellat sit optio cupiditate molestiae accusamus iste esse enim inventore numquam ipsam illum excepturi nobis deserunt fugit eius cumque fuga, expedita assumenda. Harum consectetur eveniet velit alias. Distinctio, deleniti?.”
-        </p>
-        <div className="info">
-          <div className="foto">
-            <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/home-testimonial-2.webp" alt="" />
-          </div>
-          <div className="pep">
-            <h4><Link>Elisabeth John</Link></h4>
-            <span>Top Model</span>
-          </div>
-          
-
-        </div>
-      </div>
-      </SwiperSlide>
-     
-      <SwiperSlide> 
-          <div className="testimonils">
-        <p>
-        “Nulla bibendum volutpat nisl, in ullamcorper sem
-vehicula non. Vestibulum quis ipsum elementum, pulvinar enim eget, suscipit nisl. 	
-  Nullam aliquam est a vulputate placerat. Ut quis lectus sodales, laoreet nisi ut, ultricies ex
-Maecenas consequat nunc purus, non maximus nunc gravida nec.”
-        </p>
-        <div className="info">
-          <div className="foto">
-            <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/home-testimonial-2.webp" alt="" />
-          </div>
-          <div className="pep">
-            <h4><Link>Elisabeth John</Link></h4>
-            <span>Top Model</span>
-          </div>
-          
-
-        </div>
-      </div>
-      </SwiperSlide>
-     
-      <SwiperSlide> 
-          <div className="testimonils">
-        <p>
-        “Nulla bibendum volutpat nisl, in ullamcorper sem
-vehicula non. Vestibulum quis ipsum elementum, pulvinar enim eget, suscipit nisl. 	
-  Nullam aliquam est a vulputate placerat. Ut quis lectus sodales, laoreet nisi ut, ultricies ex
-Maecenas consequat nunc purus, non maximus nunc gravida nec.”
-        </p>
-        <div className="info">
-          <div className="foto">
-            <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2022/10/home-testimonial-2.webp" alt="" />
-          </div>
-          <div className="pep">
-            <h4><Link>Elisabeth John</Link></h4>
-            <span>Top Model</span>
-          </div>
-          
-
-        </div>
-      </div>
-      </SwiperSlide>
+            )
+        )
+       }
+       
+      
      
       </Swiper>
       </div>

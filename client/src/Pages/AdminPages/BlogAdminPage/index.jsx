@@ -9,18 +9,17 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 
-
 const BlogAdmin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editedBlog, setEditedBlog] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-const [blogCategories, setBlogCategories] = useState([])
-const [blogTag, setBlogTag] = useState([])
+  const [blogCategories, setBlogCategories] = useState([]);
+  const [blogTag, setBlogTag] = useState([]);
 
-const [search, setSearch] = useState('')
-const [property, setProperty] = useState(null)
+  const [search, setSearch] = useState("");
+  const [property, setProperty] = useState(null);
 
   async function getData() {
     const res = await axios("http://localhost:5000/blog");
@@ -52,9 +51,10 @@ const [property, setProperty] = useState(null)
 
   async function editBlog(id, values) {
     const res = await axios.put(`http://localhost:5000/blog/${id}`, values);
-    toast.success('Successfully edited!');
-    getData();
+    toast.success("Successfully edited!");
     setShowModal(false);
+    getData();
+    
   }
 
   const openEditModal = (spa) => {
@@ -62,11 +62,10 @@ const [property, setProperty] = useState(null)
     setShowModal(true);
   };
 
-
   useEffect(() => {
     getData();
     getCategory();
-    getTag()
+    getTag();
   }, []);
 
   return (
@@ -77,16 +76,38 @@ const [property, setProperty] = useState(null)
       <>
         <div className="adminpage">
           <div className="userpage">
-          <div className="filterDD">
+            <div className="filterDD">
               <div className="addUser">
-              <button className='btn'><Link to="/admin/addblog">add blog</Link></button>
-            </div>
-            <div className="filter">
-    <input type="search" placeholder='Search by name...' value={search} onChange={(e)=>setSearch(e.target.value)}/>
-    <div onClick={()=>setProperty({name:"title",asc:true})} className="btn">a-z</div>
-    <div onClick={()=>setProperty({name:"title",asc:false})} className="btn">z-a</div>
-     <div onClick={()=>setProperty({name:"title",asc:null})} className="btn">default</div>
-</div>
+                <button className="btn">
+                  <Link to="/admin/addblog">add blog</Link>
+                </button>
+              </div>
+              <div className="filter">
+                <input
+                  type="search"
+                  placeholder="Search by name..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <div
+                  onClick={() => setProperty({ name: "title", asc: true })}
+                  className="btn"
+                >
+                  a-z
+                </div>
+                <div
+                  onClick={() => setProperty({ name: "title", asc: false })}
+                  className="btn"
+                >
+                  z-a
+                </div>
+                <div
+                  onClick={() => setProperty({ name: "title", asc: null })}
+                  className="btn"
+                >
+                  default
+                </div>
+              </div>
             </div>
             <div className="usertable">
               <div className="overflow-x-auto">
@@ -100,7 +121,7 @@ const [property, setProperty] = useState(null)
                       <th>name</th>
                       <th>category</th>
                       <th>tag</th>
-                      
+
                       <th>settings</th>
                     </tr>
                   </thead>
@@ -110,44 +131,54 @@ const [property, setProperty] = useState(null)
                     ) : (
                       data &&
                       data
-                      .filter(x=>x.title.toLowerCase().includes(search.toLowerCase()))
-                      .sort((a,b)=>{
-                          if (property && property.asc===true) {
-                              return a[property.name]<b[property.name] ? -1 : (a[property.name]<b[property.name] ? 1 : 0)
+                        .filter((x) =>
+                          x.title.toLowerCase().includes(search.toLowerCase())
+                        )
+                        .sort((a, b) => {
+                          if (property && property.asc === true) {
+                            return a[property.name] < b[property.name]
+                              ? -1
+                              : a[property.name] < b[property.name]
+                              ? 1
+                              : 0;
+                          } else if (property && property.asc === false) {
+                            return a[property.name] > b[property.name]
+                              ? -1
+                              : a[property.name] > b[property.name]
+                              ? 1
+                              : 0;
+                          } else {
+                            return 0;
                           }
-                          else if (property && property.asc===false) {
-                              return a[property.name]>b[property.name] ? -1 : (a[property.name]>b[property.name] ? 1 : 0)
-                          }
-                          else{
-                              return 0;
-                          }
-                      })
-                      .map((spa) => (
-                        <tr key={spa._id}>
-                          {/* <td>{spa._id}</td> */}
-                          <td><img src={spa.image} alt="" /></td>
-                          <td>{spa.title}</td>
-                          <td>{spa.description}</td>
-                          <td>{spa.name}</td>
-                          <td>{spa.blogCategory[0]?.blogCategoryName}</td>
-                          <td>{spa.tag[0]?.blogTagsName}</td>
+                        })
+                        .map((spa) => (
+                          <tr key={spa._id}>
+                            {/* <td>{spa._id}</td> */}
+                            <td>
+                              <img src={spa.image} alt="" />
+                            </td>
+                            <td>{spa.title}</td>
+                            <td>{spa.description}</td>
+                            <td>{spa.name}</td>
+                            <td>{spa.blogCategory[0]?.blogCategoryName}</td>
+                            <td>{spa.tag[0]?.blogTagsName}</td>
 
-                          <td>
-                            <button
-                              onClick={() => deleteBlog(spa._id)}
-                              className="btn"
-                            >
-                              <AiOutlineDelete />
-                            </button>
-                            <button
-                              onClick={() => openEditModal(spa)}
-                              className="btn"
-                            >
-                              <CiEdit />
-                            </button>
-                          </td>
-                        </tr>
-                      ))
+                            <td>
+                              <button
+                                onClick={() => deleteBlog(spa._id)}
+                                className="btn"
+                              >
+                                <AiOutlineDelete />
+                              </button>
+                              <button
+                                onClick={() => openEditModal(spa)}
+                                className="btn"
+                              >
+                                <CiEdit />
+                              </button>
+                            </td>
+                          </tr>
+                        ))
                     )}
                   </tbody>
                 </table>
@@ -169,7 +200,7 @@ const [property, setProperty] = useState(null)
                   description: editedBlog.description || "",
                   name: editedBlog.name || "",
                   blogCategory: editedBlog.blogCategory[0] || "",
-                 tag: editedBlog.tag[0] || "",
+                  tag: editedBlog.tag[0] || "",
                 }}
                 validationSchema={Yup.object({
                   title: Yup.string().required("Required"),
@@ -177,7 +208,7 @@ const [property, setProperty] = useState(null)
                   name: Yup.string().required("Required"),
                   blogCategory: Yup.string(),
                   tag: Yup.string(),
-                  image: Yup.mixed().notRequired(), 
+                  image: Yup.mixed().notRequired(),
                 })}
                 onSubmit={(values) => {
                   const formData = new FormData();
@@ -191,7 +222,7 @@ const [property, setProperty] = useState(null)
                   }
 
                   editBlog(editedBlog._id, formData);
-                  toast.success("edited");
+                  // toast.success("edited");
                 }}
               >
                 {({ setFieldValue }) => (
@@ -204,12 +235,16 @@ const [property, setProperty] = useState(null)
                     </div>
 
                     <div className="inpp">
-                      <Field name="description" type="text" placeholder="description" />
+                      <Field
+                        name="description"
+                        type="text"
+                        placeholder="description"
+                      />
                       <div className="red">
                         <ErrorMessage name="description" />
                       </div>
                     </div>
-                    
+
                     <div className="inpp">
                       <Field name="name" type="text" placeholder="name" />
                       <div className="red">
@@ -231,36 +266,45 @@ const [property, setProperty] = useState(null)
                     </div>
 
                     <div className="inpp">
-                    <Field name="blogCategory" as="select">
-                      
-                      {blogCategories.map(blogCategory => (
-                        <option key={blogCategory._id} value={blogCategory._id}>{blogCategory.blogCategoryName}</option>
-                      ))}
-                    </Field>
-                    <div className="red"><ErrorMessage name="blogCategory" /></div>
-                  </div>
+                      <Field name="blogCategory" as="select">
+                        {blogCategories.map((blogCategory) => (
+                          <option
+                            key={blogCategory._id}
+                            value={blogCategory._id}
+                          >
+                            {blogCategory.blogCategoryName}
+                          </option>
+                        ))}
+                      </Field>
+                      <div className="red">
+                        <ErrorMessage name="blogCategory" />
+                      </div>
+                    </div>
 
-                  <div className="inpp">
-                    <Field name="tag" as="select">
-                      
-                      {blogTag.map(blogTag => (
-                        <option key={blogTag._id} value={blogTag._id}>{blogTag.blogTagsName}</option>
-                      ))}
-                    </Field>
-                    <div className="red"><ErrorMessage name="tag" /></div>
-                  </div>
+                    <div className="inpp">
+                      <Field name="tag" as="select">
+                        {blogTag.map((blogTag) => (
+                          <option key={blogTag._id} value={blogTag._id}>
+                            {blogTag.blogTagsName}
+                          </option>
+                        ))}
+                      </Field>
+                      <div className="red">
+                        <ErrorMessage name="tag" />
+                      </div>
+                    </div>
 
-                  <div className="di">
- <button className="btn" type="submit">
-                      Save
-                    </button>
-</div>
+                    <div className="di">
+                      <button className="btn" type="submit">
+                        Save
+                      </button>
+                    </div>
                   </Form>
                 )}
               </Formik>
             </div>
           </div>
-        )}  
+        )}
       </>
     </>
   );

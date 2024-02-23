@@ -33,9 +33,9 @@ const FaqAdmin = () => {
 
   async function editFaq(id, values) {
     const res = await axios.put(`http://localhost:5000/faq/${id}`, values);
-    toast.success('Successfully edited!');
-    getData()
+    toast.success("Successfully edited!");
     setShowModal(false);
+    getData();
   }
 
   const openEditModal = (Faq) => { 
@@ -135,7 +135,7 @@ const FaqAdmin = () => {
                 })}
                 onSubmit={(values) => {
                   editFaq(editedFaq._id, values);
-                  toast.success("edited")
+                  // toast.success("edited")
 
                 }}
               >

@@ -63,7 +63,7 @@ setIsLoading(false)
                       <Nav.Link eventKey="first">Dashboard</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="second">Books</Nav.Link>
+                      <Nav.Link eventKey="second">Bookings</Nav.Link>
                     </Nav.Item>
                     
                     <Nav.Item>
@@ -80,29 +80,39 @@ setIsLoading(false)
                   <Tab.Pane eventKey="first">
                     <p>Hello {user.username} (not {user.username} ? <Link onClick={handleLogout}>Log out</Link>)</p>
                     <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                  <p>{
+                    user.role==="admin" ? <h5><Link to="/admin">Admin page</Link></h5>
+: ""                    }</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
   <ul>
     {IsLoading ? (
       <p>loading...</p>
     ) : (
-      data && data.booking && data.booking.map((bookingItem, index) => (
-        <ul key={bookingItem._id}>
-        <li key={index}>Spa-Service:{bookingItem.spaService.title}</li>
-        <li key={index}>Price:{bookingItem.spaService.price}$</li>
-        <li key={index}>Date:{bookingItem.date}</li>
-        <li key={index}>Start time:{bookingItem.startTime}</li>
-
-        </ul>
+      data && data.booking.slice(0, 5).map((bookingItem, index) => ( // Slice to get first 5 items
+        <li key={index}>
+          <details>
+            <summary>
+              <strong>Spa-Service:</strong> {bookingItem.spaService.title}, 
+            </summary>
+            <ul>
+              <li><strong>Price:</strong> {bookingItem.spaService.price}$</li>
+              <li><strong>Date:</strong> {bookingItem.date}</li>
+              <li><strong>Start time:</strong> {bookingItem.startTime}</li>
+            </ul>
+          </details>
+        </li>
       ))
     )}
   </ul>
 </Tab.Pane>
 
+
+
                   <Tab.Pane eventKey="fifth">
-                    <p>{user.username}</p> 
-                    <p>{user.role}</p> 
-                    <p>{user.email}</p> 
+                    <p>Username: {user.username}</p> 
+                    <p>Role: {user.role}</p> 
+                    <p>Email: {user.email}</p> 
                   
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth"></Tab.Pane>

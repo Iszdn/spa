@@ -9,6 +9,9 @@ const OurServicePage = () => {
   const [spaCategory, setSpaCategory] = useState([]);
   const [loading, setLoading] = useState(true)
 
+ 
+
+
   async function getSpaCategory() {
     try {
       const res = await axios.get("http://localhost:5000/spaCategoryServices");

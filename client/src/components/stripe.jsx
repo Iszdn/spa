@@ -1,6 +1,7 @@
 import StripeCheckout from "react-stripe-checkout";
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 
@@ -23,10 +24,13 @@ function StripePAy() {
           amount: product.price * 100,
           token,
         },
+        
       });
+      toast.success("Successfully reserved!")
       if (response.status === 200) {
         // handleSuccess();
       }
+     
     } catch (error) {
       // handleFailure();
       console.log(error);
@@ -34,19 +38,22 @@ function StripePAy() {
   };
 
   return (
-    <div className="container">
-      
-      <StripeCheckout
-      className="sun"
-        stripeKey={publishableKey}
-        label="Pay Now"
-        name="Pay With Credit Card"
-        billingAddress
-        shippingAddress
-        amount={priceForStripe}
-        description={`Your total is $${product.price}`}
-        token={payNow}
+    <div className="bb">
+      <div className="srtippp">
+       
+        
+      <StripeCheckout 
+      className="sunsaaa"
+      stripeKey={publishableKey}
+      label="Pay Now"
+      name="Pay With Credit Card"
+      billingAddress
+      shippingAddress
+      amount={priceForStripe}
+      description={`Your total is $${product.price}`}
+      token={payNow}
       />
+      </div>
     </div>
   );
 }

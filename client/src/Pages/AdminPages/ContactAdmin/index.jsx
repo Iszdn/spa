@@ -33,9 +33,9 @@ const ContactAdmin = () => {
 
   async function editContact(id, values) {
     const res = await axios.put(`http://localhost:5000/contact/${id}`, values);
-    toast.success('Successfully edited!');
-    getData()
+    toast.success("Successfully edited!");
     setShowModal(false);
+    getData();
   }
 
   const openEditModal = (Contact) => { 
@@ -140,7 +140,7 @@ const ContactAdmin = () => {
                 })}
                 onSubmit={(values) => {
                   editContact(editedContact._id, values);
-                  toast.success("edited")
+                  // toast.success("edited")
 
                 }}
               >

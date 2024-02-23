@@ -7,6 +7,7 @@ import { UserContext } from "../../context/userContext";
 import toast from "react-hot-toast";
 import Stripe from "stripe";
 import StripePAy from "../stripe";
+import { useNavigate } from "react-router-dom";
 
 const ReservationForm = () => {
   const [spaCategory, setSpaCategory] = useState([]);
@@ -16,7 +17,7 @@ const ReservationForm = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [timeOptions, setTimeOptions] = useState([]);
   const [endTimeOptions, setEndTimeOptions] = useState([]);
-
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
   async function getSpaCategory() {
@@ -42,8 +43,8 @@ const ReservationForm = () => {
         endTime,
         userId
       });
-  
-      toast.success("Successfully reserved!");
+      navigate("/stripe");
+      // toast.success("Successfully reserved!");
     } catch (error) {
       console.error('Error creating reservation:', error);
       toast.error("This time is already reserved!");
@@ -166,7 +167,7 @@ const ReservationForm = () => {
         placeholder="Service"
       >
         {spaServices && spaServices.map(service =>
-          <option key={service._id} value={service._id}>{service.title}</option>
+          <option key={service._id} value={service._id}>{service.title} ${service.price} </option>
         )}
       </Field>
       <div className="red">
@@ -213,11 +214,9 @@ const ReservationForm = () => {
       </div>
 
       <button className="sun" type="submit">Book online</button>
-     <StripePAy/>
     </Form>
   )}
 </Formik>
-
     </div>
   );
 };

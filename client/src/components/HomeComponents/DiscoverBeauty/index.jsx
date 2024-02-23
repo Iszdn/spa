@@ -3,6 +3,7 @@ import dis from "../../../assets/imgs/discver.png"
 import "./index.scss"
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { t } from 'i18next';
 const Discover = () => {
   const [spaCategory, setSpaCategory] = useState([])
   const [loading, setLoading] = useState(true)
@@ -21,8 +22,7 @@ const Discover = () => {
         <div className="row">
           <div  data-aos="fade-right" data-aos-duration="1000" className="col-lg-6 col-md-12 col-12">
               <div className="title">
-        
-        <h3>Our Services</h3>
+         <h3>{t("Our Services")}</h3>
       </div>
       <div className="services">
         {
@@ -45,7 +45,7 @@ const Discover = () => {
         
       
       <div className="read-more">
-      <div className="add-but">
+      <div className="button-an">
     <Link to="/services">read more</Link>
   </div>
       </div>

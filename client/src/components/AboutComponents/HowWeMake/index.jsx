@@ -29,7 +29,7 @@ const HowWeMake = () => {
 <Link>+01 23456789</Link>
         </div>
         </div>
-        <div className="butt"><Link>explore now</Link></div>
+        <div className="button-an"><Link>explore now</Link></div>
       </div>
         </div>
        

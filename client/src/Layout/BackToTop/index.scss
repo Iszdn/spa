@@ -1,0 +1,27 @@
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+  
+  .back-to-top button {
+    background-color: var(--third--color); /* Barva pozadí tlačítka */
+    color: #fff; /* Barva textu tlačítka */
+    border: none;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 25px;
+    transition: background-color 0.3s ease; /* Plynulá změna barvy pozadí */
+  }
+  
+  .back-to-top button:hover {
+    background-color: black;
+transition: all .4s;
+}
+  

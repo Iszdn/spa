@@ -13,7 +13,7 @@ const PlayVideo = () => {
   return (
     <section id='video'>
       <div className={`openVideoBox ${open ? "openVideo":""}`}>
-        <div className="closeBtn" onClick={openVideoBox}>x</div>
+        <div className="closeBtn" onClick={openVideoBox}><GrClose className='ico'/>  </div>
         <iframe  src="https://www.youtube.com/watch?v=RWr8XeBUxTU" ></iframe>
       </div>
       <div className="container">
@@ -23,7 +23,6 @@ const PlayVideo = () => {
             <h3 data-aos="fade-up" data-aos-duration="1000">Highly performing beauty formula</h3>
             <p data-aos="fade-up" data-aos-duration="1700">Etiam ullamcorper facilisis porta. Donec tincidunt metus a elit tempor, a condimentum sapien laoreet. Nullam metus orci, malesuada ac tincidunt vitae, tincidunt eu elit. Phasellus.</p>
             <div className="add-but">
-              <Link data-aos="fade-up" data-aos-duration="2200">explore now</Link>
             </div>
           </div>
           <div data-aos="fade-down" data-aos-duration="1000"  className="play"  onClick={openVideoBox}>

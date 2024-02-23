@@ -4,7 +4,7 @@ import { IoArrowForward } from "react-icons/io5";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet-async";
 import { loginValidationSchema } from "../../utils/validation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { UserContext } from "../../context/userContext";
@@ -12,6 +12,7 @@ import { jwtDecode } from "jwt-decode";
 import { setCookie } from "../../helper/cookie";
 
 const LoginPage = () => {
+  const navigate=useNavigate()
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const {setToken} = useContext(UserContext)
@@ -53,6 +54,7 @@ const LoginPage = () => {
                   setCookie("token",response.data.token)
                   setToken(response.data.token)
                   toast.success('Successfully logged in!')
+                  navigate("/account")
                   console.log("Logged in successfully", response.data);
                 } catch (error) {
                   toast.error('wrong email or password')
@@ -100,7 +102,7 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </div>
-                <button type="submit">Log In <IoArrowForward /></button>
+                <button type="submit">  Log In <IoArrowForward /></button>
                 <p><Link>Forgot Password?</Link></p>
                 <p>Not registered yet? <Link to="/register">Register here</Link>.</p>
               </Form>

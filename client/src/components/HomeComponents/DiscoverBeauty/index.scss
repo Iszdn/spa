@@ -20,6 +20,7 @@
     h3{
         font-size: 30px;
         margin: 6px 0 18px 0;
+       
     }
  }  
  .services{
@@ -73,6 +74,11 @@ img{
     h4{
         font-size: 20px;
         font-weight: 600;
+        transition: all .4s;
+        &:hover{
+        transition: all .4s;
+        color: var(--third--color);
+        }
         a{
             color: inherit;
             font-family: inherit;

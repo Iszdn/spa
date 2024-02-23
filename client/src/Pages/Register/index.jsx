@@ -29,8 +29,7 @@ const Register = () => {
   async function handleRegister(values) {
     try {
       const response = await axios.post("http://localhost:5000/users", values);
-      toast.success('Successfully register!')
-      console.log("Registered in successfully", response.data);
+      toast.success('Verify your email!')
     setCookie("token",response.data.token)
 setToken(response.data.token)
 

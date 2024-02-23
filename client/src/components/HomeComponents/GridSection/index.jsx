@@ -11,7 +11,7 @@ const GridSection = () => {
     <div className="conten">
       <h6>QUEENS</h6>
       <h3>Body Care</h3>
-      <Link>View Collections</Link>
+      <Link to="/services">View Collections</Link>
     </div>
     </div>
   </div>
@@ -22,7 +22,7 @@ const GridSection = () => {
       <h6>
 GAMBARO</h6>
       <h3>Face Care</h3>
-      <Link>View Collections</Link>
+      <Link to="/services">View Collections</Link>
     </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ GAMBARO</h6>
     <div className="conten">
       <h6>LEICA</h6>
       <h3>Leg Care</h3>
-      <Link>View Collections</Link>
+      <Link to="/services">View Collections</Link>
     </div>
     </div>
   </div>
@@ -42,7 +42,7 @@ GAMBARO</h6>
     <div className="conten">
       <h6>MARIEKE</h6>
       <h3>Hair Care</h3>
-      <Link>View Collections</Link>
+      <Link to="/services">View Collections</Link>
     </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ GAMBARO</h6>
     <div className="conten">
       <h6>ISELA</h6>
       <h5>Fragrance</h5>
-      <Link>View Collections</Link>
+      <Link to="/services">View Collections</Link>
     </div>
     </div>
   </div>

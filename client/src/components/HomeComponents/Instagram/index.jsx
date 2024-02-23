@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Instagram = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -47,7 +48,7 @@ const Instagram = () => {
               </div>
               <div className="overlay"></div>
               <div className="inst">
-                <i className="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2F" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-instagram"></i></a>
               </div>
             </div>
           </SwiperSlide>

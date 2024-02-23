@@ -153,29 +153,40 @@ const Navbar = () => {
         <div className={`navbar-media ${open ? "nav-med" : ""}`}>
           <div onClick={() => handleOpen()} className="krest"><CgClose /></div>
           <div className="navigations-media">
-            <ul>
-              <li>
-                <NavLink to="/">Home </NavLink>
-              </li>
-              <li>
-                <NavLink to="/about">About</NavLink>
-              </li>
-              <li>
-                <NavLink to="/blog">Blog</NavLink>
-              </li>
-              <li>
-                <NavLink to="/contactus">Contact Us</NavLink>
-              </li>
-              <li>
-                <NavLink to="/gallery">Gallery</NavLink>
-              </li>
-              <li>
-                <NavLink to="/pages">Pages</NavLink>
-              </li>
-              <li>
-                <NavLink></NavLink>
-              </li>
-            </ul>
+          <ul>
+            <li>
+              <NavLink to="/">{t("Home")}</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">{t("About")}</NavLink>
+            </li>
+            <li>
+              <NavLink to="/blog">{t("Blog")}</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contactus">{t("Cont")}</NavLink>
+            </li>
+            <li>
+              <NavLink to="/gallery">{t("Gallery")}</NavLink>
+            </li>
+            <li>
+                    <NavLink to="/faq">FAQ</NavLink>
+                  </li>
+                  <li>
+              <NavLink to="/login">{t("Login")}</NavLink>
+            </li>
+            <li>
+              <button className='language' onClick={() => setLanguageVisible(!languageVisible)}>
+                {selectedLanguage.toUpperCase()}<IoMdArrowDropdown />
+              </button>
+              {languageVisible && (
+                <div className="language-options">
+                  <button onClick={() => changeLanguage('az')}> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Flag_of_Azerbaijan.svg/2560px-Flag_of_Azerbaijan.svg.png" alt="" /> AZ</button>
+                  <button onClick={() => changeLanguage('en')}> <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Flag_of_the_United_Kingdom.png" alt="" /> EN</button>
+                </div>
+              )}
+            </li>
+          </ul>
           </div>
         </div>
       </div>

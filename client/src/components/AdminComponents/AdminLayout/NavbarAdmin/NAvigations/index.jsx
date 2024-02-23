@@ -6,6 +6,9 @@ const NavAdmin = () => {
     <nav id='nav-admin'>
 <div className="navigation">
 <ul>
+<li>
+        <NavLink to="/admin"> <h5>Dashboard</h5> </NavLink>
+    </li>
     <li>
         <NavLink to="/admin/users">Users</NavLink>
     </li>

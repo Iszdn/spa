@@ -44,6 +44,8 @@ import AddMarka from "./components/AdminAddComp/AddMarka/index.jsx";
 import AddContact from "./components/AdminAddComp/AddContact/index.jsx";
 import ContactAdmin from "./Pages/AdminPages/ContactAdmin/index.jsx";
 import Stripe from "./components/stripe.jsx";
+import Verify from "./Pages/Verify/index.jsx";
+import StripePAy from "./components/stripe.jsx";
 
 function App() {
 
@@ -79,10 +81,12 @@ return()=>clearTimeout(timeOut)
       
         
         <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/Verified" element={<Verify/>}/>
         <Route path="/blog/:id" element={<BlogDetails/>}/>
         <Route element={<PrivateRoute roles={["admin","user"]}/>}>
         <Route path="/account" element={<Account/>}/>
         <Route path="/services" element={<OurServicePage/>}/>
+        <Route path="/stripe" element={<StripePAy/>}/>
         <Route path="/services/:categoryId" element={<CategoryPage/>}/>
         </Route>
       
