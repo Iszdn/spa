@@ -2,10 +2,13 @@ import StripeCheckout from "react-stripe-checkout";
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 
 function StripePAy() {
+
+  const navigate=useNavigate()
   const publishableKey =
     "pk_test_51Olvg9JywS7BLFriA3Wsqm3uM8IEmXX2gUPKfRJdeMZOe8IrY0OT6wg4aOj6lHsG3UMu7b8bvT69Yh2tW0Ole6Xy00Lmnen5ss";
   const [product, setProduct] = useState({
@@ -27,6 +30,7 @@ function StripePAy() {
         
       });
       toast.success("Successfully reserved!")
+      navigate("/")
       if (response.status === 200) {
         // handleSuccess();
       }

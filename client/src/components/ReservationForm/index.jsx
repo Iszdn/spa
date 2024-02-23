@@ -15,6 +15,8 @@ const ReservationForm = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  
+  const [selectedServicePrice, setSelectedServicePrice] = useState(0); 
   const [timeOptions, setTimeOptions] = useState([]);
   const [endTimeOptions, setEndTimeOptions] = useState([]);
   const navigate = useNavigate();
@@ -165,6 +167,12 @@ const ReservationForm = () => {
         name="service"
         as="select"
         placeholder="Service"
+        onChange={(e) => {
+          const serviceId = e.target.value;
+          const selectedService = spaServices.find(service => service._id === serviceId);
+          setSelectedServicePrice(selectedService ? selectedService.price : 0); // Update selected service price
+          setFieldValue("service", serviceId);
+        }}
       >
         {spaServices && spaServices.map(service =>
           <option key={service._id} value={service._id}>{service.title} </option>
@@ -212,9 +220,13 @@ const ReservationForm = () => {
       <div className="red">
         <ErrorMessage name="endTime" />
       </div>
-
+      
       <button className="sun" type="submit">Book online</button>
+<div style={{ display: 'none' }}>
+  <StripePAy price={selectedServicePrice} />
+</div>
     </Form>
+
   )}
 </Formik>
     </div>

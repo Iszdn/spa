@@ -94,7 +94,7 @@ const BlogPage = () => {
                   <div className="filtersr">
                     <h4>Recent Post</h4>
                     <ul>
-                      {data.slice(0, 3).map(blog => (
+                      {data.slice(0,3).map(blog => (
                         <li key={blog._id}>
                           <img src={blog.image} alt={blog.title} />
                           <h5>{blog.title}</h5>
@@ -103,16 +103,16 @@ const BlogPage = () => {
                     </ul>
                   </div>
                   
-                  <div className="filtersr">
+                  {/* <div className="filtersr">
                     <h4>Gallery</h4>
                     <div className="galleries">
-                      {gallery.slice(0, 6).map(x => (
+                      {gallery.map(x => (
                         <div key={x._id} className="gallery">
                           <img src={x.image} alt="" />
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="col-lg-9">

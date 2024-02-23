@@ -21,10 +21,12 @@ letter-spacing:clamp(0.0625rem, 0.0337rem + 0.1282vw, 0.1875rem);
 background-color: var(--second--color);
 transition: .5s;
 font-weight: 400;
+margin-bottom: 20px;
 &:hover{
 background-color: black;
 color: white;
 transition: .5s;
+
 }
     }
    

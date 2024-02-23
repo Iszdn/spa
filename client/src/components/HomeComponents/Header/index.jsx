@@ -19,7 +19,7 @@ const Header = () => {
         <h2>{t("Beaty")}</h2>
         <p>Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. In hac habitasse platea dictumst vestibulum rhoncus est.</p>
         <div className="button-an">
-            <Link>{t("Browse")}</Link>
+            <Link to="/services">{t("Browse")}</Link>
         
         </div>
       </div>

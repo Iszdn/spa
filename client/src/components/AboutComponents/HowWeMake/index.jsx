@@ -19,8 +19,8 @@ const HowWeMake = () => {
         <div className="info">
             <div className="opem">
                 <h4>We are Open</h4>
-            <p>Mon – Fri:   08:30 – 20:00</p>
-            <p>Sat & Sun:   09:30 – 21:30</p>
+            <p>Mon – Fri:   10:00 – 20:00</p>
+            <p>Sat & Sun:   10:00 – 20:00</p>
 
         </div>
         <div className="contact">
@@ -29,7 +29,7 @@ const HowWeMake = () => {
 <Link>+01 23456789</Link>
         </div>
         </div>
-        <div className="button-an"><Link>explore now</Link></div>
+        <div className="button-an"><Link to='/services'>explore now</Link></div>
       </div>
         </div>
        
