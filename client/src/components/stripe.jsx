@@ -10,7 +10,7 @@ function StripePAy() {
     "pk_test_51Olvg9JywS7BLFriA3Wsqm3uM8IEmXX2gUPKfRJdeMZOe8IrY0OT6wg4aOj6lHsG3UMu7b8bvT69Yh2tW0Ole6Xy00Lmnen5ss";
   const [product, setProduct] = useState({
     name: "Headphone",
-    price: 5,
+    price: 30,
   });
   const priceForStripe = product.price * 100;
 
