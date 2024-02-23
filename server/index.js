@@ -21,6 +21,7 @@ import MarkaRouter from './src/routers/marka.js'
 import BookingRouter from './src/routers/booking.js'
 import ContactRouter from './src/routers/contact.js'
 import ResetRouter from './src/routers/resetPassword.js'
+import ReviewRouter from './src/routers/review.js'
 import Stripe from 'stripe';
 import bodyParser from 'body-parser';
 // import Price from "./routers/PriceRouter.js";
@@ -59,6 +60,7 @@ app.use('/marka',MarkaRouter)
 app.use('/booking',BookingRouter)
 app.use('/contact',ContactRouter)
 app.use('/resetPassword',ResetRouter)
+app.use('/review',ReviewRouter)
 
 
 

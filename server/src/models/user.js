@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import crypto from "crypto"
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -19,9 +20,17 @@ const userSchema = new Schema(
         ref: "lilacBooking",
       },
     ],
+    isVerified: { type: Boolean, default: false },
+    emailVerificationToken: { type: String },
+    emailVerificationExpires: { type: Date },
   },
   { timestamps: true }
 );
+
+userSchema.methods.emailVerification = function () {
+  this.emailVerificationToken = crypto.randomBytes(20).toString("hex");
+  this.emailVerificationExpires = Date.now() + 3600000;
+};
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

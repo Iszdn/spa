@@ -1,11 +1,12 @@
 
 import { Router } from 'express'
-import { authUser, deleteUser, getAllUsers, getUserById, getUserProfile, logoutUser, registerUser, updateUser, updateUserProfile } from '../controllers/user.js'
+import { authUser, deleteUser, getAllUsers, getUserById, getUserProfile, logoutUser, registerUser, updateUser, updateUserProfile, verifyEmail } from '../controllers/user.js'
 import { protect } from '../middleware/authMiddleware.js'
 const router = Router()
 
 
 router.get("/all",getAllUsers)
+router.get("/verify",verifyEmail)
 router.get("/:id",getUserById)
 router.delete("/:id",deleteUser)
 router.put("/:id",updateUser)
