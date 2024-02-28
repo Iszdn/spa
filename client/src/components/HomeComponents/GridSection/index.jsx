@@ -5,17 +5,19 @@ const GridSection = () => {
   return (
     <section id='spa-service'>
 <div className="spa-ser ">
+  
   <div  className="div1 spa ">
-    <div className="image">
+   <Link to="/services"> <div className="image">
       <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/Lilac-Demo-Grid-Banner-Img-2.png" alt="" />
     <div className="conten">
       <h6>QUEENS</h6>
       <h3>Body Care</h3>
       <Link to="/services">View Collections</Link>
     </div>
-    </div>
+    </div></Link>
   </div>
   <div    className="div2 spa">
+  <Link to="/services">
   <div className="image">
       <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/filler-img-10.jpg" alt="" />
     <div className="conten">
@@ -25,18 +27,21 @@ GAMBARO</h6>
       <Link to="/services">View Collections</Link>
     </div>
     </div>
+    </Link>
   </div>
   <div className="div3 spa">
-  <div className="image">
+    <Link to="/services"><div className="image">
       <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/Lilac-Demo-Grid-Banner-Img.png" alt="" />
     <div className="conten">
       <h6>LEICA</h6>
       <h3>Leg Care</h3>
       <Link to="/services">View Collections</Link>
     </div>
-    </div>
+    </div></Link>
+  
   </div>
   <div className="div4 spa">
+  <Link to="/services">
   <div className="image">
       <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/filler-img-12.jpg" alt="" />
     <div className="conten">
@@ -45,8 +50,11 @@ GAMBARO</h6>
       <Link to="/services">View Collections</Link>
     </div>
     </div>
+    </Link>
   </div>
+  
   <div className="div5 spa">
+  <Link to="/services">
   <div className="image">
       <img src="https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/filler-img-13.jpg" alt="" />
     <div className="conten">
@@ -55,6 +63,7 @@ GAMBARO</h6>
       <Link to="/services">View Collections</Link>
     </div>
     </div>
+    </Link>
   </div>
 </div>
 

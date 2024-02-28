@@ -1,8 +1,8 @@
 #nav-admin{
     .navigation{
-        background-color: blue;
-        color: white;
-        width: 200px;
+        // background-color: #1D2327;
+        // color: white;
+        width: 180px;
         height: 100vh;
         position: fixed;
         ul{
@@ -10,17 +10,34 @@
             padding: 20px;
             li{
                 margin-bottom: 20px;
+               
                 .active{
-                    color:black;
+                    color:#2271B1;
                     font-weight: 600;
-                    font-size: 18px;
+                    font-size: 16px;
                 }
                 a{
                    color: inherit; 
-
+                   transition: .5s;
+                   display: flex;
+                align-items: center;
+                gap: 5px;
+                &:hover{
+                    color: #2271B1;
+                    transition: .5s;
+                }
                 }
             }
         }
+       
     }
-    
+    &.dark-mode {
+            .navigation {
+              background-color: #1D2327;
+              color: white;}}
+              &.light-mode {
+                .navigation {
+                  background-color: white;
+                  color: #1D2327;
+                }} 
 }

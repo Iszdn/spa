@@ -49,7 +49,7 @@ function StripePAy() {
       <StripeCheckout 
       className="sunsaaa"
       stripeKey={publishableKey}
-      label="Pay Now"
+      label="Pay for booking"
       name="Pay With Credit Card"
       billingAddress
       shippingAddress

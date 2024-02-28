@@ -15,7 +15,6 @@ const ReservationForm = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
-  
   const [selectedServicePrice, setSelectedServicePrice] = useState(0); 
   const [timeOptions, setTimeOptions] = useState([]);
   const [endTimeOptions, setEndTimeOptions] = useState([]);

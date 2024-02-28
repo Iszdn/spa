@@ -13,45 +13,52 @@ import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 import Cookies from "js-cookie"
 import toast from 'react-hot-toast';
-
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 
 const Account = () => {
-  const { user,setToken,setUser } = useContext(UserContext);
-  const [data, setData] = useState(null)
-  const [IsLoading, setIsLoading] = useState(true)
+  const { user, setToken, setUser } = useContext(UserContext);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
- console.log("userbooooki",user.booking);
-
-
- console.log("user",user);
-
-
- async function GetuserById() {
-  try {
-    const res=await axios.get(`http://localhost:5000/users/${user.userId}`)
-setData(res.data)
-setIsLoading(false)
-  } catch (error) {
-    console.log(error.message);
+  async function getUserById() {
+    try {
+      const res = await axios.get(`http://localhost:5000/users/${user.userId}`);
+      setData(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
- }
- useEffect(() => {
-    GetuserById()
- }, [])
- 
- function handleLogout() {
-  Cookies.remove('token')
-  setUser(null)
-  setToken(null)
-  toast.success("Logout")
- }
+
+  useEffect(() => {
+    getUserById();
+  }, []);
+
+  function handleLogout() {
+    Cookies.remove('token');
+    setUser(null);
+    setToken(null);
+    toast.success("Logout");
+  }
+
+  // Function to format date
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+  }
+
   return (
     <>
       <Helmet>
         <title>Account</title>
       </Helmet>
-      <WhereAreYou title="My Account" curent="my account"/>
+      <WhereAreYou title="My Account" curent="my account" />
       <div className='account'>
         <div className="container">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -65,14 +72,20 @@ setIsLoading(false)
                     <Nav.Item>
                       <Nav.Link eventKey="second">Bookings</Nav.Link>
                     </Nav.Item>
-                    
                     <Nav.Item>
                       <Nav.Link eventKey="fifth">Account details</Nav.Link>
                     </Nav.Item>
+                    {user.role === "admin" ? 
                     <Nav.Item>
-                      <Nav.Link  eventKey="sixth" onClick={handleLogout}>Logout</Nav.Link>
+                      <Nav.Link eventKey="sixth"> <Link to="/admin">Admin page</Link></Nav.Link>
                     </Nav.Item>
-                  </Nav> 
+
+                    : ""}
+                    <Nav.Item>
+                      <Nav.Link eventKey="seventh" onClick={handleLogout}>Logout</Nav.Link>
+                    </Nav.Item>
+
+                  </Nav>
                 </div>
               </Col>
               <Col sm={9}>
@@ -80,40 +93,42 @@ setIsLoading(false)
                   <Tab.Pane eventKey="first">
                     <p>Hello {user.username} (not {user.username} ? <Link onClick={handleLogout}>Log out</Link>)</p>
                     <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
-                  <p>{
-                    user.role==="admin" ? <h5><Link to="/admin">Admin page</Link></h5>
-: ""                    }</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
-  <ul>
-    {IsLoading ? (
-      <p>loading...</p>
-    ) : (
-      data && data.booking.slice(0, 5).map((bookingItem, index) => ( // Slice to get first 5 items
-        <li key={index}>
-          <details>
-            <summary>
-              <strong>Spa-Service:</strong> {bookingItem.spaService.title}, 
-            </summary>
-            <ul>
-              <li><strong>Price:</strong> {bookingItem.spaService.price}$</li>
-              <li><strong>Date:</strong> {bookingItem.date}</li>
-              <li><strong>Start time:</strong> {bookingItem.startTime}</li>
-            </ul>
-          </details>
-        </li>
-      ))
-    )}
-  </ul>
-</Tab.Pane>
+                    <Swiper
+                      slidesPerView={3}
+                      spaceBetween={10}
+                      breakpoints={{
+                        300: { slidesPerView: 1, spaceBetween: 20 },
+                        640: { slidesPerView: 2, spaceBetween: 20 },
+                        768: { slidesPerView: 2, spaceBetween: 40 },
+                        1024: { slidesPerView: 2, spaceBetween: 40 },
+                      }}
+                      pagination={true} modules={[Pagination]} className="mySwiper">
 
+                      {isLoading ? (
+                        <p>loading...</p>
+                      ) : (
+                        data && data.booking.slice(0, 5).map((bookingItem, index) => ( // Slice to get first 5 items
+                          <SwiperSlide key={bookingItem._id}>
+                            <div className="booking">
+                              <div className="boo">
+                                <h6>{bookingItem.spaService.title}</h6>
+                                <p><b>Price:</b> {bookingItem.spaService.price}$</p>
+                                <p><b>Date:</b> {formatDate(bookingItem.date)}</p> {/* Format date */}
+                                <p><b>Start time:</b>{bookingItem.startTime}</p>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        ))
+                      )}
 
-
+                    </Swiper>
+                  </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    <p>Username: {user.username}</p> 
-                    <p>Role: {user.role}</p> 
-                    <p>Email: {user.email}</p> 
-                  
+                    <p>Username: {user.username}</p>
+                    <p>Role: {user.role}</p>
+                    <p>Email: {user.email}</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth"></Tab.Pane>
                 </Tab.Content>
@@ -122,7 +137,7 @@ setIsLoading(false)
           </Tab.Container>
         </div>
       </div>
-      <Instagram/>
+      <Instagram />
     </>
   )
 }

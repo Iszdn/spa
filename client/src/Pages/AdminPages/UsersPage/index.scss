@@ -17,6 +17,7 @@
     .filter{
         display: flex;
         gap: 20px;
+    object-fit: cover;
         input{
             padding: 10px;
             border-radius: 20px;
@@ -42,6 +43,15 @@
             object-fit: cover;
         }
     }
+    // &.dark-mode {
+    //     .navigation {
+    //       background-color: #1D2327;
+    //       color: white;}}
+    //       &.light-mode {
+    //         .navigation {
+    //             background-color: white;
+    //             color: #1D2327;
+    //           }} 
 }
 .userpage{
     padding:60px 50px ;
@@ -130,18 +140,3 @@ text-transform: uppercase;
     cursor: pointer;
 }
 
-
-.dark-mode {
-    background-color: var(--mode-color-2);
-    color: var(--mode-color-1);
-  }
-  
-  .dark-mode .modal-content {
-    background-color: var(--mode-color-1);
-    color: var(--mode-color-2);
-  }
-  
-  .dark-mode .table {
-    color: var(--mode-color-2);
-  }
-  

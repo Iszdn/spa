@@ -1,28 +1,48 @@
-.account{
-background-color: var(--main--color);
-    padding: 150px 0;
-    a{
-        color: inherit;
-    }
-   .left-si{
-    background-color: #EFEAE2;
+.account {
+  background-color: var(--main--color);
+  padding: 150px 0;
+  a {
+    color: inherit;
+  }
+  .left-si {
+    background-color: #efeae2;
     margin: 0 0 20px;
     padding: 20px 20px 30px 20px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-   }
+  }
+  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+  .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    background-color: var(--third--color);
+  }
+  .booking {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    margin: 0 0 60px;
+    height: 250px;
+    .boo {
+      height: 100%;
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      padding: 15px;
+      h6 {
+        color: var(--third--color);
+        margin-bottom: 15px;
+      }
+    }
+  }
 }
 
 .nav-pills .nav-link {
-    padding: 20px 0;
-    border-radius:0px;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    &:hover{
-        color: black;
-    }
+  padding: 20px 0;
+  border-radius: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  &:hover {
+    color: black;
+  }
 }
 
-.nav-pills .nav-link.active{
-    color: var(--third--color);
-    background-color: transparent;
+.nav-pills .nav-link.active {
+  color: var(--third--color);
+  background-color: transparent;
 }

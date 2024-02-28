@@ -1,6 +1,9 @@
 #spa-service {
     background-color: var(--main--color);
     padding: 60px 0;
+    a{
+      color: inherit;
+    }
   .spa-ser {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
