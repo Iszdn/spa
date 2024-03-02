@@ -1,4 +1,5 @@
 #testimonia{
+    padding: 50px 0;
     background-color: var(--main--color);
    .title{
     padding: 50px 0 20px 0;
@@ -12,6 +13,10 @@ gap: 30px;
 flex-direction: column;
     // text-align: center;
     p{
+        height: 60px;
+        overflow: hidden; 
+            text-overflow: ellipsis;
+
         text-align: center;
         max-width: 900px;
         margin: 0 auto;
@@ -19,12 +24,15 @@ flex-direction: column;
         line-height: 1.5;
     }
     .info{
+        width: 400px;
         background-image: url("https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/testi.png");
 background-position: center;
+
         background-size: cover;
         display: flex;
         padding: 10px;
         align-items: center;
+        justify-content: center;
         position: relative;
         gap: 10px;
         .foto{
@@ -91,7 +99,7 @@ h4{
         .testimonils{
         
         .info{
-            
+            width: auto;
             &::before{
                width: 100px;
                 margin-left: 20px ;

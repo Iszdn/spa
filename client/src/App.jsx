@@ -47,6 +47,7 @@ import Stripe from "./components/stripe.jsx";
 import Verify from "./Pages/Verify/index.jsx";
 import StripePAy from "./components/stripe.jsx";
 import GalleryPage from "./Pages/GalleryPage/index.jsx";
+import ReviewAdmin from "./Pages/AdminPages/ReviewPage/index.jsx";
 
 function App() {
 
@@ -113,6 +114,7 @@ return()=>clearTimeout(timeOut)
          <Route path="/admin/addMarka" element={<AddMarka/>}/>
          <Route path="/admin/addSpaCategory" element={<AddSpaCategory/>}/>
          <Route path="/admin/spaCategory" element={<SpaCategoryAdmin/>}/>
+         <Route path="/admin/review" element={<ReviewAdmin/>}/>
          <Route path="/admin/faq" element={<FaqAdmin/>}/>
          <Route path="/admin/gallery" element={<GalleryAdmin/>}/>
          <Route path="/admin/marka" element={<MarkaAdmin/>}/>

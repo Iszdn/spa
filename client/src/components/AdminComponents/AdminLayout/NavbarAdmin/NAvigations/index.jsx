@@ -7,6 +7,7 @@ import { MdInsertEmoticon } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { MdOutlineSpa } from "react-icons/md";
+import { AiOutlineComment } from "react-icons/ai";
 import { IoLogoReddit } from "react-icons/io";
 import { TfiGallery } from "react-icons/tfi";
 import { MdOutlineBookmarkAdded } from "react-icons/md";
@@ -28,9 +29,9 @@ const NavAdmin = () => {
          
 <div className="navigation">
 <ul>
-    <li><p onClick={toggleDarkMode}>
+    {/* <li><p onClick={toggleDarkMode}>
               {darkMode ? <MdOutlineDarkMode /> :   <CiLight />}
-            </p></li>
+            </p></li> */}
 <li>
         <NavLink to="/admin"> <h5>Dashboard</h5> </NavLink>
     </li>
@@ -70,6 +71,9 @@ const NavAdmin = () => {
     </li>
     <li>
         <NavLink to="/admin/adminBooking"><TbBrandBooking />Bookings</NavLink>
+    </li>
+    <li>
+        <NavLink to="/admin/review"><AiOutlineComment />Reviews</NavLink>
     </li>
     
 </ul>

@@ -9,7 +9,7 @@ function StripePAy({ selectedServicePrice }) {
   const publishableKey = "pk_test_51Olvg9JywS7BLFriA3Wsqm3uM8IEmXX2gUPKfRJdeMZOe8IrY0OT6wg4aOj6lHsG3UMu7b8bvT69Yh2tW0Ole6Xy00Lmnen5ss";
 
   const priceForStripe = selectedServicePrice * 100;
-
+console.log(selectedServicePrice);
   const payNow = async (token) => {
     try {
       const response = await axios({
@@ -34,7 +34,9 @@ function StripePAy({ selectedServicePrice }) {
   return (
     <div className="bb">
       <div className="srtippp">
-        <StripeCheckout 
+        
+        <div className="str">
+           <StripeCheckout 
           className="sunsaaa"
           stripeKey={publishableKey}
           label="Pay for booking"
@@ -45,6 +47,10 @@ function StripePAy({ selectedServicePrice }) {
           description={`Your total is $${selectedServicePrice}`}
           token={payNow}
         />
+        </div>
+       <div className="payimg">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/012/707/298/small_2x/3d-human-hands-holding-bank-orange-credit-cards-set-online-payment-mobile-bankind-transaction-and-shopping-concept-high-quality-isolated-render-png.png" />
+        </div>
       </div>
     </div>
   );
