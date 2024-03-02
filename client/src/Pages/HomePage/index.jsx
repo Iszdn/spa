@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <>
     <Helmet>
-      <title>HomePage</title>
+      <title>Home</title>
     </Helmet>
     <>
     <Header/>

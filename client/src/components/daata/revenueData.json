@@ -1,0 +1,50 @@
+[
+    {
+      "label": "Jan",
+      "revenue": 100
+    },
+    {
+      "label": "Feb",
+      "revenue": 72
+    },
+    {
+      "label": "Mar",
+      "revenue": 23
+    },
+    {
+      "label": "Apr",
+      "revenue": 72
+    },
+    {
+      "label": "May",
+      "revenue": 94
+    },
+    {
+      "label": "Jun",
+      "revenue": 14
+    },
+    {
+      "label": "Jul",
+      "revenue": 90
+    },
+    {
+      "label": "Aug",
+      "revenue": 83
+    },
+    {
+      "label": "Sep",
+      "revenue": 6
+    },
+    {
+      "label": "Oct",
+      "revenue": 82
+    },
+    {
+      "label": "Nov",
+      "revenue": 52
+    },
+    {
+      "label": "Dec",
+      "revenue": 87
+    }
+  ]

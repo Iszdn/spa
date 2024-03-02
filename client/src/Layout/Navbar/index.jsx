@@ -173,8 +173,13 @@ const Navbar = () => {
                     <NavLink to="/faq">FAQ</NavLink>
                   </li>
                   <li>
+              <NavLink to="/account">Account</NavLink>
+            </li>
+                  <li>
               <NavLink to="/login">{t("Login")}</NavLink>
             </li>
+         
+
             <li>
               <button className='language lana' onClick={() => setLanguageVisible(!languageVisible)}>
                 {selectedLanguage.toUpperCase()}<IoMdArrowDropdown />

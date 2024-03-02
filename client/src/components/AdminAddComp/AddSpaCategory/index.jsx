@@ -33,6 +33,9 @@ const AddSpaCategory = () => {
 
   return (
     <div className="adminpage">
+       <div className="text-center margi">
+        <h2>Add Spa Category</h2>
+      </div>
       <div className="formadd">
         <Formik
           initialValues={{

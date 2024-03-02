@@ -10,7 +10,7 @@ const AboutPage = () => {
   return (
     <>
     <Helmet>
-      <title>AboutPage</title>
+      <title>About</title>
     </Helmet>
     <>
     <WhereAreYou title="About" curent="about"/>

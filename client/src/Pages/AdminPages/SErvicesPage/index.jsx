@@ -150,7 +150,7 @@ const ServiceAdmin = () => {
                 })}
                 onSubmit={(values) => {
                   editSpa(editedSpa._id, values);
-                  toast.success("edited")
+                 
 
                 }}
               >

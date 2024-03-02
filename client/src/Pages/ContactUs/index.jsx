@@ -11,7 +11,7 @@ const ContactUs = () => {
   return (
     <>
     <Helmet>
-      <title>ContactUs</title>
+      <title>Contact Us</title>
     </Helmet>
    <WhereAreYou title="Contact Us" curent="contact"/>
     <section id='meet'>

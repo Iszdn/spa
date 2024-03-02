@@ -8,28 +8,37 @@ import sendMail from "../utils/email.js";
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ email: email });
-  if (user && (await user.matchPassword(password))) {
-    generateToken(
-      req,
-      res,
-      user._id,
-      user.email,
-      user.username,
-      user.role,
-      user.booking
-    );
+  if (user) {
+    if (user.isVerified) {
+      if (await user.matchPassword(password)) {
+        generateToken(
+          req,
+          res,
+          user._id,
+          user.email,
+          user.username,
+          user.role,
+          user.booking
+        );
 
-    res.status(201).json({
-      id: user._id,
-      username: user.username,
-      email: user.email,
-      token: req.token,
-    });
-    console.log(req.token);
+        res.status(201).json({
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          token: req.token,
+        });
+        console.log(req.token);
+      } else {
+        res.status(401).json("Invalid email or password");
+      }
+    } else {
+      res.status(401).json("Email not verified. Please verify your email.");
+    }
   } else {
-    res.status(401).json("invalid email or password");
+    res.status(401).json("Invalid email or password");
   }
 });
+
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -46,33 +55,51 @@ export const registerUser = asyncHandler(async (req, res) => {
     email,
     role,
   });
+
+  try {
+    newUser.emailVerification();
+    await newUser.save();
+
+    const emailText = `Please click the following link to verify your email: 
+      ${process.env.CLIENT_URL}/Verified?token=${newUser.emailVerificationToken}`;
   
-  // Assuming newUser.emailVerification() is a method that handles email verification
-  newUser.emailVerification();
-
-  const emailText = `Please click the following link to verify your email: 
-    ${process.env.CLIENT_URL}/Verified?token=${newUser.emailVerificationToken}`;
- 
-  try {
     await sendMail(newUser.email, 'Please verify your email', emailText);
-    res.status(200).send({ message: "Please verify your email" });
+    return res.status(200).json({ message: "Please verify your email" });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to send verification email" });
+    return res.status(500).json({ error: "Failed to register user" });
   }
+});
 
+export const verifyEmail = asyncHandler(async (req, res) => {
   try {
-    generateToken(req, res, newUser._id, newUser.email, newUser.username, newUser.role);
+    const { token } = req.query;
+    console.log("yoxlama",token); 
+    const user = await Users.findOne({ emailVerificationToken: token });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid token.' });
+    }
+
+    if (user.isVerified ) {
+      return res.status(400).json({message : "emial verifyeo"})
+    }
+
+    user.isVerified = true;
+    user.emailVerificationToken = undefined;
+    await user.save();
+
+    generateToken(req, res, user._id, user.email, user.username, user.role);
     return res.status(201).json({
-      _id: newUser._id,
-      username: newUser.username,
-      email: newUser.email,
-      role: newUser.role,
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
       token: req.token,
     });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to generate token" });
+    res.status(500).json({ message: error.message });
   }
 });
+
 
 // @desc    LOgout user
 // @route   POST /api/users/logout
@@ -156,46 +183,25 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
+    // Хешируем новый пароль, если он был отправлен
+    if ('password' in req.body) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      req.body.password = hashedPassword;
+    }
     const user = await Users.findByIdAndUpdate(id, req.body);
-    res.status(200).json("deleted");
+    res.status(200).json("updated");
   } catch (error) {
     res.status(500).json({ message: error });
   }
 };
 
 
-export const verifyEmail = async (req, res) => {
-  try {
-    
-    const { token } = req.query
-    console.log(token)
-    const user = await User.findOne({ emailVerificationToken: token })
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid token.' })
-    }
 
-    user.verified = true
-    user.emailVerificationToken = undefined
-    await user.save()
-    if (user) {
-      generateToken(req, res, user._id, user.email, user.username, user.role);
-      res.status(201).json({
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        role: user.role,
-        token: req.token,
-      });
-    } else {
-      res.status(400).json("Invalid user data");
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-}
+
 
 export const resetPassword = async (req, res) => {
   const { email, password } = req.body

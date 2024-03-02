@@ -27,6 +27,9 @@ const AddService = () => {
 
   return (
     <div className="adminpage">
+       <div className="text-center margi">
+        <h2>Add Spa Service</h2>
+      </div>
       <div className="formadd">
         <Formik
           initialValues={{

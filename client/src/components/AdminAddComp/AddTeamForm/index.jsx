@@ -32,6 +32,9 @@ const AddTeam = () => {
 
   return (
     <div className="adminpage">
+       <div className="text-center margi">
+        <h2>Add Team</h2>
+      </div>
       <div className="formadd">
         <Formik
           initialValues={{

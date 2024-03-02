@@ -21,6 +21,8 @@ const ReservationForm = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
+console.log(selectedServicePrice);
+
   async function getSpaCategory() {
     try {
       const res = await axios.get("http://localhost:5000/spaCategoryServices");
@@ -120,9 +122,9 @@ const ReservationForm = () => {
     startTime: Yup.string().required("Required"),
     endTime: Yup.string().required("Required")
   })}
-  onSubmit={(values, { resetForm }) => {
+  onSubmit={(values) => {
     creatReserv(values);
-    resetForm();
+    // resetForm();
   }}
 >
   {({ values, setFieldValue }) => (
@@ -221,9 +223,10 @@ const ReservationForm = () => {
       </div>
       
       <button className="sun" type="submit">Book online</button>
-<div style={{ display: 'none' }}>
-  <StripePAy price={selectedServicePrice} />
+      <div style={{ display: 'none' }}>
+  <StripePAy selectedServicePrice={selectedServicePrice} />
 </div>
+
     </Form>
 
   )}

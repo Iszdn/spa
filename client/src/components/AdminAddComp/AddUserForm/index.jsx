@@ -4,8 +4,10 @@ import * as Yup from 'yup';
 import "./index.scss"
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 const AddUser = () => {
 
+  const navigate=useNavigate()
   async function addUser(values) {
     try {
       const res = await axios.post("http://localhost:5000/users", values);
@@ -18,6 +20,9 @@ const AddUser = () => {
   }
   return (
     <div className="adminpage">
+      <div className="text-center margi">
+        <h2>Add User</h2>
+      </div>
          <div className='formadd'>
          <Formik
        initialValues={{ username: '', role: '', email: '',password:'' }}
@@ -29,13 +34,16 @@ const AddUser = () => {
            .max(20, 'Must be 20 characters or less')
            .required('Required'),
            password: Yup.string()
+           .min(5, 'Must be 5 characters or more')
            .max(20, 'Must be 20 characters or less')
            .required('Required'),
          email: Yup.string().email('Invalid email address').required('Required'),
        })}
        onSubmit={(values, { resetForm }) => {
         addUser(values)
+
         resetForm()
+        navigate("/admin/users")
        }}
      >
        <Form>

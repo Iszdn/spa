@@ -30,7 +30,7 @@ const GalleryPage = () => {
   return (
     <>
     <Helmet>
-      <title>GalleryPage</title>
+      <title>Gallery</title>
     </Helmet>
     <div className='gallery'>
 

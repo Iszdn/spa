@@ -44,7 +44,7 @@ const Footer = () => {
                   <NavLink>Shop Locator</NavLink>
                 </li>
                 <li>
-                  <NavLink>Contact</NavLink>
+                  <NavLink to="/contactus">Contact</NavLink>
                 </li>
               </ul>
             </div>
@@ -58,7 +58,7 @@ const Footer = () => {
                   <NavLink>Track Order</NavLink>
                 </li>
                 <li>
-                  <NavLink>FAQ</NavLink>
+                  <NavLink to="/faq">FAQ</NavLink>
                 </li>
                 <li>
                   <NavLink>Checkout</NavLink>
@@ -72,7 +72,7 @@ const Footer = () => {
                   <NavLink>Store Information</NavLink>
                 </li>
                 <li>
-                  <NavLink>About Store</NavLink>
+                  <NavLink to="/about">About Store</NavLink>
                 </li>
                 <li>
                   <NavLink>Latest Products</NavLink>

@@ -33,7 +33,7 @@ const BlogDetails = () => {
   return (
     <>
       <Helmet>
-        <title>BlogDetails</title>
+        <title>Blog Details</title>
       </Helmet>
       <>
         <div className="blog-details">

@@ -152,11 +152,12 @@ z-index: 2;
   left: 0;
   display: none;
   &.active {
-    display: block;
+    display: none;
   }
 }
 
 .navbar-media {
+  display: none;
   width: 250px;
   background-color: var(--main--color);
   transform: translateX(-250px);
@@ -222,5 +223,20 @@ background-color: transparent;
 left: 0 ;
       }
   }
-
+  .navbar-media{
+    display: block;
+  }
+  .backNavbar {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  transform: translateX(0%);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  &.active {
+    display: block;
+  }
+}
 }

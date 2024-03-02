@@ -60,7 +60,7 @@ const BlogPage = () => {
   return (
     <>
       <Helmet>
-        <title>BlogPage</title>
+        <title>Blog</title>
       </Helmet>
       <>
         <WhereAreYou title="Blog" curent="Blog" />

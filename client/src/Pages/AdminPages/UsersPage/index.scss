@@ -43,19 +43,31 @@
             object-fit: cover;
         }
     }
-    // &.dark-mode {
-    //     .navigation {
-    //       background-color: #1D2327;
-    //       color: white;}}
-    //       &.light-mode {
-    //         .navigation {
-    //             background-color: white;
-    //             color: #1D2327;
-    //           }} 
+  
 }
 .userpage{
     padding:60px 50px ;
-   
+   .usertable{
+    .pagination{
+        color: black;
+        .selected{
+           
+            a{
+                 color: var(--third--color) !important;
+            }
+        }
+        .page{
+            display: flex;
+            gap: 10px;
+            
+            
+              a{
+                color: black;
+              
+            }
+        }
+    }
+   }
 }
 .modal {
     display: block; /* Initially hide the modal */
@@ -121,13 +133,18 @@
           .btn{
     width: 100px;
     text-align: center;
-    background-color: var(--second--color);
+    background-color: #1D2327;
     border: none;
+    color: white;
     font-size: 13px;
     letter-spacing: 1px;
     font-weight: 500;
 margin-top: 10px;
 text-transform: uppercase;
+&:hover{
+    background-color: #2a3941;
+    
+}
    } 
     }
  

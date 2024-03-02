@@ -6,39 +6,53 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import ReactPaginate from "react-paginate";
 
 const UsersPage = () => {
-  const [data, setData] = useState([]);
+  const [user, setuser] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [editedRole, setEditedRole] = useState('');
   const [editUserId, setEditUserId] = useState('');
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [property, setProperty] = useState(null)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const perPage = 5;
 
-  async function getData() {
+  async function getuser() {
     const res = await axios("http://localhost:5000/users/all");
-    setData(res.data);
+    setuser(res.data);
     setLoading(false)
   }
 
   async function deleteUser(id) {
     const res = await axios.delete(`http://localhost:5000/users/${id}`);
     toast.success('Successfully deleted!');
-    getData();
+    getuser();
 
   }
 
   async function updateUserRole() {
     await axios.put(`http://localhost:5000/users/${editUserId}`, { role: editedRole });
     toast.success('Successfully edited!');
-    getData();
+    getuser();
     setShowModal(false); 
   }
 
   useEffect(() => {
-    getData();
+    getuser();
   }, []);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(user?.length / perPage));
+  }, [user, perPage]);
+
+
+  const startIndex = currentPage * perPage;
+  const endIndex = startIndex + perPage;
+  const subset = user?.slice(startIndex, endIndex) || [];
+
 
   const openEditModal = (id, role) => {
    setShowModal(true);
@@ -82,7 +96,7 @@ const UsersPage = () => {
                    loading ? <span>loading...</span> :
         
                    (
-                  data && data
+                   subset
                   .filter(x=>x.username.toLowerCase().includes(search.toLowerCase()))
                   .sort((a,b)=>{
                       if (property && property.asc===true) {
@@ -109,6 +123,18 @@ const UsersPage = () => {
                   )))}
                 </tbody>
               </table>
+              <div className="pagination">
+              <ReactPaginate
+            
+                className="page"
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={(e) => setCurrentPage(e.selected)}
+                pageCount={totalPages}
+                previousLabel="< "
+                forcePage={currentPage}
+              />
+            </div>
             </div>
           </div>
 

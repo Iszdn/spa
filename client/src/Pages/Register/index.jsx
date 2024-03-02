@@ -41,7 +41,7 @@ setToken(response.data.token)
   return (
     <>
       <Helmet>
-        <title>RegisterPage</title>
+        <title>Register</title>
       </Helmet>
       <>
         <div className="register">
@@ -63,7 +63,9 @@ setToken(response.data.token)
               validationSchema={Yup.object().shape({
                 username: Yup.string().required("Username is required"),
                 email: Yup.string().email("Invalid email").required("Email is required"),
-                password: Yup.string().required("Password is required"),
+                password: Yup.string()
+                .min(5, 'Must be 5 characters or more')
+                .required("Password is required"),
                 confirmpassword: Yup.string()
                   .oneOf([Yup.ref('password'), null], 'Passwords must match')
                   .required('Confirm Password is required'),

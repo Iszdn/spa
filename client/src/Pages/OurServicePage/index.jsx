@@ -29,7 +29,7 @@ const OurServicePage = () => {
   return (
     <>
       <Helmet>
-        <title>OurServicePage</title>
+        <title>Our Service</title>
       </Helmet>
       <div id="services">
         <WhereAreYou title="Our Services" curent="Our Services"/>

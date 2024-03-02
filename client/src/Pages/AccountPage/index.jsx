@@ -4,6 +4,10 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+import InputLabel from '@mui/material/InputLabel';
 import { Helmet } from 'react-helmet-async';
 import "./index.scss";
 import WhereAreYou from '../../components/WhereAreYou';
@@ -11,17 +15,39 @@ import Instagram from '../../components/HomeComponents/Instagram';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
+
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
 import Cookies from "js-cookie"
 import toast from 'react-hot-toast';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { TextField } from '@mui/material';
 
 const Account = () => {
   const { user, setToken, setUser } = useContext(UserContext);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [editedValues, setEditedValues] = useState({ username: '', password: '', confirmPassword: '' });
+
+
+  async function updateUserById(userData) {
+    try {
+      const res = await axios.put(`http://localhost:5000/users/${user.userId}`, userData);
+      // Обработка успешного обновления
+      toast.success("User Updated")
+      console.log("User updated successfully:", res.data);
+    } catch (error) {
+      toast.error("wrong!")
+
+      console.log("Error updating user:", error.message);
+    }
+  }
 
   async function getUserById() {
     try {
@@ -52,6 +78,29 @@ const Account = () => {
     const year = date.getFullYear();
     return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
   }
+
+  function handleEditClick() {
+    setEditedValues({ username: user.username, password: user.password });
+    setEditing(true);
+    resetForm()
+  }
+
+  const handleSubmit = async (values, { setSubmitting,resetForm  }) => {
+    try {
+      if (values.password !== values.confirmPassword) {
+        toast.error("Passwords do not match");
+        setSubmitting(false);
+        return;
+      }
+      await updateUserById(values);
+      setSubmitting(false); 
+      resetForm();
+    } catch (error) {
+      console.log("Error:", error.message);
+      setSubmitting(false); 
+    }
+  };
+  
 
   return (
     <>
@@ -126,9 +175,76 @@ const Account = () => {
                     </Swiper>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    <p>Username: {user.username}</p>
-                    <p>Role: {user.role}</p>
-                    <p>Email: {user.email}</p>
+                    <Formik
+                      initialValues={editedValues}
+                      validationSchema={Yup.object({
+                        username: Yup.string()
+                          .max(15, 'Must be 15 characters or less')
+                          .required('Required'),
+                          password: Yup.string()
+                          .min(5, 'Must be 5 characters or more')
+                          .max(20, 'Must be 20 characters or less')
+                          .required('Required')
+                          .oneOf([Yup.ref('confirmPassword'), null], 'Passwords must match'),
+                        confirmPassword: Yup.string()
+                          .required('Required')
+                          .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+                        
+                      })}
+                      onSubmit={handleSubmit}
+                    >
+                      {({ values, handleChange, handleBlur, isSubmitting }) => (
+                        <Form>
+                          <TextField
+                            id="username"
+                            label={user.username}
+                            variant="outlined"
+                            name="username"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.username}
+                            disabled={!editing} // Disable while not editing
+                          />
+                          <div className="red"> <ErrorMessage name="username" /></div>
+
+                          <TextField
+                            id="password"
+                            label="Password"
+                            variant="outlined"
+                            name="password"
+                            type="password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.password}
+                            disabled={!editing} // Disable while not editing
+                          />
+                          <div className="red"><ErrorMessage name="password" /></div>
+
+
+                          <TextField
+  id="confirmPassword"
+  label="Confirm Password"
+  variant="outlined"
+  name="confirmPassword"
+  type="password"
+  onChange={handleChange}
+  onBlur={handleBlur}
+  value={values.confirmPassword}
+  disabled={!editing}
+/>
+<div className="red"><ErrorMessage name="confirmPassword" /></div>
+
+
+
+                          {editing ? (
+                            
+                            <button type="submit" disabled={isSubmitting}>Save</button>
+                          ) : (
+                            <button type="button" onClick={handleEditClick}>Edit</button>
+                          )}
+                        </Form>
+                      )}
+                    </Formik>
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth"></Tab.Pane>
                 </Tab.Content>

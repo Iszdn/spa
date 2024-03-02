@@ -19,7 +19,7 @@ const Luctiory = () => {
       <div className="container">
         <div className="prod-kol" data-aos="fade-up" data-aos-duration="1200">
           <div className="sold sol">
-            <span>  {counterOn && <Count delay={0.5} end={4500} duration={9} />}<sup>k</sup></span>
+            <span>  {counterOn && <Count delay={0.5} end={45} duration={9} />}<sup>k</sup></span>
             <p>Products Sold</p>
           </div>
           <div className="sold chem">

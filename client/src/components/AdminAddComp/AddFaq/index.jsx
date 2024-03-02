@@ -11,6 +11,9 @@ const AddFaq = () => {
 
   return (
     <div className="adminpage">
+       <div className="text-center margi">
+        <h2>Add FAQ</h2>
+      </div>
          <div className='formadd'>
          <Formik
        initialValues={{ title: '', description: '' }}

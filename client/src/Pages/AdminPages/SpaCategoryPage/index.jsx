@@ -142,7 +142,7 @@ const SpaCategoryAdmin = () => {
                   }
 
                   editSpaCategory(editedSpaCategory._id, formData);
-                  toast.success("edited");
+                  
                 }}
               >
                  {({ setFieldValue }) => (

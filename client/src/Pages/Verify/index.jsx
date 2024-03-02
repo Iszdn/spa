@@ -5,6 +5,7 @@ import "./index.scss"
 const Verify = () => {
   const location = useLocation();
   const token = new URLSearchParams(location.search).get('token')
+  console.log(token)
   useEffect(() => {
     if (token) {
       postdu(token);
@@ -13,7 +14,7 @@ const Verify = () => {
 
   async function postdu(token) {
     try {
-      const res = await axios.post("http://localhost:8000/users/verify", { token });
+      const res = await axios.post(`http://localhost:5000/users/verify?token=${token}`);
       console.log("Response:", res.data); 
     } catch (error) {
       console.log("Error:", error.message);
