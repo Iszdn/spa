@@ -68,6 +68,7 @@ app.use('/review',ReviewRouter)
 app.post("/payment", async (req, res) => {
   let status, error;
   const { token, amount } = req.body;
+  console.log(token,amount);
   try {
     await Stripe.charges.create({
       source: token.id,

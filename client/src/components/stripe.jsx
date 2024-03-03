@@ -1,10 +1,13 @@
 import StripeCheckout from "react-stripe-checkout";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../context/BookingContext";
 
-function StripePAy({ selectedServicePrice }) {
+function StripePAy() {
+  const {bookinInfo, setBookinInfo, selectedServicePrice }=useContext(BookingContext)
+
   const navigate = useNavigate();
   const publishableKey = "pk_test_51Olvg9JywS7BLFriA3Wsqm3uM8IEmXX2gUPKfRJdeMZOe8IrY0OT6wg4aOj6lHsG3UMu7b8bvT69Yh2tW0Ole6Xy00Lmnen5ss";
 
@@ -20,14 +23,24 @@ console.log(selectedServicePrice);
           token,
         },
       });
+      console.log("response",response);
+      
+      console.log(bookinInfo);
+      const res = await axios.post("http://localhost:5000/booking", {
+        bookinInfo
+      });
+      console.log("res",res);
+      // res()
       toast.success("Successfully reserved!")
       navigate("/services")
-      if (response.status === 200) {
-        // handleSuccess();
-      }
+      // if (response.status === 200) {
+      
+      // }
     } catch (error) {
       // handleFailure();
       console.log(error);
+      toast.error("This time is already reserved!");
+      navigate("/services")
     }
   };
 

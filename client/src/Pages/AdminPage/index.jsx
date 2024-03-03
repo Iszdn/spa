@@ -21,7 +21,7 @@ const AdminPage = () => {
   
   <h4>Welcome to admin page <Link to="/account">  {user.username}</Link></h4>
   <div className="row">
-  <div className="col-lg-6">
+  <div className="col-lg-8">
     <div className="chart1">
   <Bar 
   data={{
@@ -56,7 +56,7 @@ const AdminPage = () => {
 
 </div>
 <div className="row">
-<div className="col-lg-6">
+<div className="col-lg-8">
   <div className="chart2">
   <Line
           data={{

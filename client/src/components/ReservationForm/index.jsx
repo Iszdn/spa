@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Stripe from "stripe";
 import StripePAy from "../stripe";
 import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../../context/BookingContext";
 
 const ReservationForm = () => {
   const [spaCategory, setSpaCategory] = useState([]);
@@ -15,9 +16,10 @@ const ReservationForm = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedServicePrice, setSelectedServicePrice] = useState(0); 
   const [timeOptions, setTimeOptions] = useState([]);
   const [endTimeOptions, setEndTimeOptions] = useState([]);
+
+  const {bookinInfo, setBookinInfo,selectedServicePrice, setSelectedServicePrice}=useContext(BookingContext)
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
@@ -38,14 +40,22 @@ console.log(selectedServicePrice);
       const { service, date, startTime, endTime, userId } = values; // Destructure values from the form
       const spaCategory = selectedCategory; // Set spaCategory from selectedCategory state
   
-      const res = await axios.post("http://localhost:5000/booking", {
+      // const res = await axios.post("http://localhost:5000/booking", {
+      //   spaCategory,
+      //   spaService: service, // Assuming service corresponds to spaService
+      //   date,
+      //   startTime,
+      //   endTime,
+      //   userId
+      // });
+      
+      setBookinInfo({
         spaCategory,
         spaService: service, // Assuming service corresponds to spaService
         date,
         startTime,
         endTime,
-        userId
-      });
+        userId})
       navigate("/stripe");
       // toast.success("Successfully reserved!");
     } catch (error) {

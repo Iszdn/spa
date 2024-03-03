@@ -3,10 +3,14 @@ import userSchema from "../models/user.js";
 
 export const createBooking = async (req, res) => {
     try {
-        const { spaCategory, spaService, date, startTime, endTime, userId } = req.body;
+        const { spaCategory, spaService, date, startTime, endTime, userId } = req.body.bookinInfo;
+console.log(userId);
+console.log(req.body.bookinInfo.userId);
+console.log(req.body);
 
         // Получаем пользователя, чтобы проверить, существует ли он
         const user = await userSchema.findById(userId);
+        console.log(user);
         if (!user) {
             return res.status(404).json({ message: "Пользователь не найден" });
         }
